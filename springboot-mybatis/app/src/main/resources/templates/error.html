@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Error</title>
+</head>
+<body>
+<h2>custom error</h2>
+<div id='created' th:text="${timestamp}"></div>
+<div th:text="'There was an unexpected error (type='+${error}+', status='+${status}+').'">There was an unexpected error (type=${error}, status=${status}).</div>
+<div th:text="${message}">${message}</div>
+</body>
+</html>

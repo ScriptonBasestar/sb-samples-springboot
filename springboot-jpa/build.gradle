@@ -1,0 +1,54 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+jar {
+	baseName = 'gs-securing-web'
+	version = '0.1.0'
+}
+
+repositories {
+	mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	// tag::security[]
+	compile("org.springframework.boot:spring-boot-starter-security")
+	// end::security[]
+	testCompile("junit:junit")
+	testCompile("org.springframework.boot:spring-boot-starter-test")
+	testCompile("org.springframework.security:spring-security-test")
+
+	//db
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
+//	compile("org.springframework.boot:spring-boot-starter-jdbc")
+	compile("com.h2database:h2:1.4.194")
+	compile("com.zaxxer:HikariCP:2.6.1")
+
+	//기타 필수
+	compile 'org.projectlombok:lombok:1.16.16'
+	compile group: 'com.google.guava', name: 'guava', version: '21.0'
+//	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
+	compile group: 'commons-collections', name: 'commons-collections', version: '3.2.2'
+
+	//logging
+	compile 'org.slf4j:slf4j-api:1.7.25'
+	runtime 'org.slf4j:jcl-over-slf4j:1.7.25'
+	compile 'ch.qos.logback:logback-classic:1.2.2'
+	compile 'ch.qos.logback:logback-core:1.2.2'
+}

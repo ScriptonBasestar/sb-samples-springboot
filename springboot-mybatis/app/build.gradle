@@ -1,0 +1,30 @@
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {
+	compile project(':core')
+	compile project(':domain')
+
+	//spring boot web/api
+	compile('org.springframework.boot:spring-boot-starter')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-mail')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-aop')
+	compile('org.springframework.boot:spring-boot-starter-cache')
+	compile('org.springframework.boot:spring-boot-starter-data-redis')
+
+	compile('org.apache.httpcomponents:httpclient')
+	compile "org.modelmapper:modelmapper:$modelmapper_version"
+
+	//swagger
+	compile 'io.springfox:springfox-swagger-ui:2.7.0'
+	compile 'io.springfox:springfox-swagger2:2.7.0'
+	compile 'io.swagger:swagger-jersey2-jaxrs:1.5.10'
+
+	//test
+	compile "com.mashape.unirest:unirest-java:$unirest_version"
+	testRuntime('com.h2database:h2')
+
+	//view
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+}

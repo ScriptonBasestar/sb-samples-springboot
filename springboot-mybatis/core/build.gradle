@@ -1,0 +1,10 @@
+bootRepackage.enabled = false
+bootRun.enabled = false
+
+dependencies {
+	compile('javax.validation:validation-api')
+	compile('com.fasterxml.jackson.core:jackson-annotations')
+	compile('com.fasterxml.jackson.module:jackson-module-kotlin')
+	compile('com.google.code.gson:gson')
+	compile "org.antlr:ST4:4.0.8"
+}

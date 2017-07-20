@@ -1,0 +1,22 @@
+{
+  "name": "springboot-mybatis-sample",
+  "version": "1.0.0",
+  "main": "/",
+  "repository": "git@github.com:ScriptonBasestar-sample/sb-samples-springboot.git",
+  "author": "archmagece <archmagece@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "d3": "^4.9.1",
+    "datatables": "^1.10.13",
+    "datejs": "^1.0.0-rc3",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-validation": "^1.16.0",
+    "modernizr": "^3.5.0",
+    "moment": "^2.18.1",
+    "simple-line-icons": "^2.4.1",
+    "whirl": "^1.2.0"
+  }
+}

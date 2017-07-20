@@ -1,0 +1,17 @@
+bootRepackage.enabled = false
+bootRun.enabled = false
+
+dependencies {
+	compile project(':core')
+
+	compile('org.springframework.boot:spring-boot-starter-data-redis')
+	compile("org.springframework.boot:spring-boot-starter-validation")
+	compile("org.springframework.boot:spring-boot-starter-jdbc")
+
+	compile "org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatis_spring_version"
+	compile "org.mybatis:mybatis:$mybatis_version"
+
+	compile('com.zaxxer:HikariCP')
+	runtime('mysql:mysql-connector-java')
+	testRuntime('com.h2database:h2')
+}

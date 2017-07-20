@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    #hikari.*: # Hikari specific settings
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      idle-timeout: 10000
+      connection-timeout: 60000 #60sec
+      maximum-pool-size: 5
+    continue-on-error: false
+
+logging:
+  level:
+    org.springframework: DEBUG
+    org.hibernate: INFO
+
+config:
+  server:
+    auth-key: "AUTH_CODE_HEADER"
+    auth-code: "AUTH_CODE_VALUE"
+    auth-nonce-name: "AUTH_NONCE_NAME"
+    auth-nonce-error-message: "AUTH_NONCE_ERROR_MESSAGE"

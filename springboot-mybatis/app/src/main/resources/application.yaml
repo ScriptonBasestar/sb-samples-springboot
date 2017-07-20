@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: dev
+
+  http:
+    multipart:
+      enabled: true
+      file-size-threshold: 0
+      max-file-size: 100MB
+      max-request-size: 100MB
+      location:
+  mvc:
+    async:
+      request-timeout: 10000
+
+  session:
+    store-type: redis
+    redis:
+      namespace: scripton-mybatis
+      flush-mode: on_save
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    #hikari.*: # Hikari specific settings
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      idle-timeout: 10000
+      connection-timeout: 60000 #60sec
+      maximum-pool-size: 5
+    continue-on-error: false

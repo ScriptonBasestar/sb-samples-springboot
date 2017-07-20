@@ -1,0 +1,27 @@
+spring:
+  devtools:
+    livereload:
+      enabled: true
+  thymeleaf:
+    cache: false
+
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST}:3306/${MYSQL_DB}?useUnicode=true&characterEncoding=UTF-8
+    name: ${MYSQL_DB}
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASS}
+  redis:
+    host: ${REDIS_HOST}
+
+logging:
+  level:
+    org.scripton: DEBUG
+    org.springframework: DEBUG
+
+########################## service config ##########################
+config:
+  server:
+    auth-key: "${AUTH_KEY}"
+    auth-code: "${AUTH_CODE}"
+    auth-nonce-name: "${AUTH_NONCE_NAME}"
+    auth-nonce-error-message: "${AUTH_NONCE_ERROR_MESSAGE}"

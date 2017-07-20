@@ -1,0 +1,83 @@
+buildscript {
+	repositories {
+		jcenter()
+		mavenCentral()
+		maven {
+			url 'https://plugins.gradle.org/m2/'
+		}
+	}
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
+		classpath "com.google.protobuf:protobuf-gradle-plugin:$protobuf_gradle_plugin_version"
+		classpath "org.springframework:springloaded:$springloaded_version"
+	}
+}
+
+apply plugin: 'base'
+
+allprojects {
+	apply plugin: 'java'
+	apply plugin: 'groovy'
+	apply plugin: 'eclipse'
+	apply plugin: 'idea'
+
+	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+	group project_group
+	version = project_version
+	sourceCompatibility = java_version
+	targetCompatibility = java_version
+	idea {
+		module {
+			downloadJavadoc = true
+			downloadSources = true
+		}
+	}
+	eclipse {
+		classpath {
+			downloadJavadoc = true
+			downloadSources = true
+		}
+	}
+	repositories {
+		mavenCentral()
+		jcenter()
+		mavenLocal()
+	}
+
+	dependencies {
+		compile "org.codehaus.groovy:groovy-all:$groovy_version"
+		compileOnly "org.projectlombok:lombok:$lombok_version"
+		compile "org.projectlombok:lombok:$lombok_version"
+	}
+
+	task stage(dependsOn: ['build'])
+	build.mustRunAfter clean
+}
+
+subprojects {
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	dependencies {
+		runtime('org.springframework.boot:spring-boot-devtools')
+		compileOnly('org.springframework.boot:spring-boot-configuration-processor')
+
+		//기타 필수
+		compile "com.google.guava:guava:$guava_version"
+		compile "org.apache.commons:commons-lang3:$commons_lang3_version"
+		compile "commons-collections:commons-collections:$commons_collections_version"
+
+		//logging
+		compile('org.springframework.boot:spring-boot-starter-logging')
+
+		//test
+		testCompile('junit:junit')
+		testCompile('org.springframework.boot:spring-boot-starter-test')
+		testCompile('org.springframework.security:spring-security-test')
+		testCompile('com.jayway.jsonpath:json-path')
+	}
+
+	clean {
+		delete "out"
+	}
+}
