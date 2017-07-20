@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "com.scriptonbasestar.helloworld";
+
+message User {
+    int64 id = 1;
+    string name = 2;
+}
+
+enum WorkType {
+    JOIN = 0;
+    EXIT = 1;
+}
+
+enum ResponseType {
+    SUCCESS = 0;
+    FAIL = 1;
+}

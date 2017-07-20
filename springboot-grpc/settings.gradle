@@ -1,0 +1,6 @@
+rootProject.name = "grpc-sample"
+
+include "boot-server"
+include "server"
+include "client"
+include "domain"

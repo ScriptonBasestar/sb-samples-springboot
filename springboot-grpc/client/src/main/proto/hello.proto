@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.scriptonbasestar.helloworld";
+option java_outer_classname = "HelloWorldProto";
+//이건 먼뜻인지 모르겠지만... google에 있어서 걍 퍼옴
+option objc_class_prefix = "HLW";
+
+package helloworld;
+
+import "model.proto";
+
+
+message HelloRequest {
+    User user = 1;
+    WorkType workType = 2;
+}
+
+message HelloResponse {
+    ResponseType responseType = 2;
+}
+
+service HelloService {
+    rpc greeting (HelloRequest) returns (HelloResponse);
+}
+
