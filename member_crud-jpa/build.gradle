@@ -1,0 +1,67 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		//springboot
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
+	}
+}
+
+apply plugin: 'base'
+
+
+allprojects {
+	apply plugin: 'java'
+	apply plugin: 'groovy'
+
+	apply plugin: 'idea'
+	apply plugin: 'eclipse'
+
+	group = 'sample'
+	version = '0.0.1-SNAPSHOT'
+	sourceCompatibility = java_version
+	targetCompatibility = java_version
+	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+	idea {
+		module {
+			downloadJavadoc = true
+			downloadSources = true
+		}
+	}
+	eclipse {
+		classpath {
+			downloadJavadoc = true
+			downloadSources = true
+		}
+	}
+
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
+}
+
+subprojects {
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	dependencies {
+		runtimeOnly('org.springframework.boot:spring-boot-devtools')
+
+		compileOnly('org.projectlombok:lombok')
+
+		testImplementation('org.codehaus.groovy:groovy')
+		testImplementation('org.codehaus.groovy:groovy-json')
+
+		//test
+		testRuntimeOnly('com.h2database:h2')
+		testImplementation('org.springframework.boot:spring-boot-starter-test')
+		testImplementation('org.springframework.security:spring-security-test')
+	}
+
+}

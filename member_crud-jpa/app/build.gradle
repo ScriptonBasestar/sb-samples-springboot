@@ -1,0 +1,18 @@
+apply plugin: 'application'
+mainClassName='sample.member.app.MainApplication'
+
+dependencies {
+	implementation project(':core')
+	implementation project(':domain')
+
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	implementation('org.springframework.boot:spring-boot-starter-security')
+	implementation('org.springframework.boot:spring-boot-starter-aop')
+	implementation('org.springframework.boot:spring-boot-starter-cache')
+	implementation('org.springframework.boot:spring-boot-starter-jdbc')
+
+	implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+
+	implementation('com.zaxxer:HikariCP')
+	implementation('mysql:mysql-connector-java')
+}

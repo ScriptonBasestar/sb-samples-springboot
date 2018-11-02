@@ -1,0 +1,23 @@
+bootRun.enabled = false
+bootJar.enabled = false
+jar.enabled = true
+
+dependencies {
+	implementation project(':core')
+
+	compile('org.springframework.boot:spring-boot-starter-data-redis')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-validation')
+	compile('org.springframework.boot:spring-boot-starter-cache')
+
+//	compile('org.hibernate:hibernate-core')
+//	compile('org.hibernate:hibernate-entitymanager')
+	compile('org.hibernate:hibernate-envers')
+	compile('org.hibernate:hibernate-ehcache')
+
+	compile('com.fasterxml.jackson.core:jackson-databind')
+
+
+	compile "org.modelmapper:modelmapper:$modelmapper_version"
+	compile "com.google.guava:guava:$guava_version"
+}

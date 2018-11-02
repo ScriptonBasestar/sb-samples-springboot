@@ -1,0 +1,29 @@
+spring:
+  devtools:
+    livereload:
+      enabled: true
+  thymeleaf:
+    cache: false
+  resources:
+    cache:
+      cachecontrol:
+        max-age: 0ms
+  mvc:
+    async:
+      request-timeout: 10000ms
+
+  jpa:
+    show_sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments : true
+
+logging:
+  level:
+    org.springframework: TRACE
+    org.hibernate: DEBUG
+    org.hibernate.type: TRACE
+    org.hibernate.SQL: DEBUG
