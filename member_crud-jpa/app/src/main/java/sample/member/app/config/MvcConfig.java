@@ -24,12 +24,8 @@ import java.util.List;
 public class MvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		if (!registry.hasMappingForPattern("/assets/**")) {
-			registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/");
-		}
-		if (!registry.hasMappingForPattern("/vendor/**")) {
-			registry.addResourceHandler("/vendor/**").addResourceLocations("classpath:/vendor/");
-		}
+		registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/");
+		registry.addResourceHandler("/vendor/**").addResourceLocations("classpath:/vendor/");
 	}
 
 	@Override
