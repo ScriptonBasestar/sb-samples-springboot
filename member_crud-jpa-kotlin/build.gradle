@@ -1,0 +1,93 @@
+buildscript {
+	repositories {
+		jcenter()
+		mavenCentral()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+		classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
+		classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlin_version"
+
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
+	}
+}
+
+apply plugin: 'base'
+
+
+allprojects {
+	apply plugin: 'kotlin'
+	apply plugin: 'kotlin-spring'
+//	apply plugin: 'kotlin-allopen'
+	apply plugin: 'kotlin-noarg'
+	apply plugin: 'kotlin-jpa'
+
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	apply plugin: 'idea'
+	apply plugin: 'eclipse'
+
+	group = 'sample'
+	version = '0.0.1-SNAPSHOT'
+	sourceCompatibility = java_version
+	targetCompatibility = java_version
+	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+	compileKotlin {
+		kotlinOptions.jvmTarget = java_version
+		kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
+	}
+	compileTestKotlin {
+		kotlinOptions.jvmTarget = java_version
+		kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
+	}
+
+	idea {
+		module {
+			downloadJavadoc = true
+			downloadSources = true
+		}
+	}
+	eclipse {
+		classpath {
+			downloadJavadoc = true
+			downloadSources = true
+		}
+	}
+
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
+
+	dependencies {
+		implementation('org.jetbrains.kotlin:kotlin-stdlib')
+		implementation('org.jetbrains.kotlin:kotlin-reflect')
+		implementation('org.jetbrains.kotlin:kotlin-test')
+
+		implementation('org.codehaus.groovy:groovy')
+	}
+}
+
+subprojects {
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	dependencies {
+		runtimeOnly('org.springframework.boot:spring-boot-devtools')
+
+		compileOnly('org.projectlombok:lombok')
+
+		testImplementation('org.codehaus.groovy:groovy')
+		testImplementation('org.codehaus.groovy:groovy-json')
+
+		//test
+		testRuntimeOnly('com.h2database:h2')
+		testImplementation('org.springframework.boot:spring-boot-starter-test')
+		testImplementation('org.springframework.security:spring-security-test')
+	}
+
+}

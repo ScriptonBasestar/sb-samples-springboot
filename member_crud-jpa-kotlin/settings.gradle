@@ -1,0 +1,5 @@
+rootProject.name = 'member-web'
+
+include 'core'
+include 'domain'
+include 'app'

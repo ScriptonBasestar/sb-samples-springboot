@@ -1,0 +1,60 @@
+# STS(Eclipse)
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+# NetBeans
+nbproject/private/
+#build/
+nbbuild/
+#dist/
+nbdist/
+.nb-gradle/
+
+# IntelliJ Idea settings
+.idea
+*.iml
+out/
+*.iws
+*.ipr
+
+# Build - Maven
+target/
+!mvn/wrapper/maven-wrapper.jar
+
+# Build - Gradle
+bin/
+build/
+*/build/
+.gradle/
+
+# Build - etc
+classes/
+
+# generated
+## querydsl
+**/generated/
+node_modules/
+#vendor/
+
+# log
+*.log
+log/
+logs/
+
+# osx
+.DS_Store
+
+# test
+*/test/*/*TestLocal.java
+*ExampleLocal.java
+*MainLocal.java
+test.*.json
+test.*.xml
+*-test.properties
+
+
+.env

@@ -1,0 +1,37 @@
+spring:
+  profiles:
+    active: dev
+#  jackson:
+#    property-naming-strategy: SNAKE_CASE
+  application:
+    name: memberweb
+
+  datasource:
+    name: ${DATASOURCE0_NAME:dev_memberweb}
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${DB0_HOST:localhost}:${DB0_PORT:3306}/${DB0_NAME:dev_memberweb}?useUnicode=true&characterEncoding=UTF-8
+    username: ${DB0_USERNAME:root}
+    password: ${DB0_PASSWORD:passw0rd}
+    hikari:
+      idle-timeout: 10000
+      connection-timeout: 60000 #60sec
+      maximum-pool-size: 5
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+#    hibernate:
+#      naming:
+#        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+#        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties:
+      javax.persistence.sharedCache.mode: ALL
+      hibernate.generate_statistics: true
+      # ehcache
+      hibernate.cache.use_second_level_cache: true
+      hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+      hibernate.id.new_generator_mappings: false
+server:
+  error:
+    whitelabel:
+      enabled: false

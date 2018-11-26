@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  th:with="lang=${#locale.language}" th:lang="${lang}">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>INSPINIA | Register</title>
+
+	<link href="../assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet">
+	<link href="../assets/font-awesome/css/font-awesome.css" th:href="@{/assets/font-awesome/css/font-awesome.css}" rel="stylesheet">
+	<link href="../assets/css/plugins/iCheck/custom.css" th:href="@{/assets/css/plugins/iCheck/custom.css}" rel="stylesheet">
+	<link href="../assets/css/animate.css" th:href="@{/assets/css/animate.css}" rel="stylesheet">
+	<link href="../assets/css/style.css" th:href="@{/assets/css/style.css}" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+<div class="middle-box text-center loginscreen   animated fadeInDown">
+	<div>
+		<div>
+
+			<h1 class="logo-name">IN+</h1>
+
+		</div>
+		<h3>Register to IN+</h3>
+		<p>Create account to see it in action.</p>
+		<form class="m-t" role="form" action="#" th:action="@{/signup/rest}" method="post" id="form0">
+			<div class="form-group">
+				<input type="text" name="username" class="form-control" placeholder="아이디"
+					   data-parsley-remote="/signup/rest/checkUsername"
+					   required data-parsley-minlength="2" data-parsley-maxlength="10">
+			</div>
+			<div class="form-group">
+				<input type="text" name="realname" class="form-control" placeholder="Name"
+					   required data-parsley-minlength="2" data-parsley-maxlength="10">
+			</div>
+			<div class="form-group">
+				<input type="email" name="email" class="form-control" placeholder="Email"
+					   data-parsley-remote="/signup/rest/checkEmail"
+					   required data-parsley-minlength="5" data-parsley-maxlength="50">
+			</div>
+			<div class="form-group">
+				<input type="password" name="password" class="form-control" placeholder="Password" id="signupInputPassword1"
+					   required data-parsley-minlength="5" data-parsley-maxlength="20">
+			</div>
+			<div class="form-group">
+				<input type="password" name="passwordConfirm" class="form-control" placeholder="Password 확인"
+					   data-parsley-equalto="#signupInputPassword1"
+					   required data-parsley-minlength="5" data-parsley-maxlength="20">
+			</div>
+			<div class="form-group">
+				<input type="text" name="nickname" class="form-control" placeholder="Nickname"
+					   required data-parsley-minlength="1" data-parsley-maxlength="20">
+			</div>
+			<div class="form-group">
+				<div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
+			</div>
+			<button type="submit" class="btn btn-primary block full-width m-b">Register</button>
+
+			<p class="text-muted text-center">
+				<small>Already have an account?</small>
+			</p>
+			<a class="btn btn-sm btn-white btn-block" href="#">Login</a>
+		</form>
+		<p class="m-t">
+			<small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small>
+		</p>
+	</div>
+</div>
+
+<!-- Mainly scripts -->
+<script src="../assets/js/jquery-3.1.1.min.js" th:src="@{/assets/js/jquery-3.1.1.min.js}"></script>
+<script src="../assets/js/popper.min.js" th:src="@{/assets/js/popper.min.js}"></script>
+<script src="../assets/js/bootstrap.js" th:src="@{/assets/js/bootstrap.js}"></script>
+<script src="../assets/js/notify.min.js" th:src="@{/assets/js/notify.min.js}"></script>
+<!-- iCheck -->
+<script src="../assets/js/plugins/iCheck/icheck.min.js" th:src="@{/assets/js/plugins/iCheck/icheck.min.js}"></script>
+<script>
+	$(document).ready(function () {
+		$('.i-checks').iCheck({
+			checkboxClass: 'icheckbox_square-green',
+			radioClass: 'iradio_square-green',
+		});
+	});
+</script>
+
+<script src="../vendor/parsleyjs/dist/parsley.js" th:src="@{/vendor/parsleyjs/dist/parsley.js}"></script>
+<script>
+	var parsleyOptions = {
+		errorClass: 'is-invalid',
+		successClass: 'is-valid',
+		classHandler: function(ParsleyField) {
+			var el = ParsleyField.$element.parents('.form-group').find('input');
+			if (!el.length) // support custom checkbox
+				el = ParsleyField.$element.parents('.c-checkbox').find('label');
+			return el;
+		},
+		errorsContainer: function(ParsleyField) {
+			return ParsleyField.$element.parents('.form-group');
+		},
+		errorsWrapper: '<div class="text-help">',
+		errorTemplate: '<div></div>'
+	};
+	// $("#form0 [name=username]").addAsyncValidator('usernameValidator', function (xhr) {
+	// 		return 200 === xhr.status;
+	// 	}, '/signup/rest/checkUsername',
+	// 	{ "type": "GET", "dataType": "jsonp", "data": { "token": "value" } }
+	// );
+	// $("#form0 [name=email]").addAsyncValidator('emailValidator', function (xhr) {
+	// 		return 200 === xhr.status;
+	// 	}, '/signup/rest/checkEmail',
+	// 	{ "type": "GET", "dataType": "jsonp", "data": { "token": "value" } }
+	// 	// { "type": "POST", "dataType": "jsonp", "data": { "token": "value" } }
+	// );
+
+	// $.listen('parsley:form:validated', function(e){
+	// 	if (e.validationResult) {
+	// 		/* Validation has passed, prevent double submissions */
+	// 		$('button[type=submit]').attr('disabled', 'disabled');
+	// 	}
+	// });
+	$("#form0").parsley(parsleyOptions).validate();
+
+	$("#form0").submit(function (e) {
+		e.preventDefault();
+		var form0 = $(this);
+		// form0.parsley(parsleyOptions).validate();
+
+		$.ajax({
+			method: form0.attr("method"),
+			url: form0.attr("action"),
+			dataType: "json",
+			contentType: "application/json",
+			// headers : {"token" : "[[${token}]]"},
+			data: JSON.stringify({
+				username: form0.find("[name=username]").val(),
+				realname: form0.find("[name=realname]").val(),
+				nickname: form0.find("[name=nickname]").val(),
+				email: form0.find("[name=email]").val(),
+				password: form0.find("[name=password]").val(),
+				password_confirm: form0.find("[name=passwordConfirm]").val()
+			}),
+			success: function (response) {
+				console.log(response);
+				if(response.success){
+					// form0.find("submit").notify("실패", {
+					$.notify("가입 성공", {
+						status:"success"
+					});
+					setTimeout(function() {
+						location.href = "/";
+					}, 1000)
+
+				}else{
+					$('button[type=submit]').removeAttr('disabled');
+					$.notify("실패 - "+data.message, {
+						status:"danger"
+					});
+				}
+			}
+		});
+	});
+
+</script>
+</body>
+
+</html>

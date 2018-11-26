@@ -1,0 +1,17 @@
+spring:
+  resources:
+    cache:
+      cachecontrol:
+        max-age: 100000ms
+  mvc:
+    async:
+      request-timeout: 10000ms
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+logging:
+  level:
+    org.springframework: INFO
+    org.hibernate: ERROR

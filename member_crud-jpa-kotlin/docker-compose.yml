@@ -1,0 +1,16 @@
+version: '3'
+
+volumes:
+  dev_mysql:
+services:
+  dev_mysql:
+    image: mysql:5.7
+    ports:
+    - '3306:3306'
+    environment:
+    - MYSQL_ROOT_PASSWORD=passw0rd
+    - MYSQL_ROOT_HOST=%
+    - MYSQL_DATABASE=dev_memberweb
+    volumes:
+    - dev_mysql:/var/lib/mysql
+
