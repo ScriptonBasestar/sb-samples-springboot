@@ -1,7 +1,7 @@
 package sample.member.app.service
 
-import org.junit.Assert
-import org.junit.Test
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import sample.member.app.web.member.MemberService
@@ -15,8 +15,8 @@ class MemberServiceTest extends BaseServiceTest<MemberService> {
 		PageRequest pageRequest = PageRequest.of(0, 10)
 		Page<UserEntity> page = service.list(pageRequest)
 		//then
-		Assert.assertNotNull(page)
-		Assert.assertNotNull(page.content)
+		Assertions.assertNotNull(page)
+		Assertions.assertNotNull(page.content)
 	}
 
 	@Test
@@ -24,7 +24,7 @@ class MemberServiceTest extends BaseServiceTest<MemberService> {
 		//when
 		UserEntity userEntity = service.detail("username1")
 		//then
-		Assert.assertNotNull(userEntity)
-		Assert.assertEquals("username1", userEntity.username)
+		Assertions.assertNotNull(userEntity)
+		Assertions.assertEquals("username1", userEntity.username)
 	}
 }

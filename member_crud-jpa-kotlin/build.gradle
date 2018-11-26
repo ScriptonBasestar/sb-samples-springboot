@@ -79,7 +79,7 @@ subprojects {
 	dependencies {
 		runtimeOnly('org.springframework.boot:spring-boot-devtools')
 
-		compileOnly('org.projectlombok:lombok')
+		compileOnly "org.projectlombok:lombok:$lombok_version"
 
 		testImplementation('org.codehaus.groovy:groovy')
 		testImplementation('org.codehaus.groovy:groovy-json')

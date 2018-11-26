@@ -1,8 +1,8 @@
 package sample.member.app.controller
 
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver
-import org.springframework.test.context.junit4.SpringRunner
+import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
@@ -25,7 +25,8 @@ import sample.member.domain.model.UserEntity
 
 import java.util.stream.Collectors
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = MainApplication.class)
 class MemberControllerTest {
 
@@ -39,7 +40,7 @@ class MemberControllerTest {
 	private MemberService service
 
 	//given
-	@Before
+	@BeforeAll
 	void setupMock() {
 		MockitoAnnotations.initMocks(this)
 		mockMvc = MockMvcBuilders.standaloneSetup(controller)

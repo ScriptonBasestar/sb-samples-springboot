@@ -1,15 +1,13 @@
 package sample.member.domain
 
-
-import org.junit.Assert
-import org.junit.Before
-import org.junit.BeforeClass
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.dao.DataIntegrityViolationException
-import org.springframework.test.context.junit4.SpringRunner
+import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.transaction.annotation.Transactional
 import sample.member.domain.model.UserEntity
 import sample.member.domain.repository.UserRepository
@@ -17,7 +15,7 @@ import sample.member.domain.repository.UserRepository
 /**
  * UserEntity CRUD 테스트
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = DomainTestApplication.class)
 @Transactional
 class CRUDTest {
@@ -26,7 +24,7 @@ class CRUDTest {
 	private UserRepository userRepository
 
 	//given
-	@BeforeClass
+	@BeforeAll
 	static void 'insert entity'() {
 		(1..5).each {
 			UserEntity userEntity = new UserEntity(
@@ -38,7 +36,8 @@ class CRUDTest {
 		}
 	}
 
-	@Test(expected = DataIntegrityViolationException.class)
+//	@Test(expected = DataIntegrityViolationException.class)
+	@Test
 	void 'insert 중복사용자 추가'() {
 		//when
 		UserEntity userEntity = new UserEntity(
@@ -46,7 +45,10 @@ class CRUDTest {
 				realname: "realname0",
 				email: "email0@email.com"
 		)
-		userRepository.save(userEntity)
+		Assertions.assertThrows(DataIntegrityViolationException.class,
+				{
+					userRepository.save(userEntity)
+				})
 		//then exception
 	}
 
@@ -56,8 +58,8 @@ class CRUDTest {
 		List<UserEntity> userList = userRepository.findAll()
 		//then
 		userList.each { user ->
-			Assert.assertNotNull(user.username)
-			Assert.assertNotNull(user.createdAt)
+			Assertions.assertNotNull(user.username)
+			Assertions.assertNotNull(user.createdAt)
 		}
 	}
 
@@ -78,7 +80,7 @@ class CRUDTest {
 		//then
 		println(date0)
 		println(date1)
-		Assert.assertTrue(date0.before(date1))
+		Assertions.assertTrue(date0.before(date1))
 	}
 
 	@Test
@@ -87,7 +89,7 @@ class CRUDTest {
 		userRepository.deleteById(1L)
 		def userOptional = userRepository.findById(1L)
 		//then
-		Assert.assertTrue(!userOptional.present)
+		Assertions.assertTrue(!userOptional.present)
 	}
 
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 @Controller
 class SignupViewController {
 
-	@RequestMapping(value = "/signup", method = [RequestMethod.GET])
+	@RequestMapping(value = ["/signup"], method = [RequestMethod.GET])
 	fun signupView(): String = "signup.html"
 
 }

@@ -3,8 +3,6 @@ package sample.member.app.config
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Import
-import sample.member.domain.config.DomainConfig
 import sample.member.domain.model.UserEntity
 import sample.member.domain.repository.UserRepository
 

@@ -51,12 +51,12 @@ class MemberControllerTest {
 	fun `test friend list rest controller`() {
 		val pageable = PageRequest.of(0, 10)
 		Mockito.`when`(service.list(pageable)).thenReturn(PageImpl<UserEntity>(
-				(1..10).map {
+				(1..10).map { idx ->
 					UserEntity(
-							"username$it",
-							"realname$it",
-							"email$it@email.com",
-							"passw0rd$it"
+							"username$idx",
+							"realname$idx",
+							"email$idx@email.com",
+							"passw0rd$idx"
 					)
 				},
 				pageable,
@@ -72,8 +72,15 @@ class MemberControllerTest {
 
 	@Test
 	fun `test friend detail rest controller`() {
-		Mockito.doReturn(UserEntity::class.java).`when`(service).detail("username1")
-//		Mockito.`when`(service.detail("username1")).thenReturn(UserEntity)
+		val idx = 1
+		val userEntity = UserEntity(
+				"username$idx",
+				"realname$idx",
+				"email$idx@email.com",
+				"passw0rd$idx"
+		)
+		Mockito.`when`(service.detail("username1")).thenReturn(userEntity)
+//		Mockito.doReturn(userEntity).`when`(service).detail("username1")
 		mockMvc.perform(MockMvcRequestBuilders.get("/member/rest/detail")
 				.param("username", "username1"))
 				.andExpect(MockMvcResultMatchers.status().isOk)
