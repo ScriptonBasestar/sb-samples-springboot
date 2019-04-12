@@ -1,0 +1,27 @@
+spring:
+  devtools:
+    livereload:
+      enabled: false
+  thymeleaf:
+    cache: false
+  resources:
+    cache:
+      cachecontrol:
+        no-cache: true
+
+#  exposed:
+#    generate-ddl=true: true
+
+logging:
+  level:
+    org.springframework: INFO
+    org.springframework.security: INFO
+    org.hibernate: INFO
+    org.hibernate.type: INFO
+    org.hibernate.SQL: INFO
+    org.jetbrains.exposed: INFO
+#    org.springframework: DEBUG
+#    org.springframework.security: DEBUG
+#    org.hibernate: DEBUG
+#    org.hibernate.type: TRACE
+#    org.hibernate.SQL: DEBUG

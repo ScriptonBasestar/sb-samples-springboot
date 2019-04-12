@@ -1,0 +1,29 @@
+spring:
+  devtools:
+    livereload:
+      enabled: true
+  thymeleaf:
+    cache: false
+  resources:
+    cache:
+      cachecontrol:
+        no-cache: true
+
+#  exposed:
+#    generate-ddl=true: true
+
+logging:
+  level:
+    neuralbc.signal: DEBUG
+    org.springframework: DEBUG
+    org.springframework.security: INFO
+    org.hibernate: INFO
+    org.hibernate.type: INFO
+    org.hibernate.SQL: INFO
+    org.jetbrains.exposed: DEBUG
+    Exposed: DEBUG
+#    org.springframework: DEBUG
+#    org.springframework.security: DEBUG
+#    org.hibernate: DEBUG
+#    org.hibernate.type: TRACE
+#    org.hibernate.SQL: DEBUG

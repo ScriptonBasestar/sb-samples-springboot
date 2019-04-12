@@ -1,0 +1,70 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: mapp-api
+  mvc:
+    async:
+      request-timeout: 10000s
+  jackson:
+#    property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
+    property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy
+# DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+#  datasource:
+#    name: ${DATASOURCE0_NAME:dev_api_member_spring_datasource}
+#    url: jdbc:mysql://${DB0_HOST:localhost}:${DB0_PORT:3306}/${DB0_NAME:dev_api_member_spring_db}?useLegacyDatetimeCode=false&serverTimezone=${DB0_TIMEZONE:UTC}&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+#    username: ${DB0_USERNAME:root}
+#    password: ${DB0_PASSWORD:passw0rd}
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    type: com.zaxxer.hikari.HikariDataSource
+#    hikari:
+#      idle-timeout: 10000
+#      connection-timeout: 60000 #60sec
+#      maximum-pool-size: 5
+#      minimum-idle: 5
+##      jdbc-url: jdbc:mysql://${DB0_HOST:localhost}:${DB0_PORT:3306}/${DB0_NAME:dev_api_member_spring_db}?useLegacyDatetimeCode=false&serverTimezone=${DB0_TIMEZONE:UTC}&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+##      username: ${DB0_USERNAME:root}
+##      password: ${DB0_PASSWORD:passw0rd}
+##      driver-class-name: com.mysql.cj.jdbc.Driver
+#    continue-on-error: false
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:passw0rd}
+
+#  servlet:
+#    multipart:
+#      enabled: true
+#      file-size-threshold: 0
+#      max-file-size: 500MB
+#      max-request-size: 500MB
+  cache:
+    type: redis
+    redis:
+      cache-null-values: true
+      use-key-prefix: true
+      key-prefix: mapp-api
+      time-to-live: 5s
+  cloud:
+    stream:
+      kafka:
+        streams:
+          bindings:
+            test_topic-in:
+              destination: greetings
+              contentType: application/json
+            test_topic-out:
+              destination: greetings
+              contentType: application/json
+        binder:
+          brokers: localhost:9092
+#    cache-names: verification
+
+#context:
+#  initializer:
+#    classes: com.example.demo.initializer.BeansInitializer
+
+server:
+  error:
+    whitelabel:
+      enabled: false
