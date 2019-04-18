@@ -7,3 +7,5 @@ https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reacti
 
 https://hashrocket.com/blog/posts/websocket-shootout
 https://github.com/sockjs/sockjs-client/
+
+https://medium.com/bigpanda-engineering/load-testing-web-sockets-2c5a499e447e
