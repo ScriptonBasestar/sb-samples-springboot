@@ -1,1 +1,0 @@
-# 2soruce sample - kotlin - jpa, jpa
