@@ -1,10 +1,10 @@
-package sample.member.app.security;
+package sample.member.domain.usertype;
 
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.ParameterizedType;
 import org.hibernate.usertype.UserType;
-import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.Serializable;
 import java.nio.charset.Charset;
@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 
 public class BCryptUserType implements UserType, ParameterizedType {
 
-	public static final String TYPE = "sample.member.app.security.BCryptUserType";
+	public static final String TYPE = "sample.member.domain.usertype.BCryptUserType";
 
 	public static final String PARAM_CHARSET = "charset";
 

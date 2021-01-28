@@ -5,6 +5,9 @@ dependencies {
 	implementation project(':core')
 	implementation project(':domain')
 
+	testImplementation 'it.ozimov:embedded-redis:0.7.1'
+	testImplementation 'com.h2database:h2'
+
 	implementation('org.springframework.boot:spring-boot-starter-web')
 	implementation('org.springframework.boot:spring-boot-starter-security')
 	implementation('org.springframework.boot:spring-boot-starter-aop')
@@ -14,5 +17,5 @@ dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
 
 	implementation('com.zaxxer:HikariCP')
-	implementation('mysql:mysql-connector-java')
+//	implementation('mysql:mysql-connector-java')
 }

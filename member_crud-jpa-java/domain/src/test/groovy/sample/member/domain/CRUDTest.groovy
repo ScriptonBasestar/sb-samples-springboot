@@ -25,12 +25,13 @@ class CRUDTest {
 
 	//given
 	@BeforeAll
-	static void 'insert entity'() {
-		(1..5).each {
+	static void 'insert entity'(@Autowired UserRepository userRepository) {
+		(0..5).each {
 			UserEntity userEntity = new UserEntity(
 					username: "username$it",
 					realname: "realname$it",
-					email: "email$it@email.com"
+					email: "email$it@email.com",
+					password: "password0"
 			)
 			userRepository.save(userEntity)
 		}
@@ -43,8 +44,10 @@ class CRUDTest {
 		UserEntity userEntity = new UserEntity(
 				username: "username0",
 				realname: "realname0",
-				email: "email0@email.com"
+				email: "email0@email.com",
+				password: "password0"
 		)
+//		userRepository.save(userEntity)
 		Assertions.assertThrows(DataIntegrityViolationException.class,
 				{
 					userRepository.save(userEntity)

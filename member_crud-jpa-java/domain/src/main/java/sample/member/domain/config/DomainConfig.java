@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableJpaAuditing
-@EnableSpringDataWebSupport
+//@EnableSpringDataWebSupport
 @EnableTransactionManagement
 @EntityScan(basePackages = "sample.member.domain.model")
 @EnableJpaRepositories(basePackages = "sample.member.domain.repository")

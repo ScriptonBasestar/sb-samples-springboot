@@ -1,27 +1,23 @@
-buildscript {
-	repositories {
-		jcenter()
-		mavenCentral()
-		maven {
-			url "https://plugins.gradle.org/m2/"
-		}
-	}
-	dependencies {
-		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-		classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
-		classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlin_version"
+plugins {
+	id 'org.springframework.boot' version '2.0.6.RELEASE' apply false
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE' apply false
 
-		classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
-	}
+	id 'org.jetbrains.kotlin.jvm' version '1.4.21' apply false
+	id 'org.jetbrains.kotlin.plugin.jpa' version '1.4.21' apply false
+	id 'org.jetbrains.kotlin.plugin.noarg' version '1.4.21' apply false
+	id 'org.jetbrains.kotlin.plugin.allopen' version '1.4.21' apply false
+	id 'org.jetbrains.kotlin.plugin.spring' version '1.4.21' apply false
 }
 
 apply plugin: 'base'
 
 
 allprojects {
+	apply plugin: 'java'
+	apply plugin: 'groovy'
 	apply plugin: 'kotlin'
 	apply plugin: 'kotlin-spring'
-//	apply plugin: 'kotlin-allopen'
+	apply plugin: 'kotlin-allopen'
 	apply plugin: 'kotlin-noarg'
 	apply plugin: 'kotlin-jpa'
 
@@ -79,7 +75,7 @@ subprojects {
 	dependencies {
 		runtimeOnly('org.springframework.boot:spring-boot-devtools')
 
-		compileOnly "org.projectlombok:lombok:$lombok_version"
+		compileOnly 'org.projectlombok:lombok'
 
 		testImplementation('org.codehaus.groovy:groovy')
 		testImplementation('org.codehaus.groovy:groovy-json')
@@ -89,5 +85,4 @@ subprojects {
 		testImplementation('org.springframework.boot:spring-boot-starter-test')
 		testImplementation('org.springframework.security:spring-security-test')
 	}
-
 }

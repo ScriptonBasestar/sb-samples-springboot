@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Type;
+import sample.member.domain.usertype.BCryptUserType;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -45,7 +46,7 @@ public class UserEntity extends BaseEntity {
 
 	@JsonIgnore
 	@Column(length = 60, nullable = false)//56
-	@Type(type = "sample.member.app.security.BCryptUserType")
+	@Type(type = BCryptUserType.TYPE)
 	private String password;
 
 	@Override

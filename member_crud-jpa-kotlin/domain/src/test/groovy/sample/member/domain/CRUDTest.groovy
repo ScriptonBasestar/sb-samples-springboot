@@ -29,13 +29,27 @@ class CRUDTest {
 	@BeforeClass
 	static void 'insert entity'() {
 		(1..5).each {
+//			UserEntity userEntity = new UserEntity(
+//					username: "username$it",
+//					realname: "realname$it",
+//					email: "email$it@email.com",
+//					password: "password0"
+//			)
 			UserEntity userEntity = new UserEntity(
-					username: "username$it",
-					realname: "realname$it",
-					email: "email$it@email.com"
+					"username$it",
+					"realname$it",
+					"email$it@email.com",
+					"password0"
 			)
 			userRepository.save(userEntity)
 		}
+	}
+
+	@Test
+	void 'password bcrypt'() {
+		UserEntity userEntity = userRepository.findById(1).get()
+		println("=========================")
+		println(userEntity)
 	}
 
 	@Test(expected = DataIntegrityViolationException.class)
