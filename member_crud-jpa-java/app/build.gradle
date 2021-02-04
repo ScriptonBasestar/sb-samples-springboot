@@ -11,7 +11,9 @@ dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-cache')
 	implementation('org.springframework.boot:spring-boot-starter-jdbc')
 
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+	implementation('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
 
 	implementation('com.zaxxer:HikariCP')
 	implementation('mysql:mysql-connector-java')

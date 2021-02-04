@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	  th:with="lang=${#locale.language}" th:lang="${lang}">
-
+<html lang="en" th:with="lang=${#locale.language}" th:lang="${lang}"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/content_layout.html}">
 <head>
 
 	<meta charset="utf-8">
@@ -21,7 +23,7 @@
 
 <div id="wrapper">
 
-	<nav class="navbar-default navbar-static-side" role="navigation">
+	<nav class="navbar-default navbar-static-side" role="navigation" layout:fragment="navbar">
 		<div class="sidebar-collapse">
 			<ul class="nav metismenu" id="side-menu">
 				<li>
@@ -40,7 +42,7 @@
 		</div>
 	</nav>
 
-	<div id="page-wrapper" class="gray-bg">
+	<div id="page-wrapper" class="gray-bg" layout:fragment="content">
 		<div class="row border-bottom">
 			<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
 				<div class="navbar-header">

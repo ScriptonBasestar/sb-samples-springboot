@@ -9,7 +9,7 @@ public class SignupViewController {
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signupView() {
-		return "signup.html";
+		return "signup";
 	}
 
 }

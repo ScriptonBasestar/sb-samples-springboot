@@ -1,6 +1,5 @@
 package sample.member.app.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,6 +17,12 @@ import sample.member.domain.repository.UserRepository;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+	public SecurityConfig(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+	private final UserRepository userRepository;
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -52,9 +57,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
 	}
-
-	@Autowired
-	private UserRepository userRepository;
 
 	@Bean
 	@Override

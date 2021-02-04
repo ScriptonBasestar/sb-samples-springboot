@@ -2,17 +2,16 @@
 <html lang="en" th:with="lang=${#locale.language}" th:lang="${lang}"
 	  xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/content_layout.html}">
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
 
-	<meta index>
+	<meta layout>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>INSPINIA | Dashboard title index</title>
+	<title>INSPINIA | title layout</title>
 
 	<link href="../assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet">
 	<link href="../assets/font-awesome/css/font-awesome.css" th:href="@{/assets/font-awesome/css/font-awesome.css}" rel="stylesheet">
@@ -30,9 +29,9 @@
 
 <body>
 <div id="wrapper">
-	outout index
+	outout layout
 	<nav class="navbar-default navbar-static-side" role="navigation" layout:fragment="navbar">
-		navbar index
+		navbar layout
 		<div class="sidebar-collapse">
 			<ul class="nav metismenu" id="side-menu">
 				<li>
@@ -52,7 +51,7 @@
 	</nav>
 
 	<div id="page-wrapper" class="gray-bg dashbard-1" layout:fragment="content">
-		content index
+		content layout
 		<div class="row border-bottom">
 			<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
 				<div class="navbar-header">
@@ -605,7 +604,7 @@
 		</div>
 		<div class="footer">
 			<div class="float-right">
-				10GB of <strong>250GB</strong> Free. footer index
+				10GB of <strong>250GB</strong> Free. footer layout
 			</div>
 			<div>
 				<strong>Copyright</strong> Example Company &copy; 2014-2018

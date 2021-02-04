@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	  th:with="lang=${#locale.language}" th:lang="${lang}">
+<html lang="en" th:with="lang=${#locale.language}" th:lang="${lang}"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/simple_layout.html}">
 
 <head>
 
@@ -19,6 +22,7 @@
 
 <body class="gray-bg">
 
+<th:block layout:fragment="content">
 <div class="middle-box text-center loginscreen   animated fadeInDown">
 	<div>
 		<div>
@@ -71,6 +75,8 @@
 		</p>
 	</div>
 </div>
+</th:block>
+
 
 <!-- Mainly scripts -->
 <script src="../assets/js/jquery-3.1.1.min.js" th:src="@{/assets/js/jquery-3.1.1.min.js}"></script>
