@@ -17,7 +17,8 @@ dependencies {
 
 	compile('com.fasterxml.jackson.core:jackson-databind')
 
+	compile 'org.mindrot:jbcrypt:0.4'
 
-	compile "org.modelmapper:modelmapper:$modelmapper_version"
+//	compile "org.modelmapper:modelmapper"
 	compile "com.google.guava:guava:$guava_version"
 }

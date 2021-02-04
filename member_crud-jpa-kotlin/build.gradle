@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.0.6.RELEASE' apply false
+	id 'org.springframework.boot' version '2.3.8.RELEASE' apply false
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE' apply false
 
 	id 'org.jetbrains.kotlin.jvm' version '1.4.21' apply false
@@ -7,82 +7,82 @@ plugins {
 	id 'org.jetbrains.kotlin.plugin.noarg' version '1.4.21' apply false
 	id 'org.jetbrains.kotlin.plugin.allopen' version '1.4.21' apply false
 	id 'org.jetbrains.kotlin.plugin.spring' version '1.4.21' apply false
+
+	id 'com.github.johnrengelman.shadow' version '6.1.0' apply false
 }
 
-apply plugin: 'base'
-
-
 allprojects {
-	apply plugin: 'java'
-	apply plugin: 'groovy'
-	apply plugin: 'kotlin'
-	apply plugin: 'kotlin-spring'
-	apply plugin: 'kotlin-allopen'
-	apply plugin: 'kotlin-noarg'
-	apply plugin: 'kotlin-jpa'
-
-	apply plugin: 'org.springframework.boot'
-	apply plugin: 'io.spring.dependency-management'
-
-	apply plugin: 'idea'
-	apply plugin: 'eclipse'
-
 	group = 'sample'
 	version = '0.0.1-SNAPSHOT'
-	sourceCompatibility = java_version
-	targetCompatibility = java_version
-	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-	compileKotlin {
-		kotlinOptions.jvmTarget = java_version
-		kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
-	}
-	compileTestKotlin {
-		kotlinOptions.jvmTarget = java_version
-		kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
-	}
-
-	idea {
-		module {
-			downloadJavadoc = true
-			downloadSources = true
-		}
-	}
-	eclipse {
-		classpath {
-			downloadJavadoc = true
-			downloadSources = true
-		}
-	}
 
 	repositories {
 		mavenCentral()
 		jcenter()
 	}
-
-	dependencies {
-		implementation('org.jetbrains.kotlin:kotlin-stdlib')
-		implementation('org.jetbrains.kotlin:kotlin-reflect')
-		implementation('org.jetbrains.kotlin:kotlin-test')
-
-		implementation('org.codehaus.groovy:groovy')
-	}
 }
 
+apply plugin: 'base'
+
 subprojects {
+	apply plugin: 'java'
+	apply plugin: 'groovy'
+
 	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
 
-	dependencies {
-		runtimeOnly('org.springframework.boot:spring-boot-devtools')
+	apply plugin: 'org.jetbrains.kotlin.jvm'
+	apply plugin: 'org.jetbrains.kotlin.plugin.jpa'
+	apply plugin: 'org.jetbrains.kotlin.plugin.allopen'
+	apply plugin: 'org.jetbrains.kotlin.plugin.spring'
 
-		compileOnly 'org.projectlombok:lombok'
-
-		testImplementation('org.codehaus.groovy:groovy')
+	dependencies {		testImplementation('org.codehaus.groovy:groovy')
 		testImplementation('org.codehaus.groovy:groovy-json')
 
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+		annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+		// test
+		developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+		annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+		testImplementation('org.springframework.boot:spring-boot-starter-test') {
+			exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+			exclude module: 'junit'
+		}
+		testImplementation 'io.projectreactor:reactor-test'
+		testImplementation 'org.springframework.security:spring-security-test'
+
 		//test
-		testRuntimeOnly('com.h2database:h2')
-		testImplementation('org.springframework.boot:spring-boot-starter-test')
-		testImplementation('org.springframework.security:spring-security-test')
+		testRuntimeOnly 'com.h2database:h2'
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+		testImplementation 'io.projectreactor:reactor-test'
+		testImplementation 'org.springframework.security:spring-security-test'
+	}
+
+	configurations {
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
+
+	sourceCompatibility = JavaVersion.VERSION_11
+	targetCompatibility = JavaVersion.VERSION_11
+	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+	compileJava {
+		options.annotationProcessorPath = configurations.annotationProcessor
+	}
+	compileKotlin {
+		kotlinOptions.jvmTarget = JavaVersion.VERSION_11
+		kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
+//        kotlinOptions.freeCompilerArgs += '-Xjsr305=strict'
+	}
+	compileTestKotlin {
+		kotlinOptions.jvmTarget = JavaVersion.VERSION_11
+		kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
+	}
+
+	test {
+		useJUnitPlatform()
 	}
 }
