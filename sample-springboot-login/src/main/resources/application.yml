@@ -1,0 +1,22 @@
+spring:
+#  datasource:
+#    url: jdbc:h2:mem:testdb
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password:
+#    type: com.zaxxer.hikari.HikariDataSource
+#    hikari:
+#      idle-timeout: 10000
+#  jpa:
+#    database: h2
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: create-drop
+#      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.H2Dialect
+##        hbm2ddl:
+##          auto: none
+#        temp:
+#          use_jdbc_metadata_defaults: false

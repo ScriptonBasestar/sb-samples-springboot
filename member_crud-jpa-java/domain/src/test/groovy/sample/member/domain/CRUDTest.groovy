@@ -56,6 +56,25 @@ class CRUDTest {
 	}
 
 	@Test
+	void 'password bcrypt 체크'() {
+		UserEntity userEntity = new UserEntity(
+				username: "username0x",
+				realname: "realname0x",
+				email: "email0x@email.com",
+				password: "password0"
+		)
+		userRepository.saveAndFlush(userEntity)
+		println("======================")
+		println(userEntity)
+		println(userEntity.password)
+		userRepository.
+		def userRead = userRepository.findByUsername("username0x").get()
+		println("======================")
+		println(userRead)
+		println(userRead.password)
+	}
+
+	@Test
 	void 'select 사용자 목록 출력 및 createdAt 값 확인'() {
 		//when
 		List<UserEntity> userList = userRepository.findAll()

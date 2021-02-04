@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="description" content="Bootstrap Admin App + jQuery"/>
+    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin"/>
+    <title>Angle - Bootstrap Admin Template</title>
+    <!-- =============== VENDOR STYLES ===============-->
+    <!-- FONT AWESOME-->
+    <link rel="stylesheet" href="/vendor/fontawesome/css/font-awesome.min.css"/>
+    <!-- SIMPLE LINE ICONS-->
+    <link rel="stylesheet" href="/vendor/simple-line-icons/css/simple-line-icons.css"/>
+    <!-- =============== BOOTSTRAP STYLES ===============-->
+    <link rel="stylesheet" href="/static/css/bootstrap.css" id="bscss"/>
+    <!-- =============== APP STYLES ===============-->
+    <link rel="stylesheet" href="/static/css/app.css" id="maincss"/>
+</head>
+
+<body>
+<div class="wrapper">
+    <div class="block-center mt-xl wd-xl">
+        <!-- START panel-->
+        <div class="panel panel-dark panel-flat">
+            <div class="panel-heading text-center">
+                <a href="#">
+                    <img src="/static/img/logo.png" alt="Image" class="block-center img-rounded"/>
+                </a>
+            </div>
+            <div class="panel-body">
+                <div th:if="${param.error}">
+                    Invalid username and password.
+                </div>
+                <div th:if="${param.logout}">
+                    You have been logged out.
+                </div>
+                <p class="text-center pv">SIGN IN TO CONTINUE.</p>
+                <form role="form" data-parsley-validate="" novalidate="" class="mb-lg" th:action="@{/login}" method="post">
+                    <div class="form-group has-feedback">
+                        <input id="exampleInputEmail1" name="username" type="email" placeholder="Enter email" autocomplete="off" required="required" class="form-control"/>
+                        <span class="fa fa-envelope form-control-feedback text-muted"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input id="exampleInputPassword1" name="password" type="password" placeholder="Password" required="required" class="form-control"/>
+                        <span class="fa fa-lock form-control-feedback text-muted"></span>
+                    </div>
+                    <div class="clearfix">
+                        <div class="checkbox c-checkbox pull-left mt0">
+                            <label>
+                                <input type="checkbox" value="" name="remember_me"/>
+                                <span class="fa fa-check"></span>Remember Me</label>
+                        </div>
+                        <div class="pull-right"><a href="recover.html" class="text-muted">Forgot your password?</a>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-block btn-primary mt-lg">Login</button>
+                </form>
+                <p class="pt-lg text-center">Need to Signup?</p><a th:href="@{join}" class="btn btn-block btn-default">Register Now</a>
+            </div>
+        </div>
+        <!-- END panel-->
+        <div class="p-lg text-center">
+            <span>&copy;</span>
+            <span>2016</span>
+            <span>-</span>
+            <span>Angle</span>
+            <br/>
+            <span>Bootstrap Admin Template</span>
+        </div>
+    </div>
+</div>
+<!-- =============== VENDOR SCRIPTS ===============-->
+<!-- MODERNIZR-->
+<script src="/vendor/modernizr/modernizr.custom.js"></script>
+<!-- JQUERY-->
+<script src="/vendor/jquery/dist/jquery.js"></script>
+<!-- BOOTSTRAP-->
+<script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
+<!-- STORAGE API-->
+<script src="/vendor/jQuery-Storage-API/jquery.storageapi.js"></script>
+<!-- PARSLEY-->
+<script src="/vendor/parsleyjs/dist/parsley.min.js"></script>
+<!-- =============== APP SCRIPTS ===============-->
+<script src="/static/js/app.js"></script>
+</body>
+
+</html>
