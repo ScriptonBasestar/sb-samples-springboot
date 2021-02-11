@@ -7,7 +7,8 @@ Spring Boot Login Sample
 * Spring Security with Spring Data
 * Spring Data
 * Bootstrap (유료템플릿-참고만가능. 상용/비상용 사용금지)
-* Thymleaf
+* Tiles
+* Thymeleaf
 * Junit Test
 * Logback
 * Lombok

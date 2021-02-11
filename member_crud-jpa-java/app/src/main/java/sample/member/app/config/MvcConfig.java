@@ -25,10 +25,14 @@ import java.util.List;
 
 @Configuration
 @EnableWebMvc
+// whitelabel error  - 이거 설정 안하면 로그인시 /error로 리다이렉트 되면서 에러발생.
+// 에러가 뭐 뜨는것도 아니고 nullpointer가 뜨는데
+// 스프링에 이상한 코드를 스캔하는ㄱ ㅓㅅ 같은데.. .일종의 버그로 봐야할까 어디서 문제가 발생하는건지 못 찾았다
 @ComponentScan("sample.member")
 public class MvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/favicon.ico").addResourceLocations("classpath:/assets/favicon.ico");
 		registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/");
 		registry.addResourceHandler("/vendor/**").addResourceLocations("classpath:/vendor/");
 	}
