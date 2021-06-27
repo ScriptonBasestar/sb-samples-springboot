@@ -16,6 +16,7 @@ services:
       - MYSQL_PASSWORD=${DB0_PASS:-passw0rd}
     volumes:
       - dev_mysql:/var/lib/mysql
+      - ./certs:/etc/ssl/mysql
 #      - ./src/main/resources/seeds/quartz.sql:/docker-entrypoint-initdb.d/quartz.sql
 
   dev_redis:
