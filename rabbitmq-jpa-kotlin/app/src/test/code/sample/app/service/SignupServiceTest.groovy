@@ -23,8 +23,8 @@ class SignupServiceTest extends BaseServiceTest<SignupService> {
         Assertions.assertTrue(isExists)
     }
 
-//	@Test(expected = DataIntegrityViolationException.class)
-//	@Test(expected = BusinessException.class)
+//    @Test(expected = DataIntegrityViolationException.class)
+//    @Test(expected = BusinessException.class)
     void 'exists user'() {
         //when
         def it = 1

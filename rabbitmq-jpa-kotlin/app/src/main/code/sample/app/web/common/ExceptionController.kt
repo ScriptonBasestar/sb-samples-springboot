@@ -41,7 +41,7 @@ class ExceptionController {
         }
 
     @ExceptionHandler(BusinessException::class)
-    //	@ResponseStatus(HttpStatus.BAD_REQUEST)
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     fun fnBusinessException(ex: BusinessException): EmptyResponseWrapper =
         EmptyResponseWrapper.create()

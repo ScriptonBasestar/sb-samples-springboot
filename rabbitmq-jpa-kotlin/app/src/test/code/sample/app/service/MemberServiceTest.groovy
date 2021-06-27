@@ -9,22 +9,22 @@ import sample.domain.model.UserEntity
 
 class MemberServiceTest extends BaseServiceTest<MemberService> {
 
-	@Test
-	void 'friend list'() {
-		//when
-		PageRequest pageRequest = PageRequest.of(0, 10)
-		Page<UserEntity> page = service.list(pageRequest)
-		//then
+    @Test
+    void 'friend list'() {
+        //when
+        PageRequest pageRequest = PageRequest.of(0, 10)
+        Page<UserEntity> page = service.list(pageRequest)
+        //then
         Assertions.assertNotNull(page)
         Assertions.assertNotNull(page.content)
-	}
+    }
 
-	@Test
-	void 'friend detail'() {
-		//when
-		UserEntity userEntity = service.detail("username1")
-		//then
+    @Test
+    void 'friend detail'() {
+        //when
+        UserEntity userEntity = service.detail("username1")
+        //then
         Assertions.assertNotNull(userEntity)
         Assertions.assertEquals("username1", userEntity.username)
-	}
+    }
 }

@@ -24,12 +24,12 @@ class CRUDTest {
     @BeforeAll
     static void 'insert entity'() {
         (1..5).each {
-//			UserEntity userEntity = new UserEntity(
-//					username: "username$it",
-//					realname: "realname$it",
-//					email: "email$it@email.com",
-//					password: "password0"
-//			)
+//            UserEntity userEntity = new UserEntity(
+//                username: "username$it",
+//                realname: "realname$it",
+//                email: "email$it@email.com",
+//                password: "password0"
+//            )
             UserEntity userEntity = new UserEntity(
                 "username$it",
                 "realname$it",

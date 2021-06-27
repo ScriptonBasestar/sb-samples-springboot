@@ -7,16 +7,16 @@ import javax.validation.constraints.Email
 data class SignupRequestDto(
 
     @field:Length(min = 2, max = 10)
-//		@field:NotNull
+//    @field:NotNull
     val username: String,
 
     @field:Length(min = 2, max = 10)
-//		@field:NotNull
+//    @field:NotNull
     val realname: String,
 
 
     @field:Length(min = 5, max = 50)
-//		@field:NotNull
+//    @field:NotNull
     @field:Email
     val email: String,
 
@@ -24,11 +24,11 @@ data class SignupRequestDto(
     val nickname: String?,
 
     @field:Length(min = 5, max = 20)
-//		@field:NotNull
+//    @field:NotNull
     val password: String,
 
     @field:Length(min = 5, max = 20)
-//		@field:NotNull
+//    @field:NotNull
     val passwordConfirm: String
 ) {
     @AssertTrue

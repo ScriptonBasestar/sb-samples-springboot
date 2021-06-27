@@ -25,8 +25,8 @@ import sample.domain.model.UserEntity
 @SpringBootTest(classes = [MainApplication::class])
 class MemberControllerTest {
 
-    //	@Autowired
-//	protected WebApplicationContext wac
+    //    @Autowired
+//    protected WebApplicationContext wac
     protected lateinit var mockMvc: MockMvc
 
     @InjectMocks
@@ -82,7 +82,7 @@ class MemberControllerTest {
             "passw0rd$idx"
         )
         Mockito.`when`(service.detail("username1")).thenReturn(userEntity)
-//		Mockito.doReturn(userEntity).`when`(service).detail("username1")
+//        Mockito.doReturn(userEntity).`when`(service).detail("username1")
         mockMvc.perform(
             MockMvcRequestBuilders.get("/member/rest/detail")
                 .param("username", "username1")
