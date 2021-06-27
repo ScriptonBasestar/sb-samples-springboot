@@ -1,0 +1,49 @@
+version: '3.8'
+
+volumes:
+  dev_mysql:
+
+services:
+  dev_mysql:
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB0_PASS:-passw0rd}
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE=${DB0_DB:-dev_local}
+      - MYSQL_USER=${DB0_USER:-user01}
+      - MYSQL_PASSWORD=${DB0_PASS:-passw0rd}
+    volumes:
+      - dev_mysql:/var/lib/mysql
+#      - ./src/main/resources/seeds/quartz.sql:/docker-entrypoint-initdb.d/quartz.sql
+
+  dev_redis:
+    image: bitnami/redis:latest
+    ports:
+      - '6379:6379'
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASS:-passw0rd}
+
+  dev_rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER:-user01}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASS:-passw0rd}
+      - RABBITMQ_DEFAULT_VHOST=${RABBITMQ_VHOST:-/dev-local}
+
+#  dev_app:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE:-dev}
+#    ports:
+#      - '8080:8080'
+#    depends_on:
+#      - dev_mysql
+#      - dev_redis
+#      - dev_rabbitmq

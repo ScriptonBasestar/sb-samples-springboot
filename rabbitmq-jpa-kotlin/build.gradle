@@ -1,0 +1,192 @@
+plugins {
+//    id 'java' apply false
+//    id 'groovy' apply false
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10' apply false
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.5.10' apply false
+    id 'org.jetbrains.kotlin.plugin.jpa' version '1.5.10' apply false
+//    kotlin("jvm") version "1.5.10"
+//    kotlin("plugin.spring") version "1.5.10"
+//    kotlin("plugin.jpa") version "1.5.10"
+//    id "org.jetbrains.kotlin.plugin.lombok" version '1.5.20-RC'
+
+    id 'org.springframework.boot' version '2.5.1' apply false
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE' apply false
+
+    id 'org.asciidoctor.convert' version '1.5.8' apply false
+
+    id 'org.jlleitschuh.gradle.ktlint' version '10.1.0'
+    id 'org.jlleitschuh.gradle.ktlint-idea' version '10.1.0'
+
+    id 'com.github.johnrengelman.shadow' version '7.0.0' apply false
+//    id "io.freefair.lombok" version "5.3.3.3" apply false
+}
+
+allprojects {
+    apply plugin: 'idea'
+
+    group 'sample'
+    version '0.0.1-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+
+//    eclipse {
+//        classpath {
+//            downloadSources=true
+//            downloadJavadoc=true
+//        }
+//    }
+}
+
+apply plugin: 'base'
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'groovy'
+
+    apply plugin: 'org.jetbrains.kotlin.jvm'
+    apply plugin: 'org.jetbrains.kotlin.plugin.spring'
+    apply plugin: 'org.jetbrains.kotlin.plugin.jpa'
+
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    apply plugin: 'org.asciidoctor.convert'
+    apply plugin: 'com.github.johnrengelman.shadow'
+//    apply plugin: 'io.freefair.lombok'
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/code']
+//            kotlin.srcDirs = ['src/main/code']
+//            groovy.srcDirs = ['src/main/code']
+//            *.srcDirs = []
+            resources.srcDirs = ['src/main/resources']
+        }
+        test {
+            java.srcDirs = ['src/test/code']
+//            kotlin.srcDirs = ['src/test/code']
+//            groovy.srcDirs = ['src/test/code']
+            resources.srcDirs = ['src/test/resources']
+        }
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+        all*.exclude group: 'junit', module: 'junit'
+    }
+
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+//    compileJava {
+//        options.annotationProcessorPath = configurations.annotationProcessor
+//    }
+//    compileKotlin {
+//        kotlinOptions.jvmTarget = JavaVersion.VERSION_11
+//        kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
+////        kotlinOptions.freeCompilerArgs += '-Xjsr305=strict'
+//    }
+//    compileTestKotlin {
+//        kotlinOptions.jvmTarget = JavaVersion.VERSION_11
+//        kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
+//    }
+
+    ext {
+        snippetsDir = file('build/generated-snippets')
+        testcontainersVersion = '1.15.3'
+    }
+
+
+    dependencyManagement {
+        imports {
+            mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
+        }
+    }
+
+    dependencies {
+        implementation 'org.codehaus.groovy:groovy-all:3.0.8'
+//        implementation "org.codehaus.groovy:groovy-all:${groovy.version}"
+//        implementation 'org.codehaus.groovy:groovy'
+
+        implementation 'org.springframework.boot:spring-boot-starter-amqp'
+        implementation 'org.springframework.boot:spring-boot-starter-batch'
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation 'org.springframework.boot:spring-boot-starter-quartz'
+        implementation 'org.springframework.boot:spring-boot-starter-web-services'
+        implementation 'org.springframework.boot:spring-boot-starter-security'
+//    implementation('org.springframework.boot:spring-boot-starter-security') {
+//        exclude group: 'org.springframework', module: 'spring-web'
+//    }
+        implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        implementation 'org.springframework.boot:spring-boot-starter-webflux'
+        implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+        implementation 'io.projectreactor.kotlin:reactor-kotlin-extensions'
+
+//    implementation 'org.flywaydb:flyway-core'
+        implementation 'org.jetbrains.kotlin:kotlin-reflect'
+        implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+//    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+        implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-reactor'
+        implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
+        compileOnly 'org.projectlombok:lombok'
+
+        implementation 'com.zaxxer:HikariCP'
+//        runtimeOnly 'mysql:mysql-connector-java'
+        runtimeOnly 'mysql:mysql-connector-java:5.1.46'
+//        implementation 'mysql:mysql-connector-java'
+        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        // test
+        testImplementation 'org.jetbrains.kotlin:kotlin-test'
+        testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+            exclude module: 'junit'
+        }
+        testImplementation 'io.projectreactor:reactor-test'
+        testImplementation 'org.springframework.amqp:spring-rabbit-test'
+        testImplementation 'org.springframework.batch:spring-batch-test'
+        testImplementation 'org.springframework.restdocs:spring-restdocs-webtestclient'
+        testImplementation 'org.springframework.security:spring-security-test'
+        testImplementation 'org.testcontainers:junit-jupiter'
+        testImplementation 'org.testcontainers:mysql'
+        testImplementation 'org.testcontainers:rabbitmq'
+
+        implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+        testImplementation 'com.h2database:h2'
+        developmentOnly 'org.springframework.boot:spring-boot-devtools'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    }
+
+//extra["snippetsDir"] = file("build/generated-snippets")
+//extra["testcontainersVersion"] = "1.15.3"
+
+    test {
+        useJUnitPlatform()
+//        include 'org/foo/***'
+        exclude '**Manual.**'
+    }
+
+    test {
+        outputs.dir(snippetsDir)
+    }
+
+    asciidoctor {
+        inputs.dir(snippetsDir)
+        dependsOn(test)
+    }
+
+//    task initConfig(type: Copy) {
+////        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+//        duplicatesStrategy = DuplicatesStrategy.INHERIT
+//    }
+}

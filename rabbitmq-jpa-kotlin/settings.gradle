@@ -1,0 +1,5 @@
+rootProject.name = 'rabbitmq-kotlin'
+
+include 'core'
+include 'domain'
+include 'app'
