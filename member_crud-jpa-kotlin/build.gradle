@@ -35,7 +35,8 @@ subprojects {
 	apply plugin: 'org.jetbrains.kotlin.plugin.allopen'
 	apply plugin: 'org.jetbrains.kotlin.plugin.spring'
 
-	dependencies {		testImplementation('org.codehaus.groovy:groovy')
+	dependencies {
+		testImplementation('org.codehaus.groovy:groovy')
 		testImplementation('org.codehaus.groovy:groovy-json')
 
 		compileOnly 'org.projectlombok:lombok'
