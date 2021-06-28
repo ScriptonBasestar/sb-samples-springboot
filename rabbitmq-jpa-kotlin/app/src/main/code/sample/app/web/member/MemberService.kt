@@ -19,11 +19,11 @@ class MemberService(
 
     fun list(pageable: Pageable): Page<UserEntity> {
         log.trace("회원 목록 가져오기 - page: {} size: {}", pageable.pageNumber, pageable.pageSize)
-        return userRepository!!.findAll(pageable)
+        return userRepository.findAll(pageable)
     }
 
     fun detail(username: String): UserEntity {
         log.trace("회원 상세 가져오기 - username: {}", username)
-        return userRepository!!.findByUsername(username).orElseThrow { DataNotFoundException("요청하신 데이터가 없습니다.") }
+        return userRepository.findByUsername(username).orElseThrow { DataNotFoundException("요청하신 데이터가 없습니다.") }
     }
 }

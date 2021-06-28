@@ -11,14 +11,13 @@ import sample.domain.model.UserEntity
 @RestController
 @RequestMapping("/member/rest")
 class MemberRestController(
-    @Autowired private val friendService: MemberService
+    @Autowired private val memberService: MemberService
 ) {
-
 
     @RequestMapping(value = ["/list"], method = [RequestMethod.GET])
     @ResponseBody
     fun list(@PageableDefault pageable: Pageable): PageResponseWrapper<UserEntity> =
-        friendService.list(pageable).let { page ->
+        memberService.list(pageable).let { page ->
             PageResponseWrapper.create<UserEntity>()
                 .totalElements(page.totalElements)
                 .totalPages(page.totalPages)
@@ -28,7 +27,7 @@ class MemberRestController(
 
     @RequestMapping(value = ["/detail"], method = [RequestMethod.GET])
     fun detail(@RequestParam username: String): SingleResponseWrapper<UserEntity> =
-        friendService.detail(username).let { userEntity ->
+        memberService.detail(username).let { userEntity ->
             SingleResponseWrapper.create<UserEntity>()
                 .data(userEntity)
                 .success(true)

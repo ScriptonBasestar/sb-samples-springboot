@@ -8,18 +8,18 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 
-@Configuration
-class StreamConfig {
-
-    @Bean
-    fun amqpAdmin(connectionFactory: ConnectionFactory) = RabbitAdmin(connectionFactory)
-
-    @Bean
-    fun rabbitTemplate(
-        connectionFactory: ConnectionFactory,
-        messageConverter: Jackson2JsonMessageConverter
-    ) = RabbitTemplate(connectionFactory).apply {
-        setMessageConverter(messageConverter)
-    }
-
-}
+//@Configuration
+//class StreamConfig {
+//
+//    @Bean
+//    fun amqpAdmin(connectionFactory: ConnectionFactory) = RabbitAdmin(connectionFactory)
+//
+//    @Bean
+//    fun rabbitTemplate(
+//        connectionFactory: ConnectionFactory,
+//        messageConverter: Jackson2JsonMessageConverter
+//    ) = RabbitTemplate(connectionFactory).apply {
+//        setMessageConverter(messageConverter)
+//    }
+//
+//}

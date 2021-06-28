@@ -33,13 +33,12 @@ spring:
 #    &zeroDateTimeBehavior=convertToNull
 #    &useLegacyDatetimeCode=false
 #    &serverTimezone=UTC
-    url: >
-    jdbc:mysql://${DB0_HOST:localhost}:${DB0_PORT:3306}/${DB0_DB:dev_local}?
-    useUnicode=true
-    &characterEncoding=utf-8
-    &zeroDateTimeBehavior=convertToNull
-    &useLegacyDatetimeCode=false
-    &serverTimezone=UTC
+    url: "jdbc:mysql://${DB0_HOST:localhost}:${DB0_PORT:3306}/${DB0_DB:dev_local}?\
+    useUnicode=true\
+    &characterEncoding=utf-8\
+    &zeroDateTimeBehavior=convertToNull\
+    &useLegacyDatetimeCode=false\
+    &serverTimezone=UTC"
     username: ${DB0_USER:user01}
     password: ${DB0_PASS:passw0rd}
     hikari:

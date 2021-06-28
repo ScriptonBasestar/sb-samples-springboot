@@ -14,4 +14,28 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EntityScan(basePackages = "sample.domain.model")
 @EnableJpaRepositories(basePackages = "sample.domain.repository")
 public class DomainConfig {
+
+//    @Bean
+//    fun dataSource(): DataSource {
+//        val builder = EmbeddedDatabaseBuilder()
+//        return builder.setType(EmbeddedDatabaseType.H2).build()
+//    }
+
+//    @Bean
+//    fun entityManagerFactory(dataSource: DataSource): LocalContainerEntityManagerFactoryBean {
+//        val vendorAdapter = HibernateJpaVendorAdapter()
+//        vendorAdapter.setGenerateDdl(true)
+//        val factory = LocalContainerEntityManagerFactoryBean()
+//        factory.jpaVendorAdapter = vendorAdapter
+//        factory.setPackagesToScan("sample.domain.model")
+//        factory.dataSource = dataSource
+//        return factory
+//    }
+
+//    @Bean
+//    fun transactionManager(entityManagerFactory: EntityManagerFactory?): PlatformTransactionManager {
+//        val txManager = JpaTransactionManager()
+//        txManager.entityManagerFactory = entityManagerFactory
+//        return txManager
+//    }
 }

@@ -1,14 +1,15 @@
 package sample.app.controller
 
-import org.junit.jupiter.api.BeforeAll
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
-import org.springframework.boot.test.context.SpringBootTest
+import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.data.domain.PageImpl
-import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
@@ -16,38 +17,44 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.servlet.ViewResolver
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView
-import sample.app.MainApplication
 import sample.app.web.member.MemberRestController
 import sample.app.web.member.MemberService
 import sample.domain.model.UserEntity
 
-
-@SpringBootTest(classes = [MainApplication::class])
+@ExtendWith(MockitoExtension::class)
+//@ActiveProfiles("test")
+//@SpringBootTest(classes = [MainApplication::class])
+//@AutoConfigureWebTestClient
+//@AutoConfigureMockMvc
 class MemberControllerTest {
 
     //    @Autowired
 //    protected WebApplicationContext wac
-    protected lateinit var mockMvc: MockMvc
 
-    @InjectMocks
-    private lateinit var controller: MemberRestController
+    private lateinit var mockMvc: MockMvc
 
     @Mock
     private lateinit var service: MemberService
 
+    @InjectMocks
+    private lateinit var controller: MemberRestController
+
     //given
-    @BeforeAll
+    @BeforeEach
     fun setupMock() {
-        MockitoAnnotations.initMocks(this)
+//        MockitoAnnotations.openMocks(this)
+        val mappingJackson = MappingJackson2JsonView().apply {
+            objectMapper = jacksonObjectMapper()
+        }
         mockMvc = MockMvcBuilders.standaloneSetup(controller)
             .setCustomArgumentResolvers(PageableHandlerMethodArgumentResolver())
-            .setViewResolvers(ViewResolver { viewName, locale -> MappingJackson2JsonView() })
+            .setViewResolvers(ViewResolver { viewName, locale -> mappingJackson })
             .build()
     }
 
     @Test
-    fun `test friend list rest controller`() {
-        val pageable = PageRequest.of(0, 10)
+    fun `test member list rest controller`() {
+        val pageable = Pageable.ofSize(10).withPage(0)
         Mockito.`when`(service.list(pageable)).thenReturn(
             PageImpl<UserEntity>(
                 (1..10).map { idx ->
@@ -62,18 +69,18 @@ class MemberControllerTest {
                 10
             )
         )
+
         mockMvc.perform(
             MockMvcRequestBuilders.get("/member/rest/list")
-                .param("page", "0").param("size", "10")
-        )
-            .andExpect(MockMvcResultMatchers.status().isOk())
+                .param("page", pageable.pageNumber.toString()).param("size", pageable.pageSize.toString())
+        ).andExpect(MockMvcResultMatchers.status().isOk)
 
         Mockito.verify(service).list(pageable)
         Mockito.verifyNoMoreInteractions(service)
     }
 
     @Test
-    fun `test friend detail rest controller`() {
+    fun `test member detail rest controller`() {
         val idx = 1
         val userEntity = UserEntity(
             "username$idx",
