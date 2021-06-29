@@ -34,10 +34,10 @@ public class UserEntity extends BaseEntity {
         this.password = password;
     }
 
-    @Column(length = 10, unique = true, nullable = false)
+    @Column(length = 20, unique = true, nullable = false)
     private String username;
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 20, nullable = false)
     private String realname;
 
     @Email
@@ -50,7 +50,7 @@ public class UserEntity extends BaseEntity {
 
     @JsonIgnore
     @Column(length = 60, nullable = false)//56
-    @Type(type = "sample.app.security.BCryptUserType")
+    @Type(type = "sample.domain.usertype.BCryptUserType")
     private String password;
 
     @Override
