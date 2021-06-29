@@ -108,9 +108,11 @@ subprojects {
     }
 
     dependencies {
-        implementation 'org.codehaus.groovy:groovy-all:3.0.8'
+//        implementation 'org.codehaus.groovy:groovy-all:3.0.8'
 //        implementation "org.codehaus.groovy:groovy-all:${groovy.version}"
-//        implementation 'org.codehaus.groovy:groovy'
+        implementation 'org.codehaus.groovy:groovy'
+//        testImplementation 'org.codehaus.groovy:groovy-test-junit5:3.0.8'
+
 
         implementation 'org.springframework.boot:spring-boot-starter-amqp'
         implementation 'org.springframework.boot:spring-boot-starter-batch'
@@ -163,8 +165,10 @@ subprojects {
 
         testImplementation 'com.h2database:h2'
         developmentOnly 'org.springframework.boot:spring-boot-devtools'
-        testImplementation 'org.junit.jupiter:junit-jupiter-api'
-        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+//        testImplementation 'org.junit.jupiter:junit-jupiter'
+//        testImplementation 'org.junit.jupiter:junit-jupiter-api'
+//        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     }
 
 //extra["snippetsDir"] = file("build/generated-snippets")
@@ -172,13 +176,16 @@ subprojects {
 
     test {
         useJUnitPlatform()
-//        include 'org/foo/***'
+//        include '***Tests.*'
+//        include '***.groovy'
 //        exclude '**Manual.**'
-    }
-
-    test {
+//        jvmArgs '--enable-preview'
         outputs.dir(snippetsDir)
     }
+//    tasks.withType(Test) {
+//        useJUnitPlatform()
+//        jvmArgs '--enable-preview'
+//    }
 
     asciidoctor {
         inputs.dir(snippetsDir)

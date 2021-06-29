@@ -1,4 +1,4 @@
-package sample.domain
+package sample.domain.model
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.transaction.annotation.Transactional
+import sample.domain.DomainTestApplication
+import sample.domain.exception.TestFailException
 import sample.domain.model.UserEntity
 import sample.domain.repository.UserRepository
 
@@ -15,7 +17,7 @@ import sample.domain.repository.UserRepository
  */
 @SpringBootTest(classes = DomainTestApplication.class)
 @Transactional
-class CRUDTest {
+class UserCRUDTest {
 
     @Autowired
     private UserRepository userRepository

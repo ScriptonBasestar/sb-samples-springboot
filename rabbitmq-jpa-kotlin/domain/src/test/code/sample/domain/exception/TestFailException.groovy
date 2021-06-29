@@ -1,4 +1,4 @@
-package sample.domain
+package sample.domain.exception
 
 class TestFailException extends RuntimeException {
     TestFailException(String message) {

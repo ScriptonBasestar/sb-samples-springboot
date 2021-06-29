@@ -12,7 +12,12 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 
 @Entity
-@Table(name = "T_USER")
+@Table(
+    name = "T_USER",
+    indexes = {
+        @Index(name = "IDX__T_USER__realname", columnList = "realname", unique = false),
+    }
+)
 @DynamicUpdate
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
