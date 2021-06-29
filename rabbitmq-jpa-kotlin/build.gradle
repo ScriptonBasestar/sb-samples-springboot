@@ -65,9 +65,9 @@ subprojects {
             resources.srcDirs = ['src/main/resources']
         }
         test {
-            java.srcDirs = ['src/test/code']
-//            kotlin.srcDirs = ['src/test/code']
-//            groovy.srcDirs = ['src/test/code']
+            java.srcDirs += ['src/test/code']
+            kotlin.srcDirs += ['src/test/code']
+            groovy.srcDirs += ['src/test/code']
             resources.srcDirs = ['src/test/resources']
         }
     }
@@ -108,9 +108,9 @@ subprojects {
     }
 
     dependencies {
-//        implementation 'org.codehaus.groovy:groovy-all:3.0.8'
+        implementation 'org.codehaus.groovy:groovy-all:3.0.8'
 //        implementation "org.codehaus.groovy:groovy-all:${groovy.version}"
-        implementation 'org.codehaus.groovy:groovy'
+//        implementation 'org.codehaus.groovy:groovy'
 //        testImplementation 'org.codehaus.groovy:groovy-test-junit5:3.0.8'
 
 
@@ -165,6 +165,8 @@ subprojects {
 
         testImplementation 'com.h2database:h2'
         developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+        testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
 
         testImplementation 'org.junit.jupiter:junit-jupiter'
         testImplementation 'org.junit.jupiter:junit-jupiter-api'

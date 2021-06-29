@@ -1,11 +1,13 @@
 
 
 import org.junit.jupiter.api.Test
+import org.springframework.boot.test.context.SpringBootTest
 
+//@SpringBootTest
 class Test1Tests {
 
     @Test
-    def test1ewer() {
+    void test1ewer() {
         println("jjijjijijijiij")
     }
 }
