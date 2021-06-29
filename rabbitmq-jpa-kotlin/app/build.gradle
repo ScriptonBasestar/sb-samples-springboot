@@ -30,5 +30,5 @@ dependencies {
     implementation('mysql:mysql-connector-java')
 
     testImplementation("org.mockito:mockito-core")
-//    testImplementation("com.github.tomakehurst:wiremock-jre8:2.25.1")
+    testImplementation('com.github.fridujo:rabbitmq-mock:1.1.1')
 }
