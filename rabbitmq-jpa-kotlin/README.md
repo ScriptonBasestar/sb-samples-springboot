@@ -8,10 +8,12 @@
 - mysql
 - jpa
 - redis
-- webflux
-- webclient
 - ssl 접속
 - junit5
+
+제외
+- webflux
+- webclient
 
 ## 특징
 

@@ -74,7 +74,7 @@ spring:
       org.quartz.jobStore.class: org.quartz.impl.jdbcjobstore.JobStoreTX
       org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
       org.quartz.jobStore.dataSource: quartzDataSource
-      org.quartz.jobStore.isClustered: false
+      org.quartz.jobStore.isClustered: true
       org.quartz.scheduler.instanceId: AUTO
       org.quartz.threadPool.threadCount: 20
       org.quartz.jobStore.tablePrefix: QRTZ_

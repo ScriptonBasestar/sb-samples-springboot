@@ -18,17 +18,18 @@ dependencies {
     implementation project(':core')
     implementation project(':domain')
 
-//    implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.springframework.boot:spring-boot-starter-security')
-    implementation('org.springframework.boot:spring-boot-starter-aop')
-    implementation('org.springframework.boot:spring-boot-starter-cache')
-//    implementation('org.springframework.boot:spring-boot-starter-jdbc')
+//    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+//    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 
-    implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
-    implementation('com.zaxxer:HikariCP')
-    implementation('mysql:mysql-connector-java')
+    implementation 'com.zaxxer:HikariCP'
+    implementation 'mysql:mysql-connector-java'
 
-    testImplementation("org.mockito:mockito-core")
-    testImplementation('com.github.fridujo:rabbitmq-mock:1.1.1')
+    testImplementation 'org.awaitility:awaitility-kotlin:4.1.0'
+    testImplementation 'org.mockito:mockito-core'
+    testImplementation 'com.github.fridujo:rabbitmq-mock:1.1.1'
 }

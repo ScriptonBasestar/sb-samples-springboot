@@ -1,5 +1,7 @@
-package sample.app.trigger.schedule
+package sample.app.schedule
 
+import org.quartz.Scheduler
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import sample.core.util.loggerUtil
@@ -8,7 +10,8 @@ import java.util.*
 
 
 @Component
-class ScheduleService(
+class CronService(
+    @Autowired private val scheduler: Scheduler,
 ) {
 
     val log = loggerUtil()
@@ -16,8 +19,8 @@ class ScheduleService(
     private val dateFormat = SimpleDateFormat("HH:mm:ss")
 
     //    @Scheduled(cron = "0 0 9 * * *", zone = "Asia/Seoul")
-    @Scheduled(cron = "* * * * * *", zone = "Asia/Seoul")
-    fun reportCurrentTime() {
-        log.info("The time is now {}", dateFormat.format(Date()))
-    }
+//    @Scheduled(cron = "* * * * * *", zone = "Asia/Seoul")
+//    fun reportCurrentTime() {
+//        log.info("The time is now {}", dateFormat.format(Date()))
+//    }
 }

@@ -12,28 +12,28 @@ import javax.annotation.PostConstruct
 //@Import(DomainConfig.class)
 class TestConfig {
 
-    class LoadData {
-        @Autowired
-        private lateinit var userRepository: UserRepository
+//    class LoadData {
+//        @Autowired
+//        private lateinit var userRepository: UserRepository
+//
+//        @PostConstruct
+//        fun run() {
+//            (1..10).forEach {
+//                userRepository.save(
+//                    UserEntity(
+//                        "username$it",
+//                        "username$it",
+//                        "username$it@mail.com",
+//                        "username$it"
+//                    ).apply {
+//                        nickname = "nickname$it"
+//                    }
+//                )
+//            }
+//        }
+//    }
 
-        @PostConstruct
-        fun run() {
-            (1..10).forEach {
-                userRepository.save(
-                    UserEntity(
-                        "username$it",
-                        "username$it",
-                        "username$it@mail.com",
-                        "username$it"
-                    ).apply {
-                        nickname = "nickname$it"
-                    }
-                )
-            }
-        }
-    }
-
-    @Bean
-    fun loadData(): LoadData = LoadData()
+//    @Bean
+//    fun loadData(): LoadData = LoadData()
 
 }
