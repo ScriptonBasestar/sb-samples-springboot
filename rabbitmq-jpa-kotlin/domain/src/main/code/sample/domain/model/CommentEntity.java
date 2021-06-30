@@ -19,7 +19,7 @@ public class CommentEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public CommentEntity(String content) {
+    public CommentEntity(ArticleEntity article, String content) {
         this.content = content;
     }
 
@@ -27,17 +27,8 @@ public class CommentEntity extends BaseEntity {
     @JoinColumn(name = "article_id", insertable = true, updatable = false)
     private ArticleEntity article;
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 100, nullable = false)
     private String content;
-
-//    @Column(nullable = false, insertable = true, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-//    @CreatedDate
-//    private LocalDateTime createdAt;
-//
-//    @Column(insertable = true, updatable = true, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-//    @CreatedDate
-//    @LastModifiedDate
-//    private LocalDateTime updatedAt;
 
     @Override
     public String toString() {

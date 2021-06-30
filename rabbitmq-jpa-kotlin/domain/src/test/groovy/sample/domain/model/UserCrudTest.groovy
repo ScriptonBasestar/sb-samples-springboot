@@ -7,21 +7,27 @@ import org.junit.jupiter.api.TestInstance
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.dao.DataIntegrityViolationException
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
 import sample.domain.DomainTestApplication
 import sample.domain.exception.TestFailedException
 import sample.domain.repository.UserRepository
 
-/**
- * UserEntity CRUD 테스트
- */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest(classes = DomainTestApplication.class)
 @Transactional
-class UserCRUDTest {
+@ActiveProfiles("test")
+class UserCrudTest {
 
     @Autowired
-    private UserRepository userRepository
+    private final UserRepository userRepository
+
+    @Autowired
+    UserCrudTest(
+        UserRepository userRepository
+    ) {
+        this.userRepository = userRepository
+    }
 
     //given
     @BeforeAll

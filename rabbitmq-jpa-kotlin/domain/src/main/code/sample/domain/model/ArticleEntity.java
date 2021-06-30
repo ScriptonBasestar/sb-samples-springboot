@@ -31,23 +31,14 @@ public class ArticleEntity extends BaseEntity {
         this.content = content;
     }
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 100, nullable = false)
     private String title;
 
-    @Column(length = 10, nullable = false, columnDefinition = "mediumtext")
+    @Column(length = 1000, nullable = false, columnDefinition = "mediumtext")
     private String content;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "article", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<CommentEntity> comments = Collections.EMPTY_LIST;
-
-//    @Column(nullable = false, insertable = true, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-//    @CreatedDate
-//    private LocalDateTime createdAt;
-//
-//    @Column(insertable = true, updatable = true, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-//    @CreatedDate
-//    @LastModifiedDate
-//    private LocalDateTime updatedAt;
 
     @Override
     public String toString() {
