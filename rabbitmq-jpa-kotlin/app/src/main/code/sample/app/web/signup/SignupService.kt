@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import sample.core.exception.BusinessException
+import sample.core.util.loggerUtil
 import sample.domain.model.UserEntity
 import sample.domain.repository.UserRepository
 
@@ -14,9 +15,7 @@ import sample.domain.repository.UserRepository
 @Service
 class SignupService {
 
-    companion object {
-        val log = LoggerFactory.getLogger(SignupService::class.java)!!
-    }
+    val log = loggerUtil()
 
     @Autowired
     private lateinit var userRepository: UserRepository

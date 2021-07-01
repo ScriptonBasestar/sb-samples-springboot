@@ -36,7 +36,7 @@ class ScheduleInit(
             val step = 1
             val job = JobBuilder
                 .newJob(ChainingJob::class.java)
-                .withIdentity(JobKey.jobKey("jk2", "jg2"))
+                .withIdentity("jk2", "jg2")
                 .usingJobData("jobkey2-$step", "jobval2-$step")
                 .storeDurably()
                 .build()
@@ -45,7 +45,7 @@ class ScheduleInit(
                 .newTrigger()
 //            .forJob(JobKey.jobKey("jk2", "jg2"))
 //            .forJob(job)
-                .withIdentity(TriggerKey.triggerKey("tr2","tg2"))
+                .withIdentity("tr2","tg2")
 //                .withIdentity(TriggerKey.triggerKey("tr2-$step", "tg2-$step"))
                 .startAt(DateUtils.addSeconds(Date(), 5))
                 .usingJobData("triggerkey2-$step", "triggerval2-$step")

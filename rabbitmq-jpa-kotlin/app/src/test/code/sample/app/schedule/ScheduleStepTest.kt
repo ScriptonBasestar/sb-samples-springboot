@@ -1,7 +1,6 @@
 package sample.app.schedule
 
 import org.awaitility.Awaitility
-import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.quartz.Scheduler
@@ -24,36 +23,32 @@ class ScheduleStepTest(
 
 
     @Test
-    fun test() {
-        var step = ChainingJob.stept
-        Awaitility.await().atMost(Duration.of(15, ChronoUnit.SECONDS)).until {
-            step != ChainingJob.stept
+    fun `test scheduled test`() {
+        //step0
+        Awaitility.await().atMost(Duration.of(10, ChronoUnit.SECONDS)).until {
+            ChainingJob.stepCounter.get() > 0
         }
-        step = ChainingJob.stept
         println("ajfiowjfiwjofiwijefijweof ${scheduler.getTriggerKeys(GroupMatcher.anyGroup())}")
 //        println("ajfiowjfiwjofiwijefijweof ${i++} ${scheduler.getTrigger(TriggerKey.triggerKey("tr2-$i", "tg2-$i")).jobDataMap}")
 
         //step1
-        Awaitility.await().atMost(Duration.of(15, ChronoUnit.SECONDS)).until {
-            step != ChainingJob.stept
+        Awaitility.await().atMost(Duration.of(10, ChronoUnit.SECONDS)).until {
+            ChainingJob.stepCounter.get() > 1
         }
-        step = ChainingJob.stept
         println("ajfiowjfiwjofiwijefijweof ${scheduler.getTriggerKeys(GroupMatcher.anyGroup())}")
 //        println("ajfiowjfiwjofiwijefijweof ${i++} ${scheduler.getTrigger(TriggerKey.triggerKey("tr2-$i", "tg2-$i")).jobDataMap}")
 
         //step2
-        Awaitility.await().atMost(Duration.of(15, ChronoUnit.SECONDS)).until {
-            step != ChainingJob.stept
+        Awaitility.await().atMost(Duration.of(10, ChronoUnit.SECONDS)).until {
+            ChainingJob.stepCounter.get() > 2
         }
-        step = ChainingJob.stept
         println("ajfiowjfiwjofiwijefijweof ${scheduler.getTriggerKeys(GroupMatcher.anyGroup())}")
 //        println("ajfiowjfiwjofiwijefijweof ${i++} ${scheduler.getTrigger(TriggerKey.triggerKey("tr2-$i", "tg2-$i")).jobDataMap}")
 
         //step3
         Awaitility.await().atMost(Duration.of(15, ChronoUnit.SECONDS)).until {
-            step != ChainingJob.stept
+            ChainingJob.stepCounter.get() > 3
         }
-        step = ChainingJob.stept
         println("ajfiowjfiwjofiwijefijweof ${scheduler.getTriggerKeys(GroupMatcher.anyGroup())}")
 //        println("ajfiowjfiwjofiwijefijweof ${i++} ${scheduler.getTrigger(TriggerKey.triggerKey("tr2-$i", "tg2-$i")).jobDataMap}")
 

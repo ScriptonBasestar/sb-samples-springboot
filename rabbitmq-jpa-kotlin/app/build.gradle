@@ -18,16 +18,23 @@ dependencies {
     implementation project(':core')
     implementation project(':domain')
 
+//    testImplementation project(':domain').sourceSets.test.output
+
 //    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'org.springframework.boot:spring-boot-starter-security'
+//    implementation('org.springframework.boot:spring-boot-starter-security') {
+//        exclude group: 'org.springframework', module: 'spring-web'
+//    }
+
     implementation 'org.springframework.boot:spring-boot-starter-aop'
-    implementation 'org.springframework.boot:spring-boot-starter-cache'
-//    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+//    implementation 'org.springframework.boot:spring-boot-starter-cache'
 
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
-    implementation 'com.zaxxer:HikariCP'
-    implementation 'mysql:mysql-connector-java'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-batch'
+    implementation 'org.springframework.boot:spring-boot-starter-quartz'
 
     testImplementation 'org.awaitility:awaitility-kotlin:4.1.0'
     testImplementation 'org.mockito:mockito-core'

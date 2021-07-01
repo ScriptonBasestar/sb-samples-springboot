@@ -9,8 +9,6 @@ spring:
     username: ${RABBITMQ_USER:user01}
     password: ${RABBITMQ_PASS:passw0rd}
     virtual-host: ${RABBITMQ_VHOST:/dev-local}
-    ssl:
-      enabled: true
 #    listener:
 #      direct:
 #        acknowledge-mode: manual
