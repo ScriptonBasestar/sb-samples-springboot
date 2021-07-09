@@ -4,6 +4,7 @@ package sample.domain.model;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -31,9 +32,11 @@ public class ArticleEntity extends BaseEntity {
         this.content = content;
     }
 
+    @Setter
     @Column(length = 100, nullable = false)
     private String title;
 
+    @Setter
     @Column(length = 1000, nullable = false, columnDefinition = "mediumtext")
     private String content;
 

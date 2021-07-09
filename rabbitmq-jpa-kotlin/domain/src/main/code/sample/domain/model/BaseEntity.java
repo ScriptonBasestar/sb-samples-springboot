@@ -26,7 +26,7 @@ public abstract class BaseEntity {
 
     @Column(nullable = false, insertable = true, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @CreatedDate
-    @CreationTimestamp
+//    @CreationTimestamp
     private LocalDateTime createdAt;
 
     @Column(insertable = true, updatable = true, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")

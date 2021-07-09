@@ -3,6 +3,7 @@ package sample.domain.model;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class CommentEntity extends BaseEntity {
     @JoinColumn(name = "article_id", insertable = true, updatable = false)
     private ArticleEntity article;
 
+    @Setter
     @Column(length = 100, nullable = false)
     private String content;
 
