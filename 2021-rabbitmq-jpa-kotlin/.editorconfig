@@ -14,4 +14,4 @@ tab_width = 4
 indent_size = 2
 
 [*.{kt, kts}]
-disabled_rules = import-ordering
+disabled_rules = import-ordering,no-wildcard-imports
