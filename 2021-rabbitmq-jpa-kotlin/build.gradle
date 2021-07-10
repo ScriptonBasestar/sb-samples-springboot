@@ -85,7 +85,7 @@ subprojects {
 
     dependencyManagement {
         imports {
-            mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
+            mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainer_version")}")
         }
     }
 
@@ -145,7 +145,8 @@ subprojects {
         useJUnitPlatform()
 //        include '***Tests.*'
 //        include '***.groovy'
-        exclude ['**Manual.*', '**Main.*']
+        exclude '**Manual.*'
+        exclude '**Main.*'
 //        jvmArgs '--enable-preview'
         outputs.dir(snippetsDir)
     }
