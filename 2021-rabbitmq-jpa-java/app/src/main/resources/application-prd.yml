@@ -1,0 +1,38 @@
+spring:
+  rabbitmq:
+    ssl:
+      enabled: true
+
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          max-age: 100000ms
+  mvc:
+    async:
+      request-timeout: 10000ms
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  datasource:
+    url: >
+    jdbc:mysql://${DB0_HOST:localhost}:${DB0_PORT:3306}/${DB0_DB:dev_local}?
+    useSSL=true
+    &requireSSL=true
+    &sslMode=VERIFY_CA
+    &verifyServerCertificate=true
+    &trustCertificateKeyStoreUrl=classpath:${DB0_KEYSTORE_URL:clientkeystore.jks}
+    &trustCertificateKeyStorePassword=${DB0_KEYSTORE_PASS:passw0rd}
+    &trustCertificateKeyStoreType=JKS
+    &useUnicode=true
+    &characterEncoding=utf-8
+    &zeroDateTimeBehavior=convertToNull
+    &useLegacyDatetimeCode=false
+    &serverTimezone=UTC
+
+logging:
+  level:
+    org.springframework: INFO
+    org.hibernate: ERROR

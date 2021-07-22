@@ -1,0 +1,31 @@
+bootRun.enabled = false
+bootJar.enabled = false
+jar.enabled = true
+
+dependencies {
+    implementation project(':core')
+
+    api('org.springframework.boot:spring-boot-starter-data-redis')
+    api('org.springframework.boot:spring-boot-starter-data-jpa')
+    api('org.springframework.boot:spring-boot-starter-validation')
+    api('org.springframework.boot:spring-boot-starter-cache')
+
+//    api 'org.springframework.boot:spring-boot-starter-jdbc'
+
+//    api('org.hibernate:hibernate-core')
+//    api('org.hibernate:hibernate-entitymanager')
+    api('org.hibernate:hibernate-envers')
+    api('org.hibernate:hibernate-ehcache')
+
+    api('com.fasterxml.jackson.core:jackson-databind')
+
+    api 'org.mindrot:jbcrypt:0.4'
+
+//    api "org.modelmapper:modelmapper"
+    api "com.google.guava:guava:$guava_version"
+
+    api 'com.zaxxer:HikariCP'
+    runtimeOnly 'mysql:mysql-connector-java'
+//    runtimeOnly 'mysql:mysql-connector-java'
+//    runtimeOnly 'mysql:mysql-connector-java:5.1.46'
+}

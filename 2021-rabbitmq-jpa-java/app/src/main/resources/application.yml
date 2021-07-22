@@ -1,0 +1,104 @@
+spring:
+  application:
+    name: Member Service
+  profiles:
+    active: dev
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USER:user01}
+    password: ${RABBITMQ_PASS:passw0rd}
+    virtual-host: ${RABBITMQ_VHOST:/dev-local}
+#    listener:
+#      direct:
+#        acknowledge-mode: manual
+
+  datasource:
+    name: ${DB0_SOURCE_NAME:dev_datasource0}
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+#    url: >
+#    jdbc:mysql://${DB0_HOST:localhost}:${DB0_PORT:3306}/${DB0_DB:dev_local}?
+#    useSSL=true
+#    &requireSSL=true
+#    &sslMode=VERIFY_CA
+#    &verifyServerCertificate=true
+#    &trustCertificateKeyStoreUrl=classpath:${DB0_KEYSTORE_URL:clientkeystore.jks}
+#    &trustCertificateKeyStorePassword=${DB0_KEYSTORE_PASS:passw0rd}
+#    &trustCertificateKeyStoreType=JKS
+#    &useUnicode=true
+#    &characterEncoding=utf-8
+#    &zeroDateTimeBehavior=convertToNull
+#    &useLegacyDatetimeCode=false
+#    &serverTimezone=UTC
+    url: "jdbc:mysql://${DB0_HOST:localhost}:${DB0_PORT:3306}/${DB0_DB:dev_local}?\
+    useUnicode=true\
+    &characterEncoding=utf-8\
+    &zeroDateTimeBehavior=convertToNull\
+    &useLegacyDatetimeCode=false\
+    &serverTimezone=UTC"
+    username: ${DB0_USER:user01}
+    password: ${DB0_PASS:passw0rd}
+    hikari:
+      idle-timeout: 10000
+      connection-timeout: 60000 #60sec
+      maximum-pool-size: 5
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    hibernate:
+      # @GeneratedValue에서 GenerationType.IDENTITY를 사용하기 위한 설정
+      use-new-id-generator-mappings: false
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      javax.persistence.sharedCache.mode: ALL
+      hibernate.generate_statistics: true
+      # ehcache
+#      hibernate.cache.use_second_level_cache: true
+#      hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+#      hibernate.id.new_generator_mappings: false
+
+  quartz:
+    job-store-type: jdbc
+    scheduler-name: QuartzScheduler
+    jdbc:
+      initialize-schema: embedded
+#      schema: classpath:seeds/quartz.sql
+    properties:
+      org.quartz.jobStore.class: org.quartz.impl.jdbcjobstore.JobStoreTX
+      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+      org.quartz.jobStore.dataSource: quartzDataSource
+      org.quartz.jobStore.isClustered: true
+      org.quartz.scheduler.instanceId: AUTO
+      org.quartz.threadPool.threadCount: 20
+      org.quartz.jobStore.tablePrefix: QRTZ_
+
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+    date-format: com.fasterxml.jackson.databind.util.StdDateFormat
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+management:
+  metrics:
+    binders:
+      jvm:
+        enabled: false
+
+config:
+  routing-key-member-register: member.register
+  routing-key-member-emailauth: member.emailauth
+
+external:
+  mailgun:
+    base-url: https://mailgun
+    api-key: ${MAILGUN_KEY}
+    api-secret: ${MAILGUN_SECRET}

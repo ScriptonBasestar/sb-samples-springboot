@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    hikari:
+      idle-timeout: 10000
+      connection-timeout: 60000 #60sec
+      maximum-pool-size: 5
+  #    continue-on-error: false
+
+  jpa:
+    database: h2
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties:
+      javax.persistence.sharedCache.mode: ALL
+      hibernate.generate_statistics: true
+      # ehcache
+      hibernate.cache.use_second_level_cache: true
+      hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+      hibernate.id.new_generator_mappings: false
+
+server:
+  servlet:
+    session:
+      timeout: 30m
+  error:
+    whitelabel:
+      enabled: false
