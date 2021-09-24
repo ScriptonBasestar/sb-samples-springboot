@@ -10,7 +10,7 @@ import sample.domain.repository.CommentRepository
 @Service
 @Transactional(readOnly = true)
 class CommentService(
-	@Autowired private val commentRepository: CommentRepository,
+    @Autowired private val commentRepository: CommentRepository,
 ) {
 
     fun list(pageable: Pageable) =
@@ -23,7 +23,7 @@ class CommentService(
         val commentEntity =
             commentRepository.findById(id).orElseThrow { DataNotFoundException("data not found exception") }
         commentReqDto.apply {
-            content?.let{
+            content?.let {
                 commentEntity.content = it
             }
         }
@@ -31,5 +31,4 @@ class CommentService(
 
     @Transactional
     fun remove(id: Long) = commentRepository.deleteById(id)
-
 }

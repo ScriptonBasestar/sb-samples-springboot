@@ -1,4 +1,4 @@
-package sample.domain.model;
+package sample.domain.jpa.model;
 
 
 import lombok.AccessLevel;

@@ -1,4 +1,4 @@
-package sample.domain.model;
+package sample.domain.jpa.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
@@ -50,7 +50,7 @@ public class UserEntity extends BaseEntity {
 
     @JsonIgnore
     @Column(length = 60, nullable = false)//56
-    @Type(type = "sample.domain.usertype.BCryptUserType")
+    @Type(type = "sample.domain.jpa.usertype.BCryptUserType")
     private String password;
 
     @Override

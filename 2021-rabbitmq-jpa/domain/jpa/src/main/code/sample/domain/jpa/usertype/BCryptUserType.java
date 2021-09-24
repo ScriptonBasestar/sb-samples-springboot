@@ -1,4 +1,4 @@
-package sample.domain.usertype;
+package sample.domain.jpa.usertype;
 
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;

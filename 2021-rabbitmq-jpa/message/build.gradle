@@ -1,0 +1,17 @@
+bootRun.enabled = false
+bootJar.enabled = false
+jar.enabled = true
+
+apply plugin: 'base'
+
+subprojects {
+    dependencies {
+        implementation project(':core')
+
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+//    api "org.modelmapper:modelmapper"
+        implementation "com.google.guava:guava:$guava_version"
+    }
+}

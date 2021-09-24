@@ -11,8 +11,6 @@ data class ArticleReqDto(
     val content: String?,
 )
 
-
-
 data class CommentDto(
     val id: Long,
     val content: String,

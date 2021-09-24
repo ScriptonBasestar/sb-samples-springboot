@@ -1,4 +1,4 @@
-package sample.domain.config;
+package sample.domain.jpa.config;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaAuditing
 @EnableSpringDataWebSupport
 @EnableTransactionManagement
-@EntityScan(basePackages = "sample.domain.model")
-@EnableJpaRepositories(basePackages = "sample.domain.repository")
-public class DomainConfig {
+@EntityScan(basePackages = "sample.domain.jpa.model")
+@EnableJpaRepositories(basePackages = "sample.domain.jpa.repository")
+public class DomainJpaConfig {
 
 //    @Bean
 //    fun dataSource(): DataSource {

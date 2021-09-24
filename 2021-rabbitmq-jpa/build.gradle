@@ -2,12 +2,16 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' apply false
     id 'org.jetbrains.kotlin.plugin.spring' apply false
     id 'org.jetbrains.kotlin.plugin.jpa' apply false
-    id "org.jetbrains.kotlin.plugin.lombok" apply false
+    id 'org.jetbrains.kotlin.kapt' apply false
+//    id 'org.jetbrains.kotlin.plugin.lombok' apply false
 
     id 'org.springframework.boot' apply false
     id 'io.spring.dependency-management' apply false
 
-    id 'org.asciidoctor.convert' apply false
+    id 'com.google.protobuf' apply false
+//    id 'com.ewerk.gradle.plugins.querydsl' apply false
+
+    id 'org.asciidoctor.jvm.convert' apply false
 
     id 'org.jlleitschuh.gradle.ktlint' apply false
     id 'org.jlleitschuh.gradle.ktlint-idea' apply false
@@ -15,6 +19,10 @@ plugins {
     id 'com.github.johnrengelman.shadow' apply false
     id 'io.freefair.lombok' apply false
     id 'com.google.cloud.tools.jib' apply false
+
+    id 'net.nemerosa.versioning' apply false
+//    id 'com.devskiller.jpa2ddl' version '0.9.12'
+//    id "io.github.divinespear.jpa-schema-generate" version "0.4.0"
 }
 
 allprojects {
@@ -31,13 +39,24 @@ subprojects {
     apply plugin: 'org.jetbrains.kotlin.jvm'
     apply plugin: 'org.jetbrains.kotlin.plugin.spring'
     apply plugin: 'org.jetbrains.kotlin.plugin.jpa'
+    apply plugin: 'org.jetbrains.kotlin.kapt'
+//    apply plugin: 'org.jetbrains.kotlin.plugin.lombok'
 
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
-    apply plugin: 'org.asciidoctor.convert'
+    apply plugin: 'org.springframework.boot'
+
+    apply plugin: 'com.google.cloud.tools.jib'
+
+    apply plugin: 'org.asciidoctor.jvm.convert'
+
+    apply plugin: 'org.jlleitschuh.gradle.ktlint'
+    apply plugin: 'org.jlleitschuh.gradle.ktlint-idea'
+
     apply plugin: 'com.github.johnrengelman.shadow'
-//    apply plugin: 'io.freefair.lombok'
+
+    apply plugin: 'net.nemerosa.versioning'
 
     sourceSets {
         main {
@@ -61,6 +80,19 @@ subprojects {
         }
         all*.exclude group: 'junit', module: 'junit'
     }
+    compileKotlin {
+        kotlinOptions {
+            freeCompilerArgs = ['-Xjsr305=strict']
+            jvmTarget = '1.8'
+        }
+    }
+
+    compileTestKotlin {
+        kotlinOptions {
+            freeCompilerArgs = ['-Xjsr305=strict']
+            jvmTarget = '1.8'
+        }
+    }
 
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
@@ -78,21 +110,23 @@ subprojects {
 //        kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
 //    }
 
-    ext {
-        snippetsDir = file('build/generated-snippets')
-    }
-
-
     dependencyManagement {
         imports {
-            mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainer_version")}")
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:$spring_cloud_version"
+            mavenBom "org.springframework.boot:spring-boot-dependencies:$spring_boot_version"
+            mavenBom "org.keycloak.bom:keycloak-misc-bom:$keycloak_version"
+            mavenBom "org.keycloak.bom:keycloak-spi-bom:$keycloak_version"
+            mavenBom "org.keycloak.bom:keycloak-adapter-bom:$keycloak_version"
+            mavenBom "org.testcontainers:testcontainers-bom:$testcontainers_version"
+            mavenBom "com.google.protobuf:protobuf-bom:$protobuf_version"
+            mavenBom "com.google.guava:guava-bom:$guava_version"
+            mavenBom "io.grpc:grpc-bom:$grpc_version"
+            mavenBom "de.codecentric:spring-boot-admin-dependencies:$spring_boot_admin_version"
         }
     }
 
     dependencies {
         implementation "org.codehaus.groovy:groovy-all:$groovy_version"
-//        implementation "org.codehaus.groovy:groovy-all:${groovy.version}"
-//        implementation 'org.codehaus.groovy:groovy'
 //        testImplementation 'org.codehaus.groovy:groovy-test-junit5:3.0.8'
 
 //        implementation 'org.springframework.boot:spring-boot-starter-webflux'
@@ -105,7 +139,7 @@ subprojects {
         implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-reactor'
         implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
-        implementation "org.apache.commons:commons-lang3:$commons_lang3"
+        implementation "org.apache.commons:commons-lang3:$commons_lang3_version"
 
         annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
         annotationProcessor 'org.projectlombok:lombok'
@@ -135,7 +169,12 @@ subprojects {
         testImplementation 'org.junit.jupiter:junit-jupiter-api'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     }
+    ktlintCheck.mustRunAfter ktlintFormat
+    compileKotlin.dependsOn ktlintFormat, ktlintCheck
 
+    ext {
+        snippetsDir = file('build/generated-snippets')
+    }
     test {
         useJUnitPlatform()
 //        include '***Tests.*'

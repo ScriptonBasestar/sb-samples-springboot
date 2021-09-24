@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.http.MediaType
 import org.springframework.web.client.RestTemplate
 
-
 @Configuration
 class RestClientConfig {
 
@@ -16,5 +15,4 @@ class RestClientConfig {
     ): RestTemplate = builder
         .defaultHeader("Accept", MediaType.APPLICATION_JSON_VALUE)
         .build()
-
 }

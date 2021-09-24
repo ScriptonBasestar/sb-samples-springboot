@@ -3,8 +3,8 @@ package sample.app.security
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
-//좀 더러운 해결법
-//https://youtrack.jetbrains.com/issue/KT-6653
+// 좀 더러운 해결법
+// https://youtrack.jetbrains.com/issue/KT-6653
 class SimpleUser(
     private val _username: String,
     private val _authorities: Collection<GrantedAuthority>,

@@ -42,11 +42,11 @@ class SignupService {
 
         val userEntity =
             UserEntity(
-				requestDto.username,
-				requestDto.realname,
-				requestDto.email,
-				requestDto.password
-			).apply {
+                requestDto.username,
+                requestDto.realname,
+                requestDto.email,
+                requestDto.password
+            ).apply {
                 nickname = requestDto.nickname
             }
         try {

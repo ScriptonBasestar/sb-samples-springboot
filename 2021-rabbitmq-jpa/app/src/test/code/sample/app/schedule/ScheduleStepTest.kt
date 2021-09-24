@@ -21,31 +21,30 @@ class ScheduleStepTest(
         println("before all")
     }
 
-
     @Test
     fun `test scheduled test`() {
-        //step0
+        // step0
         Awaitility.await().atMost(Duration.of(10, ChronoUnit.SECONDS)).until {
             ChainingJob.stepCounter.get() > 0
         }
         println("ajfiowjfiwjofiwijefijweof ${scheduler.getTriggerKeys(GroupMatcher.anyGroup())}")
 //        println("ajfiowjfiwjofiwijefijweof ${i++} ${scheduler.getTrigger(TriggerKey.triggerKey("tr2-$i", "tg2-$i")).jobDataMap}")
 
-        //step1
+        // step1
         Awaitility.await().atMost(Duration.of(10, ChronoUnit.SECONDS)).until {
             ChainingJob.stepCounter.get() > 1
         }
         println("ajfiowjfiwjofiwijefijweof ${scheduler.getTriggerKeys(GroupMatcher.anyGroup())}")
 //        println("ajfiowjfiwjofiwijefijweof ${i++} ${scheduler.getTrigger(TriggerKey.triggerKey("tr2-$i", "tg2-$i")).jobDataMap}")
 
-        //step2
+        // step2
         Awaitility.await().atMost(Duration.of(10, ChronoUnit.SECONDS)).until {
             ChainingJob.stepCounter.get() > 2
         }
         println("ajfiowjfiwjofiwijefijweof ${scheduler.getTriggerKeys(GroupMatcher.anyGroup())}")
 //        println("ajfiowjfiwjofiwijefijweof ${i++} ${scheduler.getTrigger(TriggerKey.triggerKey("tr2-$i", "tg2-$i")).jobDataMap}")
 
-        //step3
+        // step3
         Awaitility.await().atMost(Duration.of(15, ChronoUnit.SECONDS)).until {
             ChainingJob.stepCounter.get() > 3
         }
@@ -63,5 +62,4 @@ class ScheduleStepTest(
 //                .build()
 //        )
     }
-
 }

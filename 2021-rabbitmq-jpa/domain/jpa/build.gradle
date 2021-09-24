@@ -1,0 +1,33 @@
+bootRun.enabled = false
+bootJar.enabled = false
+jar.enabled = true
+
+apply plugin: 'groovy'
+
+dependencies {
+    implementation project(':core')
+
+    testImplementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+//    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    api 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+//    api 'org.hibernate:hibernate-core'
+//    api 'org.hibernate:hibernate-entitymanager'
+    api 'org.hibernate:hibernate-envers'
+    api 'org.hibernate:hibernate-ehcache'
+
+    // querydsl
+    api 'com.querydsl:querydsl-jpa'
+    kapt 'com.querydsl:querydsl-apt::jpa'
+
+    api 'com.zaxxer:HikariCP'
+    api 'org.mariadb.jdbc:mariadb-java-client'
+//    testImplementation 'org.mariadb.jdbc:mariadb-java-client'
+}

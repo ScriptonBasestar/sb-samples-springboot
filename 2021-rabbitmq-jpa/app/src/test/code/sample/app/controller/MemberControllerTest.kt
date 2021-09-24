@@ -22,10 +22,10 @@ import sample.app.web.member.MemberService
 import sample.domain.model.UserEntity
 
 @ExtendWith(MockitoExtension::class)
-//@ActiveProfiles("test")
-//@SpringBootTest(classes = [MainApplication::class])
-//@AutoConfigureWebTestClient
-//@AutoConfigureMockMvc
+// @ActiveProfiles("test")
+// @SpringBootTest(classes = [MainApplication::class])
+// @AutoConfigureWebTestClient
+// @AutoConfigureMockMvc
 class MemberControllerTest {
 
     //    @Autowired
@@ -39,7 +39,7 @@ class MemberControllerTest {
     @InjectMocks
     private lateinit var controller: MemberRestController
 
-    //given
+    // given
     @BeforeEach
     fun setupMock() {
 //        MockitoAnnotations.openMocks(this)
@@ -58,12 +58,12 @@ class MemberControllerTest {
         Mockito.`when`(service.list(pageable)).thenReturn(
             PageImpl<UserEntity>(
                 (1..10).map { idx ->
-					UserEntity(
-						"username$idx",
-						"realname$idx",
-						"email$idx@email.com",
-						"passw0rd$idx"
-					)
+                    UserEntity(
+                        "username$idx",
+                        "realname$idx",
+                        "email$idx@email.com",
+                        "passw0rd$idx"
+                    )
                 },
                 pageable,
                 10
@@ -83,11 +83,11 @@ class MemberControllerTest {
     fun `test member detail rest controller`() {
         val idx = 1
         val userEntity = UserEntity(
-			"username$idx",
-			"realname$idx",
-			"email$idx@email.com",
-			"passw0rd$idx"
-		)
+            "username$idx",
+            "realname$idx",
+            "email$idx@email.com",
+            "passw0rd$idx"
+        )
         Mockito.`when`(service.detail("username1")).thenReturn(userEntity)
 //        Mockito.doReturn(userEntity).`when`(service).detail("username1")
         mockMvc.perform(
@@ -99,5 +99,4 @@ class MemberControllerTest {
         Mockito.verify(service).detail("username1")
         Mockito.verifyNoMoreInteractions(service)
     }
-
 }

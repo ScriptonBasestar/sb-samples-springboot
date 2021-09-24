@@ -71,11 +71,13 @@ class BoardController {
                 .post("/renew/failed")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(renewFailedMessageDTO))
-        ).andDo(ResultHandler {
-            println(it.request)
-            println(it.response)
-            println(it.modelAndView)
-        })
+        ).andDo(
+            ResultHandler {
+                println(it.request)
+                println(it.response)
+                println(it.modelAndView)
+            }
+        )
             .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(MockMvcResultMatchers.status().isOk)
 
@@ -97,5 +99,4 @@ class BoardController {
         Mockito.verify(renewFirstStepService).listenRenewSucceed(renewSucceededDTO)
 //        Mockito.verifyNoInteractions(renewFirstStepService)
     }
-
 }

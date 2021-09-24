@@ -1,8 +1,8 @@
-package sample.domain.repository;
+package sample.domain.jpa.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import sample.domain.model.UserEntity;
+import sample.domain.jpa.model.UserEntity;
 
 import java.util.Optional;
 

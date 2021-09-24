@@ -32,5 +32,4 @@ class MemberRestController(
                 .data(userEntity)
                 .success(true)
         }
-
 }

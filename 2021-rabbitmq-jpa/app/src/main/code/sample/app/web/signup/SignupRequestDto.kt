@@ -14,7 +14,6 @@ data class SignupRequestDto(
 //    @field:NotNull
     val realname: String,
 
-
     @field:Length(min = 5, max = 50)
 //    @field:NotNull
     @field:Email

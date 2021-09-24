@@ -26,7 +26,7 @@ class ChainingJob(
         scheduler.rescheduleJob(
             context.trigger.key,
             TriggerBuilder.newTrigger()
-                .withIdentity("tr2","tg2")
+                .withIdentity("tr2", "tg2")
 //                .forJob(context.jobDetail)
                 .startAt(DateUtils.addSeconds(Date(), 8))
                 .usingJobData("triggerkey2-$nextStep", "triggerval2-$nextStep")

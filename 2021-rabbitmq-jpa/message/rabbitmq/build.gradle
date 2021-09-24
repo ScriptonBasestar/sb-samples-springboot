@@ -1,0 +1,7 @@
+bootRun.enabled = false
+bootJar.enabled = false
+jar.enabled = true
+
+dependencies {
+    implementation 'org.springframework.amqp:spring-rabbit'
+}

@@ -16,7 +16,7 @@ spring:
   datasource:
     name: ${DB0_SOURCE_NAME:dev_datasource0}
 #    driver-class-name: com.mysql.cj.jdbc.Driver
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: org.mariadb.jdbc.Driver
 #    url: >
 #    jdbc:mysql://${DB0_HOST:localhost}:${DB0_PORT:3306}/${DB0_DB:dev_local}?
 #    useSSL=true

@@ -9,5 +9,4 @@ class SignupViewController {
 
     @RequestMapping(value = ["/signup"], method = [RequestMethod.GET])
     fun signupView(): String = "signup.html"
-
 }

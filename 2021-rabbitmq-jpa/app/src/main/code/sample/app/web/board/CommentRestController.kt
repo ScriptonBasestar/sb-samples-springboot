@@ -30,5 +30,4 @@ class CommentRestController(
             .code(ErrorCode.SUCCESS.name)
             .success(true)
     }
-
 }

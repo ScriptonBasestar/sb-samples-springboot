@@ -38,5 +38,4 @@ class SignupRestController {
         signupService.signup(requestDto)
         return EmptyResponseWrapper.create().success(true)
     }
-
 }

@@ -26,7 +26,8 @@ class Http403EntryPoint : AuthenticationEntryPoint {
      */
     @Throws(IOException::class, ServletException::class)
     override fun commence(
-        request: HttpServletRequest, response: HttpServletResponse,
+        request: HttpServletRequest,
+        response: HttpServletResponse,
         ex: AuthenticationException
     ) {
         if (log.isDebugEnabled) {

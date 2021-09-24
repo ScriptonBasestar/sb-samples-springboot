@@ -1,16 +1,9 @@
 package sample.app.stream
 
-import org.springframework.amqp.rabbit.annotation.Exchange
-import org.springframework.amqp.rabbit.annotation.Queue
-import org.springframework.amqp.rabbit.annotation.QueueBinding
-import org.springframework.amqp.rabbit.annotation.RabbitListener
-import org.springframework.stereotype.Component
-import sample.core.util.loggerUtil
-
-//@Component
-//class RabbitListener(
+// @Component
+// class RabbitListener(
 //
-//) {
+// ) {
 //
 //    val log = loggerUtil()
 //
@@ -41,4 +34,4 @@ import sample.core.util.loggerUtil
 //        log.debug("message eventEmailauth {}", message)
 //        println(message)
 //    }
-//}
+// }

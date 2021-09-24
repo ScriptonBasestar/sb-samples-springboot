@@ -27,5 +27,4 @@ class MemberViewController {
         model.addAttribute("username", username)
         return "member-detail.html"
     }
-
 }

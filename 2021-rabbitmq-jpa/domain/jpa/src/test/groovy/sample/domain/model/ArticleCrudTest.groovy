@@ -9,8 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
 import sample.domain.DomainTestApplication
-import sample.domain.repository.ArticleRepository
-import sample.domain.repository.CommentRepository
+import sample.domain.jpa.model.ArticleEntity
+import sample.domain.jpa.model.CommentEntity
+import sample.domain.jpa.repository.ArticleRepository
+import sample.domain.jpa.repository.CommentRepository
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest(classes = DomainTestApplication.class)

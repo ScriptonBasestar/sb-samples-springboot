@@ -15,5 +15,4 @@ class AppConfig {
 
     @Bean
     fun messageConverter() = Jackson2JsonMessageConverter(objectMapper())
-
 }

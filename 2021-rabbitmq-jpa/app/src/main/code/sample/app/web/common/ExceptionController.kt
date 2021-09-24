@@ -47,5 +47,4 @@ class ExceptionController {
         EmptyResponseWrapper.create()
             .message(ex.message)
             .success(false)
-
 }

@@ -22,11 +22,11 @@ class ScheduleInit(
 //                .usingJobData("jobkey", "jobval")
 //                .storeDurably()
 //                .build()
-////        scheduler.addJob(job, true)
+// //        scheduler.addJob(job, true)
 //            val trigger = TriggerBuilder
 //                .newTrigger()
-////            .forJob(JobKey.jobKey("jk1", "jg1"))
-////            .forJob(job)
+// //            .forJob(JobKey.jobKey("jk1", "jg1"))
+// //            .forJob(job)
 //                .withIdentity(TriggerKey.triggerKey("tr1", "tg1"))
 //                .startAt(DateUtils.addSeconds(Date(), 10))
 //                .build()
@@ -45,7 +45,7 @@ class ScheduleInit(
                 .newTrigger()
 //            .forJob(JobKey.jobKey("jk2", "jg2"))
 //            .forJob(job)
-                .withIdentity("tr2","tg2")
+                .withIdentity("tr2", "tg2")
 //                .withIdentity(TriggerKey.triggerKey("tr2-$step", "tg2-$step"))
                 .startAt(DateUtils.addSeconds(Date(), 5))
                 .usingJobData("triggerkey2-$step", "triggerval2-$step")
@@ -58,5 +58,4 @@ class ScheduleInit(
         println(scheduler.getJobKeys(GroupMatcher.anyGroup()))
         scheduler.start()
     }
-
 }

@@ -7,4 +7,3 @@ import sample.domain.config.DomainConfig
 @Configuration
 @Import(DomainConfig::class)
 class ImportConfig
-

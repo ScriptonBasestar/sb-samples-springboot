@@ -2,9 +2,8 @@ package sample.app.config
 
 import org.springframework.context.annotation.Configuration
 
-
 @Configuration
-//@Import(DomainConfig.class)
+// @Import(DomainConfig.class)
 class TestConfig {
 
 //    class LoadData {
@@ -30,5 +29,4 @@ class TestConfig {
 
 //    @Bean
 //    fun loadData(): LoadData = LoadData()
-
 }

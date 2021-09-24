@@ -11,7 +11,8 @@ import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
 import sample.domain.DomainTestApplication
 import sample.domain.exception.TestFailedException
-import sample.domain.repository.UserRepository
+import sample.domain.jpa.model.UserEntity
+import sample.domain.jpa.repository.UserRepository
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest(classes = DomainTestApplication.class)
@@ -32,7 +33,7 @@ class UserCrudTest {
     //given
     @BeforeAll
     void 'insert entity'() {
-        (1..5).each {
+        (0..5).each {
 //            UserEntity userEntity = new UserEntity(
 //                username: "username$it",
 //                realname: "realname$it",
@@ -61,9 +62,10 @@ class UserCrudTest {
     void 'insert 중복사용자 추가'() {
         //when
         UserEntity userEntity = new UserEntity(
-            username: "username0",
-            realname: "realname0",
-            email: "email0@email.com"
+            "username0",
+            "realname0",
+            "email0@email.com",
+            "passw0rd",
         )
         Assertions.assertThrows(DataIntegrityViolationException.class, () -> {
             userRepository.save(userEntity)
