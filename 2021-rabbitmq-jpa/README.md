@@ -17,8 +17,9 @@
 
 ## 특징
 
-async하게...??
-r2dbc는 이제 쓸만하려나?
+* async하게...??
+- r2dbc는 이제 쓸만하려나?
+- 자바 제외. 오류가 자꾸 나서. jpa징그럽게 쓰려면 java유지하는게 나으나 별로 그렇게쓰고싶지않아서 제외
 
 
 https://techsparx.com/software-development/docker/damp/mysql-ssl-connection.html
