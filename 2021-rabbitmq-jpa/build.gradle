@@ -3,13 +3,13 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.spring' apply false
     id 'org.jetbrains.kotlin.plugin.jpa' apply false
     id 'org.jetbrains.kotlin.kapt' apply false
-//    id 'org.jetbrains.kotlin.plugin.lombok' apply false
+    id 'org.jetbrains.kotlin.plugin.lombok' apply false
 
     id 'org.springframework.boot' apply false
     id 'io.spring.dependency-management' apply false
 
     id 'com.google.protobuf' apply false
-//    id 'com.ewerk.gradle.plugins.querydsl' apply false
+    id 'com.ewerk.gradle.plugins.querydsl' apply false
 
     id 'org.asciidoctor.jvm.convert' apply false
 
@@ -20,6 +20,7 @@ plugins {
     id 'io.freefair.lombok' apply false
     id 'com.google.cloud.tools.jib' apply false
 
+    id 'org.flywaydb.flyway' apply false
     id 'net.nemerosa.versioning' apply false
 //    id 'com.devskiller.jpa2ddl' version '0.9.12'
 //    id "io.github.divinespear.jpa-schema-generate" version "0.4.0"
@@ -37,10 +38,6 @@ subprojects {
     apply plugin: 'groovy'
 
     apply plugin: 'org.jetbrains.kotlin.jvm'
-    apply plugin: 'org.jetbrains.kotlin.plugin.spring'
-    apply plugin: 'org.jetbrains.kotlin.plugin.jpa'
-    apply plugin: 'org.jetbrains.kotlin.kapt'
-//    apply plugin: 'org.jetbrains.kotlin.plugin.lombok'
 
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
@@ -51,64 +48,27 @@ subprojects {
 
     apply plugin: 'org.asciidoctor.jvm.convert'
 
-    apply plugin: 'org.jlleitschuh.gradle.ktlint'
-    apply plugin: 'org.jlleitschuh.gradle.ktlint-idea'
-
     apply plugin: 'com.github.johnrengelman.shadow'
 
     apply plugin: 'net.nemerosa.versioning'
 
-    sourceSets {
-        main {
-            java.srcDirs = ['src/main/code']
-//            kotlin.srcDirs = ['src/main/code']
-//            groovy.srcDirs = ['src/main/code']
-//            *.srcDirs = []
-            resources.srcDirs = ['src/main/resources']
-        }
-        test {
-            java.srcDirs += ['src/test/code']
-            kotlin.srcDirs += ['src/test/code']
-            groovy.srcDirs += ['src/test/code']
-            resources.srcDirs = ['src/test/resources']
-        }
-    }
-
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
     configurations {
         compileOnly {
             extendsFrom annotationProcessor
         }
         all*.exclude group: 'junit', module: 'junit'
     }
-    compileKotlin {
-        kotlinOptions {
-            freeCompilerArgs = ['-Xjsr305=strict']
-            jvmTarget = '1.8'
-        }
-    }
 
-    compileTestKotlin {
-        kotlinOptions {
-            freeCompilerArgs = ['-Xjsr305=strict']
-            jvmTarget = '1.8'
-        }
+    clean {
+        delete 'src/main/generated'
+        delete 'build'
     }
-
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-//    compileJava {
-//        options.annotationProcessorPath = configurations.annotationProcessor
-//    }
-//    compileKotlin {
-//        kotlinOptions.jvmTarget = JavaVersion.VERSION_11
-//        kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
-////        kotlinOptions.freeCompilerArgs += '-Xjsr305=strict'
-//    }
-//    compileTestKotlin {
-//        kotlinOptions.jvmTarget = JavaVersion.VERSION_11
-//        kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
-//    }
+    compileJava {
+        options.annotationProcessorPath = configurations.annotationProcessor
+    }
 
     dependencyManagement {
         imports {
@@ -142,7 +102,7 @@ subprojects {
         implementation "org.apache.commons:commons-lang3:$commons_lang3_version"
 
         annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-        annotationProcessor 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok:1.18.20'
 
         // test
         testImplementation 'org.jetbrains.kotlin:kotlin-test'
@@ -169,8 +129,6 @@ subprojects {
         testImplementation 'org.junit.jupiter:junit-jupiter-api'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     }
-    ktlintCheck.mustRunAfter ktlintFormat
-    compileKotlin.dependsOn ktlintFormat, ktlintCheck
 
     ext {
         snippetsDir = file('build/generated-snippets')

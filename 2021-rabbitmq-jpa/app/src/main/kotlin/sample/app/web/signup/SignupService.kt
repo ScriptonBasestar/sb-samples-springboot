@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import sample.core.exception.BusinessException
 import sample.core.util.loggerUtil
-import sample.domain.model.UserEntity
-import sample.domain.repository.UserRepository
+import sample.domain.jpa.model.UserEntity
+import sample.domain.jpa.repository.UserRepository
 
 @Slf4j
 @Service

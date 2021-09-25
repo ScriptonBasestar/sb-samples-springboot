@@ -7,8 +7,8 @@ import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import sample.core.exception.DataNotFoundException
 import sample.core.util.loggerUtil
-import sample.domain.model.UserEntity
-import sample.domain.repository.UserRepository
+import sample.domain.jpa.model.UserEntity
+import sample.domain.jpa.repository.UserRepository
 
 @Slf4j
 @Service

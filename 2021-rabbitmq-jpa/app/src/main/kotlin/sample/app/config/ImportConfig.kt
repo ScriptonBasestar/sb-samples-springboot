@@ -2,8 +2,8 @@ package sample.app.config
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Import
-import sample.domain.config.DomainConfig
+import sample.domain.jpa.config.DomainJpaConfig
 
 @Configuration
-@Import(DomainConfig::class)
+@Import(DomainJpaConfig::class)
 class ImportConfig

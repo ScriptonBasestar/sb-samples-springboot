@@ -5,10 +5,14 @@ jar.enabled = true
 apply plugin: 'base'
 
 subprojects {
-    dependencies {
-        implementation project(':core')
+//    apply plugin: 'io.freefair.lombok'
+    apply plugin: 'groovy'
+//    apply plugin: 'com.ewerk.gradle.plugins.querydsl'
 
-        implementation 'org.springframework.boot:spring-boot-starter-validation'
+    dependencies {
+        api project(':core')
+
+        api 'org.springframework.boot:spring-boot-starter-validation'
         api 'com.fasterxml.jackson.core:jackson-databind'
 
         api 'org.mindrot:jbcrypt:0.4'

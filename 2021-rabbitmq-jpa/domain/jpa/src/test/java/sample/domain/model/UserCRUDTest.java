@@ -1,4 +1,4 @@
-//package sample.domain.model;
+package sample.domain.model;//package sample.domain.model;
 //
 //import org.junit.jupiter.api.Assertions;
 //import org.junit.jupiter.api.BeforeAll;

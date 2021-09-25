@@ -3,10 +3,5 @@ bootJar.enabled = false
 jar.enabled = true
 
 dependencies {
-    implementation project(':core')
-
     api 'org.springframework.boot:spring-boot-starter-data-redis'
-
-//    api "org.modelmapper:modelmapper"
-    api "com.google.guava:guava:$guava_version"
 }

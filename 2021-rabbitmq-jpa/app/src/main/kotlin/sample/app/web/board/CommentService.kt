@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import sample.core.exception.DataNotFoundException
-import sample.domain.repository.CommentRepository
+import sample.domain.jpa.repository.CommentRepository
 
 @Service
 @Transactional(readOnly = true)
@@ -16,7 +16,9 @@ class CommentService(
     fun list(pageable: Pageable) =
         commentRepository.findAll(pageable)
 
-    fun read(id: Long) = commentRepository.findById(id).orElseThrow { DataNotFoundException("data not found exception") }
+    fun read(id: Long) = commentRepository.findById(id).orElseThrow {
+        DataNotFoundException("data not found exception")
+    }
 
     @Transactional
     fun modify(id: Long, commentReqDto: CommentReqDto) {
