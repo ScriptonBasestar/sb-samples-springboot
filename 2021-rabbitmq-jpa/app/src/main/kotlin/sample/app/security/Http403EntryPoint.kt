@@ -1,6 +1,5 @@
 package sample.app.security
 
-import lombok.extern.slf4j.Slf4j
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.security.authentication.AuthenticationTrustResolverImpl
@@ -12,7 +11,6 @@ import javax.servlet.ServletException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-@Slf4j
 class Http403EntryPoint : AuthenticationEntryPoint {
 
     companion object {

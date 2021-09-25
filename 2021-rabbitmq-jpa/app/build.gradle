@@ -1,14 +1,5 @@
 apply plugin: 'application'
 
-apply plugin: 'org.jetbrains.kotlin.jvm'
-apply plugin: 'org.jetbrains.kotlin.plugin.spring'
-apply plugin: 'org.jetbrains.kotlin.plugin.jpa'
-apply plugin: 'org.jetbrains.kotlin.kapt'
-//    apply plugin: 'org.jetbrains.kotlin.plugin.lombok'
-
-apply plugin: 'org.jlleitschuh.gradle.ktlint'
-apply plugin: 'org.jlleitschuh.gradle.ktlint-idea'
-
 mainClassName = 'sample.app.MainApplication'
 //bootJar {
 ////    archiveFileName = "${archiveBaseName.get()}.${archiveExtension.get()}"
@@ -52,11 +43,7 @@ dependencies {
     implementation project(':message:rabbitmq')
     implementation project(':message:kafka')
 
-    compileOnly 'org.projectlombok:lombok:1.18.20'
-    annotationProcessor 'org.projectlombok:lombok:1.18.20'
 //    testImplementation project(':domain').sourceSets.test.output
-    ktlintRuleset("com.pinterest.ktlint:ktlint-core:$ktlint_version")
-    ktlintRuleset("com.pinterest.ktlint:ktlint-ruleset-standard:$ktlint_version")
 
 //    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
@@ -83,5 +70,3 @@ dependencies {
     testImplementation 'org.mockito:mockito-core'
     testImplementation 'com.github.fridujo:rabbitmq-mock:1.1.1'
 }
-ktlintCheck.mustRunAfter ktlintFormat
-compileKotlin.dependsOn ktlintFormat, ktlintCheck

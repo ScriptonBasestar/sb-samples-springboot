@@ -22,8 +22,9 @@ class CommentService(
 
     @Transactional
     fun modify(id: Long, commentReqDto: CommentReqDto) {
-        val commentEntity =
-            commentRepository.findById(id).orElseThrow { DataNotFoundException("data not found exception") }
+        val commentEntity = commentRepository.findById(id).orElseThrow {
+            DataNotFoundException("data not found exception")
+        }
         commentReqDto.apply {
             content?.let {
                 commentEntity.content = it

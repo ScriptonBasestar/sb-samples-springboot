@@ -1,6 +1,5 @@
 package sample.app.web.signup
 
-import lombok.extern.slf4j.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.stereotype.Service
@@ -10,7 +9,6 @@ import sample.core.util.loggerUtil
 import sample.domain.jpa.model.UserEntity
 import sample.domain.jpa.repository.UserRepository
 
-@Slf4j
 @Service
 class SignupService {
 

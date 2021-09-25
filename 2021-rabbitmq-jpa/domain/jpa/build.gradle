@@ -9,27 +9,15 @@ dependencies {
 //    implementation 'org.springframework.boot:spring-boot-starter-webflux'
     api 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    compileOnly 'org.projectlombok:lombok:1.18.20'
-    annotationProcessor 'org.projectlombok:lombok:1.18.20'
-
-    testCompileOnly 'org.projectlombok:lombok:1.18.20'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
-
 //    api 'org.hibernate:hibernate-core'
 //    api 'org.hibernate:hibernate-entitymanager'
     api 'org.hibernate:hibernate-envers'
     api 'org.hibernate:hibernate-ehcache'
 
     // querydsl
-    // java
-    api 'com.querydsl:querydsl-core'
-    api 'com.querydsl:querydsl-jpa'
-    annotationProcessor 'com.querydsl:querydsl-apt::jpa'
-    annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
-    annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
     // kotlin
-//    api 'com.querydsl:querydsl-jpa'
-//    kapt 'com.querydsl:querydsl-apt::jpa'
+    api 'com.querydsl:querydsl-jpa'
+    kapt 'com.querydsl:querydsl-apt::jpa'
 
     api 'com.zaxxer:HikariCP'
     api 'org.mariadb.jdbc:mariadb-java-client'

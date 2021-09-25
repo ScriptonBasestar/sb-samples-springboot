@@ -1,6 +1,5 @@
 package sample.app.web.member
 
-import lombok.extern.slf4j.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -10,7 +9,6 @@ import sample.core.util.loggerUtil
 import sample.domain.jpa.model.UserEntity
 import sample.domain.jpa.repository.UserRepository
 
-@Slf4j
 @Service
 class MemberService(
     @Autowired private val userRepository: UserRepository
