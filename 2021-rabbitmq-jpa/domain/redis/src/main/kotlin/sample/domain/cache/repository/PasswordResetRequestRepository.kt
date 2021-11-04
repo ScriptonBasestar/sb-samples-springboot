@@ -1,10 +1,9 @@
-package sample.domain.cache.repository;
+package sample.domain.cache.repository
 
-import org.springframework.data.repository.CrudRepository;
-import sample.domain.cache.model.PasswordResetRequestCache;
+import org.springframework.data.repository.CrudRepository
+import sample.domain.cache.model.PasswordResetRequestCache
+import java.util.*
 
-import java.util.Optional;
-
-public interface PasswordResetRequestRepository extends CrudRepository<PasswordResetRequestCache, String> {
-    Optional<PasswordResetRequestCache> findOneByCode(String code);
+interface PasswordResetRequestRepository : CrudRepository<PasswordResetRequestCache, String> {
+    fun findOneByCode(code: String): Optional<PasswordResetRequestCache>
 }
