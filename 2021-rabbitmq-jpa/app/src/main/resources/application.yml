@@ -1,4 +1,6 @@
 spring:
+  main:
+    web-application-type: none
   application:
     name: Member Service
   profiles:
@@ -8,7 +10,7 @@ spring:
     port: ${RABBITMQ_PORT:5672}
     username: ${RABBITMQ_USER:user01}
     password: ${RABBITMQ_PASS:passw0rd}
-    virtual-host: ${RABBITMQ_VHOST:/dev-local}
+    virtual-host: ${RABBITMQ_VHOST:/dev_local}
 #    listener:
 #      direct:
 #        acknowledge-mode: manual
@@ -33,10 +35,13 @@ spring:
 #    &serverTimezone=UTC
     url: "jdbc:mysql://${DB0_HOST:localhost}:${DB0_PORT:3306}/${DB0_DB:dev_local}?\
     useUnicode=true\
+    &allowPublicKeyRetrieval=true\
+    &useSSL=false\
     &characterEncoding=utf-8\
     &zeroDateTimeBehavior=convertToNull\
     &useLegacyDatetimeCode=false\
     &serverTimezone=UTC"
+
     username: ${DB0_USER:user01}
     password: ${DB0_PASS:passw0rd}
     hikari:
@@ -97,8 +102,8 @@ config:
   routing-key-member-register: member.register
   routing-key-member-emailauth: member.emailauth
 
-external:
-  mailgun:
-    base-url: https://mailgun
-    api-key: ${MAILGUN_KEY}
-    api-secret: ${MAILGUN_SECRET}
+#external:
+#  mailgun:
+#    base-url: https://mailgun
+#    api-key: ${MAILGUN_KEY}
+#    api-secret: ${MAILGUN_SECRET}

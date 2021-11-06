@@ -1,40 +1,22 @@
 apply plugin: 'application'
-
-mainClassName = 'sample.app.Application'
-//bootJar {
-////    archiveFileName = "${archiveBaseName.get()}.${archiveExtension.get()}"
-//    archiveFileName = "app.${archiveExtension.get()}"
+//mainClassName = 'sample.app.ApplicationKt'
+//springBoot {
+//    mainClass.set("sample.app.Application")
 //}
+bootJar {
+    mainClass = 'sample.app.ApplicationKt'
+//    archiveFileName = "${archiveBaseName.get()}.${archiveExtension.get()}"
+    archiveFileName = "app.${archiveExtension.get()}"
+}
 ////https://stackoverflow.com/questions/53123012/spring-boot-2-change-jar-name
-shadowJar {
-    zip64 = true
-//    mergeServiceFiles()
-//    exclude "META-INF/*.SF"
-//    exclude 'META-INF/*.DSA'
-//    exclude 'META-INF/*.RSA'
-//    exclude "LICENSE*"
-}
-compileKotlin {
-    kotlinOptions {
-        freeCompilerArgs = ['-Xjsr305=strict']
-        jvmTarget = '1.8'
-    }
-}
-compileTestKotlin {
-    kotlinOptions {
-        freeCompilerArgs = ['-Xjsr305=strict']
-        jvmTarget = '1.8'
-    }
-}
-//    compileKotlin {
-//        kotlinOptions.jvmTarget = JavaVersion.VERSION_11
-//        kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
-////        kotlinOptions.freeCompilerArgs += '-Xjsr305=strict'
-//    }
-//    compileTestKotlin {
-//        kotlinOptions.jvmTarget = JavaVersion.VERSION_11
-//        kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
-//    }
+//shadowJar {
+//    zip64 = true
+////    mergeServiceFiles()
+////    exclude "META-INF/*.SF"
+////    exclude 'META-INF/*.DSA'
+////    exclude 'META-INF/*.RSA'
+////    exclude "LICENSE*"
+//}
 
 dependencies {
     implementation project(':core')
@@ -45,7 +27,11 @@ dependencies {
 
 //    testImplementation project(':domain').sourceSets.test.output
 
-//    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation('org.springframework.boot:spring-boot-starter-web')
+//    implementation('org.springframework.boot:spring-boot-starter-web') {
+//        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+//    }
+    implementation 'org.springframework.boot:spring-boot-starter-undertow'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'org.springframework.boot:spring-boot-starter-security'
 //    implementation('org.springframework.boot:spring-boot-starter-security') {

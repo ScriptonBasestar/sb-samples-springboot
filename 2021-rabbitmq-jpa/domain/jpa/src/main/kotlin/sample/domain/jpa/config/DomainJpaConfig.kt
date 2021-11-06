@@ -1,18 +1,19 @@
 package sample.domain.jpa.config
 
 import org.springframework.boot.autoconfigure.domain.EntityScan
+import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
-import org.springframework.data.web.config.EnableSpringDataWebSupport
 import org.springframework.transaction.annotation.EnableTransactionManagement
 
 @Configuration
 @EnableJpaAuditing
-@EnableSpringDataWebSupport
+// @EnableSpringDataWebSupport
 @EnableTransactionManagement
 @EntityScan(basePackages = ["sample.domain.jpa.model"])
-@EnableJpaRepositories(basePackages = ["sample.domain.jpa.repository"])
+@EnableJpaRepositories(basePackages = ["sample.domain.jpa.model"])
+@ComponentScan("sample.domain.jpa.model")
 class DomainJpaConfig {
 //    @Bean
 //    fun dataSource(): DataSource {

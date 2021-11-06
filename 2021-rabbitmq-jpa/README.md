@@ -10,13 +10,21 @@
 - redis
 - ssl 접속
 - junit5
-- skaffold
 - webflux
 - webclient
+- skaffold
+- kompose
 
 ## Install
 
+docker compose
 ```bash
+skaffold init --compose-file docker-compose.yaml
+```
+
+kubectl
+```bash
+skaffold dev --no-prune=false --cache-artifacts=false
 ./gradlew ktlintApplyToIdea
 ```
 

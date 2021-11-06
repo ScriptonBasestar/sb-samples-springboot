@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import sample.domain.DomainTestApplication;
 import sample.domain.exception.TestFailedException;
 import sample.domain.jpa.model.user.UserEntity;
-import sample.domain.jpa.repository.UserRepository;
+import sample.domain.jpa.model.user.UserRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;

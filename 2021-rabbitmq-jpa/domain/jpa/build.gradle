@@ -6,11 +6,10 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-web'
 
-//    implementation 'org.springframework.boot:spring-boot-starter-webflux'
     api 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-//    api 'org.hibernate:hibernate-core'
-//    api 'org.hibernate:hibernate-entitymanager'
+    api 'org.hibernate:hibernate-core'
+    api 'org.hibernate:hibernate-entitymanager'
     api 'org.hibernate:hibernate-envers'
     api 'org.hibernate:hibernate-ehcache'
 

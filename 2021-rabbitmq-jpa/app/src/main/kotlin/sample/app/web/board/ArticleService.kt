@@ -2,7 +2,7 @@ package sample.app.web.board
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import sample.domain.jpa.repository.ArticleRepository
+import sample.domain.jpa.model.article.ArticleRepository
 
 @Service
 class ArticleService(

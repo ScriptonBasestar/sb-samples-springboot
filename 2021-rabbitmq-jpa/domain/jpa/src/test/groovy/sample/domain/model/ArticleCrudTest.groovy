@@ -11,8 +11,8 @@
 //import sample.domain.DomainTestApplication
 //import sample.domain.jpa.model.article.ArticleEntity
 //import sample.domain.jpa.model.comment.CommentEntity
-//import sample.domain.jpa.repository.ArticleRepository
-//import sample.domain.jpa.repository.CommentRepository
+//import sample.domain.jpa.model.article.ArticleRepository
+//import sample.domain.jpa.model.comment.CommentRepository
 //
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 //@SpringBootTest(classes = DomainTestApplication.class)

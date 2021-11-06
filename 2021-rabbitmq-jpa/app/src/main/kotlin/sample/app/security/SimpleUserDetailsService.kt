@@ -4,7 +4,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
-import sample.domain.jpa.repository.UserRepository
+import sample.domain.jpa.model.user.UserRepository
 
 class SimpleUserDetailsService(private val userRepository: UserRepository) : UserDetailsService {
 

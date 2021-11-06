@@ -55,13 +55,34 @@ subprojects {
 
     apply plugin: 'org.asciidoctor.jvm.convert'
 
-    apply plugin: 'com.github.johnrengelman.shadow'
+//    apply plugin: 'com.github.johnrengelman.shadow'
 
     apply plugin: 'net.nemerosa.versioning'
 
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
     [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+    //compileKotlin {
+//    kotlinOptions {
+//        freeCompilerArgs = ['-Xjsr305=strict']
+//        jvmTarget = '1.8'
+//    }
+//}
+//compileTestKotlin {
+//    kotlinOptions {
+//        freeCompilerArgs = ['-Xjsr305=strict']
+//        jvmTarget = '1.8'
+//    }
+//}
+    compileKotlin {
+        kotlinOptions.jvmTarget = JavaVersion.VERSION_11
+        kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
+//    kotlinOptions.freeCompilerArgs += '-Xjsr305=strict'
+    }
+    compileTestKotlin {
+        kotlinOptions.jvmTarget = JavaVersion.VERSION_11
+        kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
+    }
     configurations {
         compileOnly {
             extendsFrom annotationProcessor
@@ -98,7 +119,6 @@ subprojects {
         ktlintRuleset("com.pinterest.ktlint:ktlint-core:$ktlint_version")
         ktlintRuleset("com.pinterest.ktlint:ktlint-ruleset-standard:$ktlint_version")
 
-//        implementation 'org.springframework.boot:spring-boot-starter-webflux'
         implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
         implementation 'io.projectreactor.kotlin:reactor-kotlin-extensions'
 

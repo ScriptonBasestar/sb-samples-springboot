@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq-jpa-app
+  labels:
+    app: rabbitmq-jpa-app
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+  clusterIP: None
+  selector:
+    app: rabbitmq-jpa-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-jpa-app
+  labels:
+    app: rabbitmq-jpa-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq-jpa-app
+  template:
+    metadata:
+      labels:
+        app: rabbitmq-jpa-app
+    spec:
+      containers:
+        - name: rabbitmq-jpa-app
+          image: rabbitmq-jpa-app
+#          envFrom:
+#            - configMapRef:
+#                name: app-env-configmap
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "dev"
+            - name: DB0_HOST
+              value: "dev-mysql.default.svc.cluster.local"

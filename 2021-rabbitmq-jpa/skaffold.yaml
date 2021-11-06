@@ -4,14 +4,19 @@ metadata:
   name: --rabbitmq-jpa
 build:
   artifacts:
-  - image: dockerfile-image
+  - image: rabbitmq-jpa-app
     docker:
       dockerfile: Dockerfile
 deploy:
   kubectl:
     manifests:
-    - deployment.yaml
+    - k8s/*
+#    - k8s/app.yaml
+#    - k8s/mysql.yaml
 portForward:
 - resourceType: service
-  resourceName: dockerfile-image
+  resourceName: rabbitmq-jpa-app
   port: 8080
+- resourceType: service
+  resourceName: dev-mysql
+  port: 3306

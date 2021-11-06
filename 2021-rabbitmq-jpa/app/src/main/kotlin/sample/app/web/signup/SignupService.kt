@@ -7,15 +7,14 @@ import org.springframework.transaction.annotation.Transactional
 import sample.core.exception.BusinessException
 import sample.core.util.loggerUtil
 import sample.domain.jpa.model.user.UserEntity
-import sample.domain.jpa.repository.UserRepository
+import sample.domain.jpa.model.user.UserRepository
 
 @Service
-class SignupService {
+class SignupService @Autowired constructor(
+    private val userRepository: UserRepository,
+) {
 
     val log = loggerUtil()
-
-    @Autowired
-    private lateinit var userRepository: UserRepository
 
     fun isExistsUsername(username: String): Boolean {
         log.trace("아이디(username) 중복 확인, username : {}", username)

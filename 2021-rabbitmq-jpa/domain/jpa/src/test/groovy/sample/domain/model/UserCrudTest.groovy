@@ -12,7 +12,7 @@
 //import sample.domain.DomainTestApplication
 //import sample.domain.exception.TestFailedException
 //import sample.domain.jpa.model.user.UserEntity
-//import sample.domain.jpa.repository.UserRepository
+//import sample.domain.jpa.model.user.UserRepository
 //
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 //@SpringBootTest(classes = DomainTestApplication.class)

@@ -1,8 +1,7 @@
-package sample.domain.jpa.repository
+package sample.domain.jpa.model.user
 
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
-import sample.domain.jpa.model.user.UserEntity
 import java.util.*
 
 @Repository

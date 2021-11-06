@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 import sample.core.exception.DataNotFoundException
 import sample.core.util.loggerUtil
 import sample.domain.jpa.model.user.UserEntity
-import sample.domain.jpa.repository.UserRepository
+import sample.domain.jpa.model.user.UserRepository
 
 @Service
 class MemberService(
