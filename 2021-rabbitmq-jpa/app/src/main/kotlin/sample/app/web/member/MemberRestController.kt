@@ -6,7 +6,7 @@ import org.springframework.data.web.PageableDefault
 import org.springframework.web.bind.annotation.*
 import sample.core.transfer.PageResponseWrapper
 import sample.core.transfer.SingleResponseWrapper
-import sample.domain.jpa.model.UserEntity
+import sample.domain.jpa.model.user.UserEntity
 
 @RestController
 @RequestMapping("/member/rest")

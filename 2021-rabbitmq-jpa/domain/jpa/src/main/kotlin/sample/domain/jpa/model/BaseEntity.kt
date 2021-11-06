@@ -1,6 +1,7 @@
 package sample.domain.jpa.model
 
 import com.google.common.base.MoreObjects
+import org.hibernate.annotations.ColumnDefault
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.DynamicUpdate
 import org.springframework.data.annotation.CreatedDate
@@ -20,19 +21,20 @@ abstract class BaseEntity {
         nullable = false,
         insertable = true,
         updatable = false,
-        columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+//        columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
     )
     @CreatedDate //    @CreationTimestamp
-    val createdAt: LocalDateTime? = null
+    @ColumnDefault("CURRENT_TIMESTAMP")
+    val createdAt: LocalDateTime = LocalDateTime.now()
 
     @Column(
         insertable = true,
         updatable = true,
-        columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+//        columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
     )
     @CreatedDate
     @LastModifiedDate
-    val updatedAt: LocalDateTime? = null
+    val updatedAt: LocalDateTime = LocalDateTime.now()
 
     //    @Column(nullable = false, updatable = false)
     //    @Temporal(TemporalType.TIMESTAMP)

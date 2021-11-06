@@ -1,6 +1,8 @@
-package sample.domain.jpa.model
+package sample.domain.jpa.model.comment
 
 import org.hibernate.annotations.DynamicUpdate
+import sample.domain.jpa.model.BaseEntity
+import sample.domain.jpa.model.article.ArticleEntity
 import javax.persistence.*
 
 @Entity

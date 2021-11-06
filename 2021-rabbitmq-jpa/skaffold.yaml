@@ -1,0 +1,17 @@
+apiVersion: skaffold/v2beta23
+kind: Config
+metadata:
+  name: --rabbitmq-jpa
+build:
+  artifacts:
+  - image: dockerfile-image
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - deployment.yaml
+portForward:
+- resourceType: service
+  resourceName: dockerfile-image
+  port: 8080

@@ -1,6 +1,6 @@
 # RabbitMQ
 
-## 사용기술
+## Stacks
 
 - springboot
 - rabbitmq
@@ -10,17 +10,17 @@
 - redis
 - ssl 접속
 - junit5
-
-제외
+- skaffold
 - webflux
 - webclient
 
-## 특징
+## Install
 
-* async하게...??
-- r2dbc는 이제 쓸만하려나?
-- 자바 제외. 오류가 자꾸 나서. jpa징그럽게 쓰려면 java유지하는게 나으나 별로 그렇게쓰고싶지않아서 제외
+```bash
+./gradlew ktlintApplyToIdea
+```
 
+## REF
 
 https://techsparx.com/software-development/docker/damp/mysql-ssl-connection.html
 https://www.xmodulo.com/enable-ssl-mysql-server-client.html

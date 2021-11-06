@@ -10,11 +10,10 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.transaction.annotation.Transactional;
 import sample.domain.DomainTestApplication;
 import sample.domain.exception.TestFailedException;
-import sample.domain.jpa.model.UserEntity;
+import sample.domain.jpa.model.user.UserEntity;
 import sample.domain.jpa.repository.UserRepository;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
