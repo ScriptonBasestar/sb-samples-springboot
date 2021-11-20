@@ -12,7 +12,7 @@ pluginManagement {
         id 'io.spring.dependency-management' version spring_dep_plugin_version
 
         id 'com.google.protobuf' version protobuf_plugin_version
-        id "com.ewerk.gradle.plugins.querydsl" version "1.0.9"
+        id "com.ewerk.gradle.plugins.querydsl" version querydsl_plugin_version
 
         id 'org.asciidoctor.jvm.convert' version asciidoctor_plugin_version
 
@@ -23,9 +23,10 @@ pluginManagement {
         id 'io.freefair.lombok' version freefair_lombok_plugin_version
         id 'com.google.cloud.tools.jib' version jib_plugin_version
 
-        id "org.flywaydb.flyway" version flyway_plugin_version
-        id "org.liquibase.gradle" version liquibase_plugin_version
-        id 'net.nemerosa.versioning' version '2.14.0'
+        id 'org.flywaydb.flyway' version flyway_plugin_version
+        id 'org.jetbrains.gradle.liquibase' version liquibase_jetbrains_plugin_version
+        id 'org.liquibase.gradle' version liquibase_org_plugin_version
+        id 'net.nemerosa.versioning' version nemerosa_versioning_plugin_version
     }
 
     repositories {
