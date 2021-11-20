@@ -34,8 +34,15 @@ spec:
 #          envFrom:
 #            - configMapRef:
 #                name: app-env-configmap
+          ports:
+            - protocol: TCP
+              containerPort: 8080
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "dev"
             - name: DB0_HOST
               value: "dev-mysql.default.svc.cluster.local"
+            - name: RABBITMQ_HOST
+              value: "dev-rabbitmq.default.svc.cluster.local"
+            - name: REDIS_HOST
+              value: "dev-redis.default.svc.cluster.local"

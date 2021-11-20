@@ -32,8 +32,9 @@ abstract class BaseEntity {
         updatable = true,
 //        columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
     )
-    @CreatedDate
+    // @CreatedDate
     @LastModifiedDate
+    @ColumnDefault("CURRENT_TIMESTAMP")
     val updatedAt: LocalDateTime = LocalDateTime.now()
 
     //    @Column(nullable = false, updatable = false)

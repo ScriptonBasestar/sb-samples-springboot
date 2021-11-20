@@ -11,6 +11,8 @@ deploy:
   kubectl:
     manifests:
     - k8s/*
+#    - k8s/app.yaml
+#    - k8s/mysql.yaml
 portForward:
 - resourceType: service
   resourceName: rabbitmq-jpa-app
@@ -18,10 +20,3 @@ portForward:
 - resourceType: service
   resourceName: dev-mysql
   port: 3306
-- resourceType: service
-  resourceName: dev-redis
-  port: 6379
-- resourceType: service
-  resourceName: dev-rabbitmq
-  port: 15672
-

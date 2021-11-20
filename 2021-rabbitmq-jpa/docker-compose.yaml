@@ -14,10 +14,9 @@ services:
       - MYSQL_DATABASE=${DB0_DB:-dev_local}
       - MYSQL_USER=${DB0_USER:-user01}
       - MYSQL_PASSWORD=${DB0_PASS:-passw0rd}
-#    volumes:
-#      - dev_mysql:/var/lib/mysql
-#      - ./certs:/etc/ssl/mysql
-#      - ./src/main/resources/seeds/quartz.sql:/docker-entrypoint-initdb.d/quartz.sql
+    volumes:
+      - dev_mysql:/var/lib/mysql
+      - ./certs:/etc/ssl/mysql
 
   dev_redis:
     image: bitnami/redis:latest

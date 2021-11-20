@@ -17,6 +17,10 @@
 
 ## Install
 
+```bash
+minikube start
+```
+
 docker compose
 ```bash
 skaffold init --compose-file docker-compose.yaml
