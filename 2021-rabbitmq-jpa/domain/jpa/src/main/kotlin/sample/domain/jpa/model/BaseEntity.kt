@@ -23,9 +23,10 @@ abstract class BaseEntity {
         updatable = false,
 //        columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
     )
-    @CreatedDate //    @CreationTimestamp
+    @CreatedDate //    @CreationTimes
     @ColumnDefault("CURRENT_TIMESTAMP")
-    val createdAt: LocalDateTime = LocalDateTime.now()
+    var createdAt: LocalDateTime = LocalDateTime.now()
+        protected set
 
     @Column(
         insertable = true,
@@ -35,7 +36,8 @@ abstract class BaseEntity {
     // @CreatedDate
     @LastModifiedDate
     @ColumnDefault("CURRENT_TIMESTAMP")
-    val updatedAt: LocalDateTime = LocalDateTime.now()
+    var updatedAt: LocalDateTime = LocalDateTime.now()
+        protected set
 
     //    @Column(nullable = false, updatable = false)
     //    @Temporal(TemporalType.TIMESTAMP)

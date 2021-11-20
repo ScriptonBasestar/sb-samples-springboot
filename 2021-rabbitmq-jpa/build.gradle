@@ -165,10 +165,11 @@ subprojects {
     }
     test {
         useJUnitPlatform()
-//        include '***Tests.*'
+//        include '**Tests.*'
+//        include '**Test.*'
 //        include '***.groovy'
-        exclude '**Manual.*'
-        exclude '**Main.*'
+//        exclude '**Manual.*'
+//        exclude '**Main.*'
 //        jvmArgs '--enable-preview'
         outputs.dir(snippetsDir)
     }
