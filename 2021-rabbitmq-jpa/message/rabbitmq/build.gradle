@@ -1,9 +1,0 @@
-bootRun.enabled = false
-bootJar.enabled = false
-jar.enabled = true
-
-dependencies {
-    implementation 'org.springframework.amqp:spring-rabbit'
-
-    testImplementation 'com.github.fridujo:rabbitmq-mock:1.1.1'
-}
