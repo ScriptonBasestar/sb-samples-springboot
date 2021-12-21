@@ -10,6 +10,7 @@ subprojects {
 //    apply plugin: 'com.ewerk.gradle.plugins.querydsl'
 
     dependencies {
+        implementation project(':spring')
         api project(':core')
 
         api 'org.springframework.boot:spring-boot-starter-validation'

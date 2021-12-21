@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import sample.app.web.member.MemberService
-import sample.domain.model.UserEntity
+import sample.domain.jpa.model.user.UserEntity
 
 class MemberServiceTest extends BaseServiceTest<MemberService> {
 

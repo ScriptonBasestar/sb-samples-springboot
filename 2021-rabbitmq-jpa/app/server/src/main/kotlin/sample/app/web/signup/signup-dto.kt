@@ -1,33 +1,33 @@
 package sample.app.web.signup
 
-import org.hibernate.validator.constraints.Length
 import javax.validation.constraints.AssertTrue
 import javax.validation.constraints.Email
+import javax.validation.constraints.NotBlank
+import javax.validation.constraints.Size
 
 data class SignupRequestDto(
-
-    @field:Length(min = 2, max = 10)
-//    @field:NotNull
+    @field:Size(min = 2, max = 10)
+    @field:NotBlank
     val username: String,
 
-    @field:Length(min = 2, max = 10)
-//    @field:NotNull
+    @field:Size(min = 2, max = 10)
+    @field:NotBlank
     val realname: String,
 
-    @field:Length(min = 5, max = 50)
-//    @field:NotNull
+    @field:Size(min = 5, max = 50)
+    @field:NotBlank
     @field:Email
     val email: String,
 
-    @field:Length(min = 1, max = 20)
+    @field:Size(min = 1, max = 20)
     val nickname: String?,
 
-    @field:Length(min = 5, max = 20)
-//    @field:NotNull
+    @field:Size(min = 5, max = 20)
+    @field:NotBlank
     val password: String,
 
-    @field:Length(min = 5, max = 20)
-//    @field:NotNull
+    @field:Size(min = 5, max = 20)
+    @field:NotBlank
     val passwordConfirm: String
 ) {
     @AssertTrue
