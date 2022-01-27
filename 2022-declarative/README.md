@@ -1,5 +1,8 @@
 # RabbitMQ
 
+개발중에 상호참조 및 역참조 방지
+하기위해 과도하게 모듈을 나눔
+
 ## Stacks
 
 - springboot
