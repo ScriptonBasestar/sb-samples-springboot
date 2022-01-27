@@ -1,0 +1,11 @@
+# ide
+.idea/
+
+# build
+build/
+!gradle/wrapper/**
+.gradle/
+
+# env
+.env
+.env.*

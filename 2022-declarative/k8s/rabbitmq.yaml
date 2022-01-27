@@ -1,0 +1,80 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-rabbitmq
+  labels:
+    app: dev
+spec:
+  ports:
+    - name: rabbitmq-app
+      protocol: TCP
+      port: 5672
+    - name: rabbitmq-manage
+      protocol: TCP
+      port: 15672
+  selector:
+    app: dev
+    env: workstation
+    tier: rabbitmq
+  clusterIP: None
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rabbitmq-pv-claim
+  labels:
+    app: dev
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: dev-rabbitmq
+  labels:
+    app: dev
+spec:
+  selector:
+    matchLabels:
+      app: dev
+      env: workstation
+      tier: rabbitmq
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: dev
+        env: workstation
+        tier: rabbitmq
+    spec:
+      containers:
+        - image: rabbitmq:management
+          name: rabbitmq
+#          args:
+#            - "--default-authentication-plugin=rabbitmq_native_password"
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              value: "user01"
+            - name: RABBITMQ_DEFAULT_PASS
+              value: "passw0rd"
+            - name: RABBITMQ_DEFAULT_VHOST
+              value: "/dev_local"
+          ports:
+            - name: rabbitmq-app
+              protocol: TCP
+              containerPort: 5672
+            - name: rabbitmq-manage
+              protocol: TCP
+              containerPort: 15672
+#          volumeMounts:
+#            - name: rabbitmq-persistent-storage
+#              mountPath: /var/lib/rabbitmq
+#      volumes:
+#        - name: rabbitmq-persistent-storage
+#          persistentVolumeClaim:
+#            claimName: rabbitmq-pv-claim

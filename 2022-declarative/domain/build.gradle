@@ -1,0 +1,24 @@
+bootRun.enabled = false
+bootJar.enabled = false
+jar.enabled = true
+
+apply plugin: 'base'
+
+subprojects {
+//    apply plugin: 'io.freefair.lombok'
+    apply plugin: 'groovy'
+//    apply plugin: 'com.ewerk.gradle.plugins.querydsl'
+
+    dependencies {
+        implementation project(':spring')
+        api project(':core')
+
+        api 'org.springframework.boot:spring-boot-starter-validation'
+        api 'com.fasterxml.jackson.core:jackson-databind'
+
+        api 'org.mindrot:jbcrypt:0.4'
+
+//    api "org.modelmapper:modelmapper"
+        api "com.google.guava:guava:$guava_version"
+    }
+}

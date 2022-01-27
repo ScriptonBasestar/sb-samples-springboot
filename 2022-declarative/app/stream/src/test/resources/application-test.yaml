@@ -1,0 +1,13 @@
+spring:
+  kafka:
+    consumer.auto-offset-reset: earliest
+    consumer.enable-auto-commit: false
+    consumer.properties.isolation.level: read_committed
+    producer.transaction-id-prefix: tx-
+
+logging:
+  level:
+    root: DEBUG
+    org.springframework.transaction: trace
+    org.springframework.kafka.transaction: debug
+    org.springframework.jdbc: debug

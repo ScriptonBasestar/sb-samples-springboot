@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-redis
+  labels:
+    app: dev
+spec:
+  ports:
+    - port: 6379
+  selector:
+    app: dev
+    env: workstation
+    tier: redis
+  clusterIP: None
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-pv-claim
+  labels:
+    app: dev
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: dev-redis
+  labels:
+    app: dev
+spec:
+  selector:
+    matchLabels:
+      app: dev
+      env: workstation
+      tier: redis
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: dev
+        env: workstation
+        tier: redis
+    spec:
+      containers:
+        - image: bitnami/redis:latest
+          name: redis
+#          args:
+#            - "--default-authentication-plugin=redis_native_password"
+          env:
+            - name: REDIS_PASSWORD
+              value: "passw0rd"
+          ports:
+            - name: redis
+              protocol: TCP
+              containerPort: 6379
+#          volumeMounts:
+#            - name: redis-persistent-storage
+#              mountPath: /var/lib/redis
+#      volumes:
+#        - name: redis-persistent-storage
+#          persistentVolumeClaim:
+#            claimName: redis-pv-claim

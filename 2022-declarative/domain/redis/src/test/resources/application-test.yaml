@@ -1,0 +1,16 @@
+spring:
+  redis:
+    client-type: lettuce
+    host: localhost
+    port: 6379
+    password: passw0rd
+    database: 0
+  #    sentinel:
+  #      master: redis_master
+  #      nodes: ${REDIS_NODES:localhost:6371}
+  #    cluster:
+  #      nodes: ${REDIS_NODES:localhost:6371}
+
+logging:
+  level:
+    root: DEBUG

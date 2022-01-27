@@ -1,0 +1,190 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' apply false
+    id 'org.jetbrains.kotlin.plugin.spring' apply false
+    id 'org.jetbrains.kotlin.plugin.jpa' apply false
+    id 'org.jetbrains.kotlin.kapt' apply false
+    id 'org.jetbrains.kotlin.plugin.lombok' apply false
+
+    id 'org.springframework.boot' apply false
+    id 'io.spring.dependency-management' apply false
+
+    id 'com.google.protobuf' apply false
+    id 'com.ewerk.gradle.plugins.querydsl' apply false
+
+    id 'org.asciidoctor.jvm.convert' apply false
+
+    id 'org.jlleitschuh.gradle.ktlint' apply false
+    id 'org.jlleitschuh.gradle.ktlint-idea' apply false
+
+    id 'com.github.johnrengelman.shadow' apply false
+    id 'io.freefair.lombok' apply false
+    id 'com.google.cloud.tools.jib' apply false
+
+    id 'org.flywaydb.flyway' apply false
+    id 'net.nemerosa.versioning' apply false
+//    id 'com.devskiller.jpa2ddl' version '0.9.12'
+//    id "io.github.divinespear.jpa-schema-generate" version "0.4.0"
+}
+
+allprojects {
+    group 'org.scriptonbasestar'
+    version '0.0.1-SNAPSHOT'
+
+    apply plugin: 'org.jlleitschuh.gradle.ktlint'
+    apply plugin: 'org.jlleitschuh.gradle.ktlint-idea'
+}
+
+apply plugin: 'base'
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'groovy'
+
+    apply plugin: 'org.jetbrains.kotlin.jvm'
+    apply plugin: 'org.jetbrains.kotlin.plugin.spring'
+    apply plugin: 'org.jetbrains.kotlin.plugin.jpa'
+    apply plugin: 'org.jetbrains.kotlin.kapt'
+//    apply plugin: 'org.jetbrains.kotlin.plugin.lombok'
+
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    apply plugin: 'org.springframework.boot'
+
+    apply plugin: 'com.google.cloud.tools.jib'
+
+    apply plugin: 'org.asciidoctor.jvm.convert'
+
+//    apply plugin: 'com.github.johnrengelman.shadow'
+
+    apply plugin: 'net.nemerosa.versioning'
+
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+    //compileKotlin {
+//    kotlinOptions {
+//        freeCompilerArgs = ['-Xjsr305=strict']
+//        jvmTarget = '1.8'
+//    }
+//}
+//compileTestKotlin {
+//    kotlinOptions {
+//        freeCompilerArgs = ['-Xjsr305=strict']
+//        jvmTarget = '1.8'
+//    }
+//}
+    compileKotlin {
+        kotlinOptions.jvmTarget = JavaVersion.VERSION_11
+        kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
+//    kotlinOptions.freeCompilerArgs += '-Xjsr305=strict'
+    }
+    compileTestKotlin {
+        kotlinOptions.jvmTarget = JavaVersion.VERSION_11
+        kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
+    }
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+        all*.exclude group: 'junit', module: 'junit'
+    }
+
+    clean {
+        delete 'src/main/generated'
+        delete 'build'
+    }
+    compileJava {
+        options.annotationProcessorPath = configurations.annotationProcessor
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:$spring_cloud_version"
+            mavenBom "org.springframework.boot:spring-boot-dependencies:$spring_boot_version"
+            mavenBom "org.keycloak.bom:keycloak-misc-bom:$keycloak_version"
+            mavenBom "org.keycloak.bom:keycloak-spi-bom:$keycloak_version"
+            mavenBom "org.keycloak.bom:keycloak-adapter-bom:$keycloak_version"
+            mavenBom "org.testcontainers:testcontainers-bom:$testcontainers_version"
+            mavenBom "com.google.protobuf:protobuf-bom:$protobuf_version"
+            mavenBom "com.google.guava:guava-bom:$guava_version"
+            mavenBom "io.grpc:grpc-bom:$grpc_version"
+            mavenBom "de.codecentric:spring-boot-admin-dependencies:$spring_boot_admin_version"
+        }
+    }
+
+    dependencies {
+        implementation "org.codehaus.groovy:groovy-all:$groovy_version"
+//        testImplementation 'org.codehaus.groovy:groovy-test-junit5:3.0.8'
+        ktlintRuleset("com.pinterest.ktlint:ktlint-core:$ktlint_version")
+        ktlintRuleset("com.pinterest.ktlint:ktlint-ruleset-standard:$ktlint_version")
+
+        implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+        implementation 'io.projectreactor.kotlin:reactor-kotlin-extensions'
+
+        implementation 'org.jetbrains.kotlin:kotlin-reflect'
+        implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+//    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+        implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-reactor'
+        implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
+        implementation "org.apache.commons:commons-lang3:$commons_lang3_version"
+
+        implementation 'org.springframework.boot:spring-boot-configuration-processor'
+
+        // test
+        testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+            exclude module: 'junit'
+        }
+        testImplementation "io.mockk:mockk:1.12.0"
+        testImplementation 'io.projectreactor:reactor-test'
+        testImplementation 'org.springframework.amqp:spring-rabbit-test'
+        testImplementation 'org.springframework.batch:spring-batch-test'
+//        testImplementation 'org.springframework.restdocs:spring-restdocs-webtestclient'
+//        testImplementation 'org.springframework.security:spring-security-test'
+//        testImplementation 'org.testcontainers:junit-jupiter'
+//        testImplementation 'org.testcontainers:mysql'
+//        testImplementation 'org.testcontainers:rabbitmq'
+
+        testImplementation 'com.h2database:h2'
+        developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+        testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    }
+    ktlintCheck.mustRunAfter ktlintFormat
+    compileKotlin.dependsOn ktlintFormat, ktlintCheck
+
+    ext {
+        snippetsDir = file('build/generated-snippets')
+    }
+    test {
+        useJUnitPlatform()
+//        include '**Tests.*'
+//        include '**Test.*'
+//        include '***.groovy'
+//        exclude '**Manual.*'
+//        exclude '**Main.*'
+//        jvmArgs '--enable-preview'
+        outputs.dir(snippetsDir)
+    }
+//    tasks.withType(Test) {
+//        useJUnitPlatform()
+//        jvmArgs '--enable-preview'
+//    }
+
+    asciidoctor {
+        inputs.dir(snippetsDir)
+        dependsOn(test)
+    }
+
+//    task initConfig(type: Copy) {
+////        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+//        duplicatesStrategy = DuplicatesStrategy.INHERIT
+//    }
+}

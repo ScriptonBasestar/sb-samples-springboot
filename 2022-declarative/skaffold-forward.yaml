@@ -1,0 +1,22 @@
+apiVersion: skaffold/v2beta23
+kind: Config
+metadata:
+  name: --rabbitmq-jpa
+build:
+  artifacts:
+  - image: rabbitmq-jpa-app
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - k8s/*
+#    - k8s/app.yaml
+#    - k8s/mysql.yaml
+portForward:
+- resourceType: service
+  resourceName: rabbitmq-jpa-app
+  port: 8080
+- resourceType: service
+  resourceName: dev-mysql
+  port: 3306
