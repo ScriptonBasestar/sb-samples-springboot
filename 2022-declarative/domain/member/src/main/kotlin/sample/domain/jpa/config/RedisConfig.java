@@ -1,4 +1,4 @@
-package sample.domain.cache.config;
+package sample.domain.jpa.config;
 
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
