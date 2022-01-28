@@ -1,4 +1,4 @@
-package sample.domain.auth.cache
+package org.scriptonbasestar.domain.auth.cache
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.redis.core.TimeToLive

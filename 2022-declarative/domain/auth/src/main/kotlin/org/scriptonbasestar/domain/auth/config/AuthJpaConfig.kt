@@ -1,4 +1,4 @@
-package sample.domain.auth.config
+package org.scriptonbasestar.domain.auth.config
 
 import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.context.annotation.ComponentScan
@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 @EnableJpaAuditing
 // @EnableSpringDataWebSupport
 @EnableTransactionManagement
-@EntityScan(basePackages = ["sample.domain.jpa.model"])
-@EnableJpaRepositories(basePackages = ["sample.domain.jpa.model"])
-@ComponentScan("sample.domain.jpa.model")
+@EntityScan(basePackages = ["org.scriptonbasestar.domain.auth"])
+@EnableJpaRepositories(basePackages = ["org.scriptonbasestar.domain.auth"])
+@ComponentScan("org.scriptonbasestar.domain.auth")
 class AuthJpaConfig {
 //    @Bean
 //    fun dataSource(): DataSource {

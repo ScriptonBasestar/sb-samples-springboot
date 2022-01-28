@@ -1,4 +1,4 @@
-package sample.domain.auth.config
+package org.scriptonbasestar.domain.auth.config
 
 import org.springframework.transaction.annotation.EnableTransactionManagement
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories

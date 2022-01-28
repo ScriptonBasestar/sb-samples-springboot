@@ -1,7 +1,7 @@
-package sample.domain.auth.cache
+package org.scriptonbasestar.domain.auth.cache
 
 import org.springframework.data.repository.CrudRepository
-import sample.domain.auth.cache.PasswordResetRequestCache
+import org.scriptonbasestar.domain.auth.cache.PasswordResetRequestCache
 import java.util.Optional
 
 interface PasswordResetRequestRepository : CrudRepository<PasswordResetRequestCache, String> {
