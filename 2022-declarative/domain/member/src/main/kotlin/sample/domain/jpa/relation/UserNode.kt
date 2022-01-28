@@ -4,7 +4,7 @@ import org.springframework.data.neo4j.core.schema.Node
 import java.util.UUID
 
 @Node
-class UserNode (
+class UserNode(
     val id: Long,
     val uuid: UUID,
     val name: String,

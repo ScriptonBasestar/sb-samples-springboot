@@ -3,7 +3,6 @@ package sample.domain.jpa.model.user
 import com.fasterxml.jackson.annotation.JsonIgnore
 import org.hibernate.annotations.DynamicUpdate
 import org.hibernate.annotations.Type
-import sample.domain.jpa.model.BaseEntity
 import sample.domain.jpa.model.BaseSeqEntity
 import javax.persistence.*
 import javax.validation.constraints.NotBlank

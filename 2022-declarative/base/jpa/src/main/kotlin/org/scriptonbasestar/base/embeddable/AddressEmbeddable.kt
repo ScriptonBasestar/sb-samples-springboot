@@ -8,4 +8,3 @@ data class AddressEmbeddable(
     val address1: String,
     val address2: String,
 )
-

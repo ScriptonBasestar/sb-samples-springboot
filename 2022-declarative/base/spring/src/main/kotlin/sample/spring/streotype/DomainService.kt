@@ -2,7 +2,6 @@ package sample.spring.streotype
 
 import org.springframework.stereotype.Component
 
-
 @Target(AnnotationTarget.TYPE)
 @Retention(AnnotationRetention.RUNTIME)
 @MustBeDocumented

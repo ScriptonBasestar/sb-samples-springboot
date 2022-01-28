@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 @EnableJpaAuditing
 // @EnableSpringDataWebSupport
 @EnableTransactionManagement
-@EntityScan(basePackages = ["org.scriptonbasestar.domain.auth"])
+@EntityScan(basePackages = ["org.scriptonbasestar.domain.auth", "org.scriptonbasestar.base"])
 @EnableJpaRepositories(basePackages = ["org.scriptonbasestar.domain.auth"])
 @ComponentScan("org.scriptonbasestar.domain.auth")
 class AuthJpaConfig {

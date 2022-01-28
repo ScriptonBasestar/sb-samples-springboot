@@ -1,19 +1,14 @@
 package org.scriptonbasestar.base
 
-import org.springframework.data.annotation.Id
-import org.springframework.data.domain.DomainEvents
+import org.scriptonbasestar.base.embeddable.DateAtEmbeddable
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.io.Serializable
 import java.util.UUID
-import javax.persistence.Column
-import javax.persistence.EntityListeners
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.MappedSuperclass
+import javax.persistence.*
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
-abstract class BaseSeqUuidEntity(uuid: UUID = UUID.randomUUID()): Serializable {
+abstract class BaseSeqUuidEntity(uuid: UUID = UUID.randomUUID()) : Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -26,4 +21,7 @@ abstract class BaseSeqUuidEntity(uuid: UUID = UUID.randomUUID()): Serializable {
     @org.hibernate.annotations.Type(type = "org.hibernate.type.UUIDCharType")
     var uuid: UUID = uuid
         protected set
+
+    @Embedded
+    var dateAt: DateAtEmbeddable = DateAtEmbeddable()
 }

@@ -1,12 +1,10 @@
 package sample.domain.jpa.model.comment
 
 import org.hibernate.annotations.DynamicUpdate
-import sample.domain.jpa.model.BaseEntity
 import sample.domain.jpa.model.BaseSeqEntity
 import sample.domain.jpa.model.article.ArticleEntity
 import javax.persistence.*
 import javax.validation.constraints.NotBlank
-import javax.validation.constraints.Size
 
 @Entity
 @Table(name = "T_COMMENT")

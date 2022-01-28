@@ -6,7 +6,6 @@ import org.aspectj.lang.reflect.MethodSignature
 import org.springframework.context.annotation.Configuration
 import java.lang.reflect.Method
 
-
 @Configuration
 class EventTriggerConfig {
     @Around("@annotation(EventTrigger)")

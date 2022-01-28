@@ -1,12 +1,10 @@
 package org.scriptonbasestar.base
 
-import org.springframework.data.annotation.Id
+import org.scriptonbasestar.base.embeddable.DateAtEmbeddable
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.io.Serializable
 import java.util.UUID
-import javax.persistence.Column
-import javax.persistence.EntityListeners
-import javax.persistence.MappedSuperclass
+import javax.persistence.*
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
@@ -18,4 +16,7 @@ abstract class BaseUuidEntity(uuid: UUID = UUID.randomUUID()) : Serializable {
     // @org.hibernate.annotations.Type(type = "org.hibernate.type.UUIDCharType")
     var uuid: UUID = uuid
         protected set
+
+    @Embedded
+    var dateAt: DateAtEmbeddable = DateAtEmbeddable()
 }

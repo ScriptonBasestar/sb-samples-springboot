@@ -5,7 +5,5 @@ jar.enabled = true
 apply plugin: 'base'
 
 subprojects {
-//    apply plugin: 'io.freefair.lombok'
     apply plugin: 'groovy'
-//    apply plugin: 'com.ewerk.gradle.plugins.querydsl'
 }
