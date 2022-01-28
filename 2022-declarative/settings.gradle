@@ -12,7 +12,7 @@ pluginManagement {
         id 'io.spring.dependency-management' version spring_dep_plugin_version
 
         id 'com.google.protobuf' version protobuf_plugin_version
-        id "com.ewerk.gradle.plugins.querydsl" version querydsl_plugin_version
+        id 'com.ewerk.gradle.plugins.querydsl' version querydsl_plugin_version
 
         id 'org.asciidoctor.jvm.convert' version asciidoctor_plugin_version
 
@@ -41,15 +41,33 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'rabbitmq-kotlin'
+rootProject.name = 'declarative-apps'
 
-include 'core'
-include 'spring'
-include ':domain:jpa'
-include ':domain:redis'
+include ':base:jpa'
+include ':base:kafka'
+include ':base:neo4j'
+include ':base:rabbitmq'
+include ':base:redis'
+include ':base:spring'
+include ':base:security'
+include ':base:processor'
+include ':base:test'
+
 include ':client:rest'
 include ':client:grpc'
-include ':processor'
+
+include 'core'
+
+include ':domain:member'
+include ':domain:board'
+include ':domain:auth'
+
+include ':processor:member'
+include ':processor:auth'
+
+include ':app:gw'
+include ':app:auth'
+include ':app:data'
 include ':app:batch'
-include ':app:server'
+include ':app:member'
 include ':app:stream'

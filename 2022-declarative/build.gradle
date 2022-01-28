@@ -59,29 +59,22 @@ subprojects {
 
     apply plugin: 'net.nemerosa.versioning'
 
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
     [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-    //compileKotlin {
-//    kotlinOptions {
-//        freeCompilerArgs = ['-Xjsr305=strict']
-//        jvmTarget = '1.8'
-//    }
-//}
-//compileTestKotlin {
-//    kotlinOptions {
-//        freeCompilerArgs = ['-Xjsr305=strict']
-//        jvmTarget = '1.8'
-//    }
-//}
     compileKotlin {
-        kotlinOptions.jvmTarget = JavaVersion.VERSION_11
-        kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
-//    kotlinOptions.freeCompilerArgs += '-Xjsr305=strict'
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_17
+//            freeCompilerArgs = ['-Xjsr305=strict']
+            freeCompilerArgs += '-Xjsr305=strict'
+        }
     }
     compileTestKotlin {
-        kotlinOptions.jvmTarget = JavaVersion.VERSION_11
-        kotlinOptions.freeCompilerArgs = ['-Xjsr305=strict']
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_17
+//            freeCompilerArgs = ['-Xjsr305=strict']
+            freeCompilerArgs += '-Xjsr305=strict'
+        }
     }
     configurations {
         compileOnly {
@@ -90,10 +83,6 @@ subprojects {
         all*.exclude group: 'junit', module: 'junit'
     }
 
-    clean {
-        delete 'src/main/generated'
-        delete 'build'
-    }
     compileJava {
         options.annotationProcessorPath = configurations.annotationProcessor
     }
@@ -116,29 +105,25 @@ subprojects {
     dependencies {
         implementation "org.codehaus.groovy:groovy-all:$groovy_version"
 //        testImplementation 'org.codehaus.groovy:groovy-test-junit5:3.0.8'
+
         ktlintRuleset("com.pinterest.ktlint:ktlint-core:$ktlint_version")
         ktlintRuleset("com.pinterest.ktlint:ktlint-ruleset-standard:$ktlint_version")
 
-        implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
         implementation 'io.projectreactor.kotlin:reactor-kotlin-extensions'
-
         implementation 'org.jetbrains.kotlin:kotlin-reflect'
         implementation 'org.jetbrains.kotlin:kotlin-stdlib'
-//    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
         implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-reactor'
-        implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
         implementation "org.apache.commons:commons-lang3:$commons_lang3_version"
 
         implementation 'org.springframework.boot:spring-boot-configuration-processor'
 
-        // test
+        /* ============================== test  ============================== */
         testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5'
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
             exclude module: 'junit'
         }
-        testImplementation "io.mockk:mockk:1.12.0"
         testImplementation 'io.projectreactor:reactor-test'
         testImplementation 'org.springframework.amqp:spring-rabbit-test'
         testImplementation 'org.springframework.batch:spring-batch-test'
@@ -151,8 +136,9 @@ subprojects {
         testImplementation 'com.h2database:h2'
         developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-        testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+//        testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
 
+        testImplementation "io.mockk:mockk:$mockk_version"
         testImplementation 'org.junit.jupiter:junit-jupiter'
         testImplementation 'org.junit.jupiter:junit-jupiter-api'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
