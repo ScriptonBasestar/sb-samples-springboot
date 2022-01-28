@@ -50,3 +50,11 @@ docker
 
 * rabbitmq mock https://github.com/fridujo/rabbitmq-mock
 * amqp https://qpid.apache.org/
+
+* https://www.baeldung.com/spring-data-ddd
+* https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/entity-listeners.html
+* https://neo4j.com/developer/spring-data-neo4j/
+* https://neo4j.com/developer/neo4j-ogm/
+* https://neo4j.com/developer/java-procedureso/
+
+* https://github.com/jankotek/mapdb

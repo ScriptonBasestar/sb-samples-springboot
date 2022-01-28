@@ -4,4 +4,5 @@ import javax.persistence.Entity
 
 @Entity
 class ClientEntity {
+
 }

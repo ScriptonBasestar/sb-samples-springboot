@@ -1,6 +1,6 @@
 bootRun.enabled = false
 bootJar.enabled = false
-jar.enabled = true
+jar.enabled = false
 
 apply plugin: 'base'
 
