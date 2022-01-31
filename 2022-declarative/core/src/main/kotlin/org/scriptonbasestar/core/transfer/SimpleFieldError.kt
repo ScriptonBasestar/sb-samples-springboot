@@ -1,4 +1,4 @@
-package sample.core.transfer
+package org.scriptonbasestar.core.transfer
 
 data class SimpleFieldError(
     val path: String,

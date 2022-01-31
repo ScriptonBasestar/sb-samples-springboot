@@ -1,4 +1,4 @@
-package sample.core.transfer
+package org.scriptonbasestar.core.transfer
 
 class EmptyResponseWrapper {
     private var success = true

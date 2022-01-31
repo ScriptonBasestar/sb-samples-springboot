@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import sample.core.exception.BusinessException
-import sample.core.util.loggerUtil
+import org.scriptonbasestar.core.exception.BusinessException
+import org.scriptonbasestar.core.util.loggerUtil
 import sample.domain.jpa.model.user.UserEntity
 import sample.domain.jpa.model.user.UserRepository
 

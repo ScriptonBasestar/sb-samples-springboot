@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.ResponseStatus
-import sample.core.exception.BusinessException
-import sample.core.transfer.EmptyResponseWrapper
-import sample.core.transfer.ListResponseWrapper
-import sample.core.transfer.SimpleFieldError
+import org.scriptonbasestar.core.exception.BusinessException
+import org.scriptonbasestar.core.transfer.EmptyResponseWrapper
+import org.scriptonbasestar.core.transfer.ListResponseWrapper
+import org.scriptonbasestar.core.transfer.SimpleFieldError
 
 @ControllerAdvice
 class ExceptionController {

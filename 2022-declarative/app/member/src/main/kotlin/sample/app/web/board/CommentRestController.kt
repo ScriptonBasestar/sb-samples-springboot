@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import sample.app.web.ErrorCode
-import sample.core.transfer.PageResponseWrapper
+import org.scriptonbasestar.core.transfer.PageResponseWrapper
 import sample.domain.jpa.model.comment.CommentEntity
 
 @RestController

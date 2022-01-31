@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import sample.core.exception.DataNotFoundException
+import org.scriptonbasestar.core.exception.DataNotFoundException
 import sample.domain.jpa.model.comment.CommentRepository
 
 @Service

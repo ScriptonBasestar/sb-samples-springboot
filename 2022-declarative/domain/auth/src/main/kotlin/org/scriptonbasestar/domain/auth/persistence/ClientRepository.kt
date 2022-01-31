@@ -11,7 +11,8 @@ import java.util.*
 interface ClientRepository :
     JpaRepository<ClientEntity, Long>,
     JpaSpecificationExecutor<ClientEntity> {
-    fun findAllByRealmUuid(realmUuid: UUID, pageable: Pageable): Page<ClientEntity>
-    fun findOneByUuid(uuid: UUID): Optional<ClientEntity>
-    fun findOneByClientId(clientId: String): Optional<ClientEntity>
+    fun findAllByRealm(realm: RealmEntity): List<ClientEntity>
+    fun findAllByRealm(realm: RealmEntity, pageable: Pageable): Page<ClientEntity>
+    fun findOneByRealmAndUuid(realm: RealmEntity, uuid: UUID): Optional<ClientEntity>
+    fun findOneByRealmAndClientId(realm: RealmEntity, clientId: String): Optional<ClientEntity>
 }

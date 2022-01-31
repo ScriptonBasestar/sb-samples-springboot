@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
-import sample.core.exception.DataNotFoundException
-import sample.core.util.loggerUtil
+import org.scriptonbasestar.core.exception.DataNotFoundException
+import org.scriptonbasestar.core.util.loggerUtil
 import sample.domain.jpa.model.user.UserEntity
 import sample.domain.jpa.model.user.UserRepository
 

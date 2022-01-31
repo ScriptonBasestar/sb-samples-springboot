@@ -1,4 +1,4 @@
-package sample.core.util
+package org.scriptonbasestar.core.util
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

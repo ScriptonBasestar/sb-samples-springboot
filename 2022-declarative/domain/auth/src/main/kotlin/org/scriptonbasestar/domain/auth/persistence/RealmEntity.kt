@@ -14,6 +14,8 @@ class RealmEntity(
     @Nationalized
     val name: String,
     @Nationalized
+    var summary: String,
+    @Nationalized
     var description: String,
     var enabled: Boolean,
 ) : BaseSeqUuidEntity()

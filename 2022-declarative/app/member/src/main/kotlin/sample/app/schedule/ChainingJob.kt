@@ -4,7 +4,7 @@ import org.apache.commons.lang3.time.DateUtils
 import org.quartz.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import sample.core.util.loggerUtil
+import org.scriptonbasestar.core.util.loggerUtil
 import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 

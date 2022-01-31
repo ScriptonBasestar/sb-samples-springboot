@@ -1,6 +1,6 @@
-package sample.core.exception
+package org.scriptonbasestar.core.exception
 
-class BusinessException : BaseException {
+open class BaseException : RuntimeException {
     constructor(message: String) : super(message)
     constructor(message: String, e: Throwable) : super(message, e)
 }

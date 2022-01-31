@@ -1,30 +1,48 @@
 package org.scriptonbasestar.domain.auth.dao
 
+import org.scriptonbasestar.core.exception.DataNotFoundException
 import org.scriptonbasestar.domain.auth.persistence.*
 import org.scriptonbasestar.domain.auth.type.AuthorizedGrantType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Repository
-import sample.core.exception.DataNotFoundException
+import org.springframework.transaction.annotation.Propagation
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @Repository
+@Transactional(propagation = Propagation.MANDATORY, readOnly = true)
 class ClientDao @Autowired constructor(
     private val clientRepository: ClientRepository,
 ) {
-    fun <T> findAll(page: Pageable, cb: (Page<ClientEntity>) -> Page<T>): Page<T> =
-        clientRepository.findAll(page).let(cb)
+    private fun exUuid(realmUuid: UUID, uuid: UUID) =
+        DataNotFoundException("client for realmUuid $realmUuid, uuid $uuid is not found")
 
-    fun <T> findAllByRealmUuid(realmUuid: UUID, page: Pageable, cb: (Page<ClientEntity>) -> Page<T>): Page<T> =
-        clientRepository.findAllByRealmUuid(realmUuid, page).let(cb)
+    private fun exClientId(realmUuid: UUID, clientId: String) =
+        DataNotFoundException("client for realmUuid $realmUuid, clientId $clientId is not found")
 
-    fun <T> findOneByUuid(uuid: UUID, ex: () -> DataNotFoundException, cb: (ClientEntity) -> T): T =
-        clientRepository.findOneByUuid(uuid).orElseThrow(ex).let(cb)
+    fun <T> findAll(realm: RealmEntity, page: Pageable, cb: (Page<ClientEntity>) -> Page<T>): Page<T> =
+        clientRepository.findAllByRealm(realm, page).let(cb)
 
-    fun <T> findOneClientByClientId(clientId: String, ex: () -> DataNotFoundException, cb: (ClientEntity) -> T): T =
-        clientRepository.findOneByClientId(clientId).orElseThrow(ex).let(cb)
+    fun <T> findOneByUuid(realm: RealmEntity, uuid: UUID, cb: (ClientEntity) -> T): T =
+        findOneByUuid(realm, uuid, { exUuid(realm.uuid, uuid) }, cb)
 
+    fun <T> findOneByUuid(realm: RealmEntity, uuid: UUID, ex: () -> DataNotFoundException, cb: (ClientEntity) -> T): T =
+        clientRepository.findOneByRealmAndUuid(realm, uuid).orElseThrow(ex).let(cb)
+
+    fun <T> findOneClientByClientId(realm: RealmEntity, clientId: String, cb: (ClientEntity) -> T): T =
+        findOneClientByClientId(realm, clientId, { exClientId(realm.uuid, clientId) }, cb)
+
+    fun <T> findOneClientByClientId(
+        realm: RealmEntity,
+        clientId: String,
+        ex: () -> DataNotFoundException,
+        cb: (ClientEntity) -> T
+    ): T =
+        clientRepository.findOneByRealmAndClientId(realm, clientId).orElseThrow(ex).let(cb)
+
+    @Transactional
     fun addOne(
         realm: RealmEntity,
         name: String,
@@ -43,9 +61,52 @@ class ClientDao @Autowired constructor(
             enabled = enabled,
             clientId = clientId,
             secret = secret,
-            redirectUris = redirectUris.map { ClientRedirectUriEntity(it) }.toSet(),
+            redirectUris = redirectUris.map(::ClientRedirectUriEntity).toSet(),
             authorizedGrantTypes = authorizedGrantTypes,
-            clientScopes = clientScopes.map { ClientScopeEntity(it) }.toSet(),
+            clientScopes = clientScopes.map(::ClientScopeEntity).toSet(),
         ).let(clientRepository::save)
+    }
+
+    @Transactional
+    fun modifyOne(
+        realm: RealmEntity,
+        uuid: UUID,
+        description: String? = null,
+        enabled: Boolean? = null,
+        clientId: String? = null,
+        secret: String? = null,
+        redirectUris: Set<String>? = null,
+        authorizedGrantTypes: Set<AuthorizedGrantType>? = null,
+        clientScopes: Set<String>? = null,
+    ) {
+        clientRepository.findOneByRealmAndUuid(realm, uuid).orElseThrow { exUuid(realm.uuid, uuid) }
+            .let { clientEntity ->
+                if (description != null) {
+                    clientEntity.description = description
+                }
+                if (enabled != null) {
+                    clientEntity.enabled = enabled
+                }
+                if (secret != null) {
+                    clientEntity.secret = secret
+                }
+            }
+    }
+
+    @Transactional
+    fun removeOne(
+        realm: RealmEntity,
+        uuid: UUID,
+    ) = removeOne(realm, uuid) {
+        exUuid(realm.uuid, uuid)
+    }
+
+    @Transactional
+    fun removeOne(
+        realm: RealmEntity,
+        uuid: UUID,
+        ex: () -> DataNotFoundException
+    ) {
+        clientRepository.findOneByRealmAndUuid(realm, uuid).orElseThrow(ex).let(clientRepository::delete)
     }
 }

@@ -3,7 +3,7 @@ package sample.app.web.signup
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import sample.core.transfer.EmptyResponseWrapper
+import org.scriptonbasestar.core.transfer.EmptyResponseWrapper
 
 import javax.validation.Valid
 

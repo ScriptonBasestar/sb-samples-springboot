@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
 import org.springframework.web.bind.annotation.*
-import sample.core.transfer.PageResponseWrapper
-import sample.core.transfer.SingleResponseWrapper
+import org.scriptonbasestar.core.transfer.PageResponseWrapper
+import org.scriptonbasestar.core.transfer.SingleResponseWrapper
 import sample.domain.jpa.model.user.UserEntity
 
 @RestController

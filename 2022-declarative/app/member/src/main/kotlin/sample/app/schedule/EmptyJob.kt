@@ -3,7 +3,7 @@ package sample.app.schedule
 import org.quartz.Job
 import org.quartz.JobExecutionContext
 import org.springframework.stereotype.Component
-import sample.core.util.loggerUtil
+import org.scriptonbasestar.core.util.loggerUtil
 
 @Component
 class EmptyJob : Job {

@@ -1,4 +1,4 @@
-package sample.core.transfer
+package org.scriptonbasestar.core.transfer
 
 class ListResponseWrapper<RESPONSE> {
     private var success = true

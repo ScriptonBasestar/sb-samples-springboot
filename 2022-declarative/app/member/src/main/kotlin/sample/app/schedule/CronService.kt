@@ -3,7 +3,7 @@ package sample.app.schedule
 import org.quartz.Scheduler
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import sample.core.util.loggerUtil
+import org.scriptonbasestar.core.util.loggerUtil
 import java.text.SimpleDateFormat
 import java.util.*
 

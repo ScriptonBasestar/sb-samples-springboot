@@ -1,4 +1,4 @@
-package sample.core.exception
+package org.scriptonbasestar.core.exception
 
 class DataNotFoundException : BaseException {
     constructor(message: String) : super(message)

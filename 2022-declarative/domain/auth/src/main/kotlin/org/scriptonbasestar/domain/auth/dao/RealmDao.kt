@@ -1,68 +1,94 @@
 package org.scriptonbasestar.domain.auth.dao
 
+import org.scriptonbasestar.core.exception.DataNotFoundException
 import org.scriptonbasestar.domain.auth.persistence.RealmEntity
 import org.scriptonbasestar.domain.auth.persistence.RealmRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Repository
-import sample.core.exception.DataNotFoundException
+import org.springframework.transaction.annotation.Propagation
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @Repository
+@Transactional(propagation = Propagation.MANDATORY, readOnly = true)
 class RealmDao @Autowired constructor(
     private val realmRepository: RealmRepository,
 ) {
+    private fun ex(uuid: UUID) =
+        DataNotFoundException("realm for uuid $uuid is not found")
+
     fun <T> findAll(page: Pageable, cb: (Page<RealmEntity>) -> Page<T>): Page<T> {
         realmRepository.findAll(page).let {
             return cb(it)
         }
     }
 
+    fun <T> findOneByUuid(uuid: UUID, cb: (RealmEntity) -> T): T =
+        findOneByUuid(uuid, { ex(uuid) }, cb)
+
     fun <T> findOneByUuid(uuid: UUID, ex: () -> DataNotFoundException, cb: (RealmEntity) -> T): T {
         return realmRepository.findOneByUuid(uuid).orElseThrow {
             throw ex()
         }.let(cb)
 //        realmRepository.flush()
-//        cb에서 값을 변경하면 저장이 될까?
+//        cb에서 entity 값을 변경하면 저장이 될까? 안되야하는데
     }
 
+    @Transactional
     fun addOne(
         name: String,
+        summary: String,
         description: String,
         enabled: Boolean,
-    ) {
+    ): RealmEntity =
         RealmEntity(
             name = name,
+            summary = summary,
             description = description,
             enabled = enabled,
         ).let(realmRepository::save)
-    }
 
+    @Transactional
+    fun modifyOne(
+        uuid: UUID,
+        summary: String? = null,
+        description: String? = null,
+        enabled: Boolean? = null,
+    ) = modifyOne(uuid, { ex(uuid) }, summary, description, enabled)
+
+    @Transactional
     fun modifyOne(
         uuid: UUID,
         ex: () -> DataNotFoundException,
-        description: String?,
-        enabled: Boolean?,
-    ) {
-        realmRepository.findOneByUuid(uuid).orElseThrow {
-            throw ex()
-        }.let { realmEntity ->
+        summary: String? = null,
+        description: String? = null,
+        enabled: Boolean? = null,
+    ): RealmEntity =
+        realmRepository.findOneByUuid(uuid).orElseThrow(ex).let { realmEntity ->
+            summary?.let {
+                realmEntity.summary = summary
+            }
             description?.let {
                 realmEntity.description = description
             }
             enabled?.let {
                 realmEntity.enabled = enabled
             }
+            realmEntity
         }
-    }
 
+    @Transactional
+    fun removeOne(
+        uuid: UUID,
+    ) = removeOne(uuid) { ex(uuid) }
+
+    @Transactional
     fun removeOne(
         uuid: UUID,
         ex: () -> DataNotFoundException,
     ) {
-        realmRepository.findOneByUuid(uuid).orElseThrow {
-            throw ex()
-        }.let(realmRepository::delete)
+        realmRepository.findOneByUuid(uuid).orElseThrow(ex).let(realmRepository::delete)
     }
 }

@@ -81,6 +81,7 @@ subprojects {
             extendsFrom annotationProcessor
         }
         all*.exclude group: 'junit', module: 'junit'
+        all*.exclude group: 'org.assertj', module: 'assertj-core'
     }
 
     compileJava {
@@ -143,6 +144,7 @@ subprojects {
 
 //        testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
 
+        testImplementation 'io.github.serpro69:kotlin-faker:1.7.1'
         testImplementation "io.mockk:mockk:$mockk_version"
         testImplementation 'org.junit.jupiter:junit-jupiter'
         testImplementation 'org.junit.jupiter:junit-jupiter-api'
