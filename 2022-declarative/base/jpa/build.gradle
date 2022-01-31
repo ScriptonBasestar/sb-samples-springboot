@@ -24,4 +24,5 @@ dependencies {
     api 'org.hibernate:hibernate-ehcache'
 
     api 'org.mindrot:jbcrypt:0.4'
+    api "com.google.guava:guava:$guava_version"
 }

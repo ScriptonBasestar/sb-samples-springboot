@@ -2,7 +2,7 @@ package org.scriptonbasestar.domain.auth.dao
 
 import org.scriptonbasestar.core.exception.DataNotFoundException
 import org.scriptonbasestar.domain.auth.persistence.RealmEntity
-import org.scriptonbasestar.domain.auth.persistence.RealmRepository
+import org.scriptonbasestar.domain.auth.persistence.RealmEntityRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -14,7 +14,7 @@ import java.util.*
 @Repository
 @Transactional(propagation = Propagation.MANDATORY, readOnly = true)
 class RealmDao @Autowired constructor(
-    private val realmRepository: RealmRepository,
+    private val realmRepository: RealmEntityRepository,
 ) {
     private fun ex(uuid: UUID) =
         DataNotFoundException("realm for uuid $uuid is not found")
@@ -36,7 +36,7 @@ class RealmDao @Autowired constructor(
 //        cb에서 entity 값을 변경하면 저장이 될까? 안되야하는데
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.MANDATORY)
     fun addOne(
         name: String,
         summary: String,
@@ -50,7 +50,7 @@ class RealmDao @Autowired constructor(
             enabled = enabled,
         ).let(realmRepository::save)
 
-    @Transactional
+    @Transactional(propagation = Propagation.MANDATORY)
     fun modifyOne(
         uuid: UUID,
         summary: String? = null,
@@ -58,7 +58,7 @@ class RealmDao @Autowired constructor(
         enabled: Boolean? = null,
     ) = modifyOne(uuid, { ex(uuid) }, summary, description, enabled)
 
-    @Transactional
+    @Transactional(propagation = Propagation.MANDATORY)
     fun modifyOne(
         uuid: UUID,
         ex: () -> DataNotFoundException,
@@ -79,12 +79,12 @@ class RealmDao @Autowired constructor(
             realmEntity
         }
 
-    @Transactional
+    @Transactional(propagation = Propagation.MANDATORY)
     fun removeOne(
         uuid: UUID,
     ) = removeOne(uuid) { ex(uuid) }
 
-    @Transactional
+    @Transactional(propagation = Propagation.MANDATORY)
     fun removeOne(
         uuid: UUID,
         ex: () -> DataNotFoundException,

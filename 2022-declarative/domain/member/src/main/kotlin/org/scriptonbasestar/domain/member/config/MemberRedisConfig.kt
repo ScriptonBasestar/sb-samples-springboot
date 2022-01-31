@@ -1,4 +1,4 @@
-package org.scriptonbasestar.domain.auth.config
+package org.scriptonbasestar.domain.member.config
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.transaction.annotation.EnableTransactionManagement
@@ -6,5 +6,5 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 
 @Configuration
 @EnableTransactionManagement
-@EnableRedisRepositories(basePackages = ["org.scriptonbasestar.domain.auth"])
-class AuthRedisConfig
+@EnableRedisRepositories(basePackages = ["org.scriptonbasestar.domain.member"])
+class MemberRedisConfig

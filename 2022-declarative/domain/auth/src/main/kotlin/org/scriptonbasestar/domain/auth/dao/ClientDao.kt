@@ -14,7 +14,7 @@ import java.util.*
 @Repository
 @Transactional(propagation = Propagation.MANDATORY, readOnly = true)
 class ClientDao @Autowired constructor(
-    private val clientRepository: ClientRepository,
+    private val clientRepository: ClientEntityRepository,
 ) {
     private fun exUuid(realmUuid: UUID, uuid: UUID) =
         DataNotFoundException("client for realmUuid $realmUuid, uuid $uuid is not found")
@@ -42,7 +42,7 @@ class ClientDao @Autowired constructor(
     ): T =
         clientRepository.findOneByRealmAndClientId(realm, clientId).orElseThrow(ex).let(cb)
 
-    @Transactional
+    @Transactional(propagation = Propagation.MANDATORY)
     fun addOne(
         realm: RealmEntity,
         name: String,
@@ -67,7 +67,7 @@ class ClientDao @Autowired constructor(
         ).let(clientRepository::save)
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.MANDATORY)
     fun modifyOne(
         realm: RealmEntity,
         uuid: UUID,
@@ -93,7 +93,7 @@ class ClientDao @Autowired constructor(
             }
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.MANDATORY)
     fun removeOne(
         realm: RealmEntity,
         uuid: UUID,
@@ -101,7 +101,7 @@ class ClientDao @Autowired constructor(
         exUuid(realm.uuid, uuid)
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.MANDATORY)
     fun removeOne(
         realm: RealmEntity,
         uuid: UUID,

@@ -1,5 +1,6 @@
 package org.scriptonbasestar.base
 
+import com.google.common.base.MoreObjects
 import org.scriptonbasestar.base.embeddable.DateAtEmbeddable
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.io.Serializable
@@ -24,4 +25,8 @@ abstract class BaseSeqUuidEntity(uuid: UUID = UUID.randomUUID()) : Serializable 
 
     @Embedded
     var dateAt: DateAtEmbeddable = DateAtEmbeddable()
+
+    protected fun buildStringHelper(): MoreObjects.ToStringHelper {
+        return MoreObjects.toStringHelper(this)
+    }
 }
