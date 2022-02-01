@@ -1,4 +1,4 @@
-package org.scriptonbasestar.domain.auth.dao
+package org.scriptonbasestar.domain.auth.ds
 
 import io.github.serpro69.kfaker.Faker
 import io.mockk.InternalPlatformDsl.toStr
@@ -21,8 +21,8 @@ import kotlin.test.Test
 @Import(AuthJpaConfig::class, AuthRedisConfig::class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @Transactional
-class RealmDaoTest @Autowired constructor(
-    private val realmDao: RealmDao,
+class RealmDSTest @Autowired constructor(
+    private val realmDao: RealmDS,
 ) {
     private val faker = Faker()
 

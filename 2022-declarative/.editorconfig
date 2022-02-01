@@ -8,7 +8,7 @@ continuation_indent_size = 8
 indent_style = space
 trim_trailing_whitespace = true
 insert_final_newline = true
-max_line_length = 120
+# max_line_length = 120
 tab_width = 4
 spaces_around_operators = true
 wildcard_import_limit = 5
@@ -28,4 +28,4 @@ arguments_literal = true
 indent_size = 2
 
 [*.{kt, kts, groovy, java}]
-disabled_rules = import-ordering, no-wildcard-imports
+disabled_rules = import-ordering, no-wildcard-imports, max_line_length

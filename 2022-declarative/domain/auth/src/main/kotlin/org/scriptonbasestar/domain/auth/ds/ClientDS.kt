@@ -1,4 +1,4 @@
-package org.scriptonbasestar.domain.auth.dao
+package org.scriptonbasestar.domain.auth.ds
 
 import org.scriptonbasestar.core.exception.DataNotFoundException
 import org.scriptonbasestar.domain.auth.persistence.*
@@ -13,7 +13,7 @@ import java.util.*
 
 @Repository
 @Transactional(propagation = Propagation.MANDATORY, readOnly = true)
-class ClientDao @Autowired constructor(
+class ClientDS @Autowired constructor(
     private val clientRepository: ClientEntityRepository,
 ) {
     private fun exUuid(realmUuid: UUID, uuid: UUID) =

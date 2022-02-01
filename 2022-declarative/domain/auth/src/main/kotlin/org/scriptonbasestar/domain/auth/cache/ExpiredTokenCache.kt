@@ -1,4 +1,3 @@
 package org.scriptonbasestar.domain.auth.cache
 
-class ExpiredTokenCache {
-}
+class ExpiredTokenCache

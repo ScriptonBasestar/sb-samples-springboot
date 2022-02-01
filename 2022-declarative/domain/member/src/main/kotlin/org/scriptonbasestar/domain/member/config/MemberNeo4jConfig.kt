@@ -7,5 +7,4 @@ import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories
 @Configuration
 @EnableNeo4jAuditing
 @EnableNeo4jRepositories(basePackages = ["org.scriptonbasestar.domain.member"])
-class MemberNeo4jConfig {
-}
+class MemberNeo4jConfig
