@@ -1,32 +1,29 @@
 bootRun.enabled = false
 bootJar.enabled = false
-jar.enabled = true
+jar.enabled = false
 
-////https://stackoverflow.com/questions/53123012/spring-boot-2-change-jar-name
-//shadowJar {
-//    zip64 = true
-////    mergeServiceFiles()
-////    exclude "META-INF/*.SF"
-////    exclude 'META-INF/*.DSA'
-////    exclude 'META-INF/*.RSA'
-////    exclude "LICENSE*"
-//}
+apply plugin: 'base'
 
-dependencies {
-    implementation project(':core')
+subprojects {
+    apply plugin: 'groovy'
+    group = 'org.scriptonbasestar.external'
+
+    dependencies {
+        implementation project(':core')
 //    testImplementation project(':domain').sourceSets.test.output
 
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-starter-cache'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        implementation 'org.springframework.boot:spring-boot-starter-cache'
 
-    implementation 'org.springframework.boot:spring-boot-starter-aop'
+        implementation 'org.springframework.boot:spring-boot-starter-aop'
 //    implementation 'org.springframework.boot:spring-boot-starter-cache'
 
-    implementation 'org.springframework.boot:spring-boot-starter-amqp'
-    implementation 'org.springframework.boot:spring-boot-starter-batch'
-    implementation 'org.springframework.boot:spring-boot-starter-quartz'
+        implementation 'org.springframework.boot:spring-boot-starter-amqp'
+        implementation 'org.springframework.boot:spring-boot-starter-batch'
+        implementation 'org.springframework.boot:spring-boot-starter-quartz'
 
-    testImplementation 'org.awaitility:awaitility-kotlin:4.1.0'
-    testImplementation 'org.mockito:mockito-core'
-    testImplementation 'com.github.fridujo:rabbitmq-mock:1.1.1'
+        testImplementation 'org.awaitility:awaitility-kotlin:4.1.0'
+        testImplementation 'org.mockito:mockito-core'
+        testImplementation 'com.github.fridujo:rabbitmq-mock:1.1.1'
+    }
 }

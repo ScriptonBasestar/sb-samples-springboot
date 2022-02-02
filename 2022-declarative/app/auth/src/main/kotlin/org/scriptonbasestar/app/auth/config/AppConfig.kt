@@ -3,15 +3,18 @@ package org.scriptonbasestar.app.auth.config
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import org.scriptonbasestar.domain.auth.config.AuthJpaConfig
+import org.scriptonbasestar.domain.member.config.MemberJpaConfig
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Import
 
 @Configuration
-// @Import(MemberJpaConfig::class, AuthJpaConfig::class)
+@Import(MemberJpaConfig::class, AuthJpaConfig::class)
 @ComponentScan(basePackages = ["org.scriptonbasestar.app.auth"])
 class AppConfig {
 

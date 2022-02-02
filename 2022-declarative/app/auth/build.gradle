@@ -16,7 +16,7 @@ shadowJar {
 
 dependencies {
     implementation project(':core')
-//    implementation project(':domain:auth')
+    implementation project(':domain:auth')
     implementation project(':domain:member')
 
 //    testImplementation project(':domain').sourceSets.test.output

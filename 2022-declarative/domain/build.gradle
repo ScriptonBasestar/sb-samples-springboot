@@ -6,6 +6,7 @@ apply plugin: 'base'
 
 subprojects {
     apply plugin: 'groovy'
+    group = 'org.scriptonbasestar.domain'
 
 //    noArg {
 //        annotation('javax.persistence.Entity')

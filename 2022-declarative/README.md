@@ -61,3 +61,7 @@ docker
 * https://neo4j.com/developer/java-procedureso/
 
 * https://github.com/jankotek/mapdb
+
+## Issue
+
+gradle multimodule에서 domain-auth, processor-auth, app-auth 이름이 같아서 오류발생. groupname변경으로 땜질
