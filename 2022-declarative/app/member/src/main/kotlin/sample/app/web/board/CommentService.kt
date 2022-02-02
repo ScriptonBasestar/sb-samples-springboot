@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import org.scriptonbasestar.core.exception.DataNotFoundException
-import sample.domain.jpa.model.comment.CommentRepository
+import org.scriptonbasestar.domain.board.persistence.CommentRepository
 
 @Service
 @Transactional(readOnly = true)

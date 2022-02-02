@@ -1,9 +1,10 @@
 bootRun.enabled = false
 bootJar.enabled = false
 jar.enabled = true
+archivesBaseName = 'domain-board'
 
 dependencies {
-    implementation project(':base:jpa')
+    api project(':base:jpa')
 
     api 'org.springframework.boot:spring-boot-starter-data-jpa'
     api 'org.springframework.boot:spring-boot-starter-data-redis'

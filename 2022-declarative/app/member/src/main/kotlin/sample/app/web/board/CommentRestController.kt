@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import sample.app.web.ErrorCode
 import org.scriptonbasestar.core.transfer.PageResponseWrapper
-import sample.domain.jpa.model.comment.CommentEntity
+import org.scriptonbasestar.domain.board.persistence.CommentEntity
 
 @RestController
 @RequestMapping("/board/{article_id}")
@@ -24,9 +24,9 @@ class CommentRestController(
         @PageableDefault pageable: Pageable
     ) = commentService.list(pageable).apply {
         PageResponseWrapper.create<CommentEntity>()
-            .data(content)
-            .totalPages(totalPages)
-            .totalElements(totalElements)
+//            .data(content)
+//            .totalPages(totalPages)
+//            .totalElements(totalElements)
             .code(ErrorCode.SUCCESS.name)
             .success(true)
     }

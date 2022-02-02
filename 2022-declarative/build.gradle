@@ -82,6 +82,7 @@ subprojects {
         }
         all*.exclude group: 'junit', module: 'junit'
         all*.exclude group: 'org.assertj', module: 'assertj-core'
+        all*.exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 
     compileJava {

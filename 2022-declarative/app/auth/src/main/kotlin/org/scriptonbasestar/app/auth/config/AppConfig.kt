@@ -9,12 +9,12 @@ import org.springframework.boot.web.servlet.server.ServletWebServerFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Import
 
 @Configuration
-//@Import(AuthJpaConfig::class)
+// @Import(MemberJpaConfig::class, AuthJpaConfig::class)
 @ComponentScan(basePackages = ["org.scriptonbasestar.app.auth"])
 class AppConfig {
+
     @Bean
     fun objectMapper(): ObjectMapper = jacksonObjectMapper().registerModule(JavaTimeModule())
 

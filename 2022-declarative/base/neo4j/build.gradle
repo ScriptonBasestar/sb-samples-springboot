@@ -1,0 +1,8 @@
+bootRun.enabled = false
+bootJar.enabled = false
+jar.enabled = true
+archivesBaseName = 'base-neo4j'
+
+dependencies {
+    api 'org.springframework.boot:spring-boot-starter-data-neo4j'
+}

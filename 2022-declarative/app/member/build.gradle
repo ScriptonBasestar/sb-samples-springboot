@@ -15,7 +15,7 @@ shadowJar {
 
 dependencies {
     implementation project(':core')
-    implementation project(':domain:member')
+//    implementation project(':domain:member')
     implementation project(':domain:board')
 
 //    testImplementation project(':domain').sourceSets.test.output
@@ -40,6 +40,7 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-aop'
 
+    implementation 'org.springframework.boot:spring-boot-starter-quartz'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
 
     testImplementation 'org.awaitility:awaitility-kotlin:4.1.0'

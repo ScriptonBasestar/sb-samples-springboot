@@ -1,4 +1,5 @@
 apply plugin: 'application'
+archivesBaseName = 'app-auth'
 
 bootJar {
     mainClass = 'org.scriptonbasestar.app.auth.ApplicationKt'
@@ -15,7 +16,7 @@ shadowJar {
 
 dependencies {
     implementation project(':core')
-    implementation project(':domain:auth')
+//    implementation project(':domain:auth')
     implementation project(':domain:member')
 
 //    testImplementation project(':domain').sourceSets.test.output
@@ -40,6 +41,7 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-aop'
 
+    implementation 'org.springframework.boot:spring-boot-starter-quartz'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
 
     testImplementation 'org.awaitility:awaitility-kotlin:4.1.0'

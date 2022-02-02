@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 
 @Configuration
+// @Import(MemberJpaConfig::class)
 @ComponentScan(basePackages = ["sample.app"])
 class AppConfig {
     @Bean

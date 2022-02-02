@@ -6,4 +6,3 @@ import java.util.*
 
 @Repository
 interface ArticleNodeRepository : Neo4jRepository<ArticleNode, UUID>
-

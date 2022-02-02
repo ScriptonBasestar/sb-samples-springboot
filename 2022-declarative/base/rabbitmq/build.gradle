@@ -1,0 +1,8 @@
+bootRun.enabled = false
+bootJar.enabled = false
+jar.enabled = true
+archivesBaseName = 'base-neo4j'
+
+dependencies {
+    implementation 'org.springframework.amqp:spring-rabbit'
+}

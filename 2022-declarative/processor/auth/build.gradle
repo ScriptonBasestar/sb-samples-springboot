@@ -1,7 +1,10 @@
 bootRun.enabled = false
 bootJar.enabled = false
-jar.enabled = true
+jar {
+    enabled = true
+    archiveBaseName = 'processor-auth'
+}
 
 dependencies {
-    implementation project(':domain:auth')
+//    implementation project(':domain:auth')
 }

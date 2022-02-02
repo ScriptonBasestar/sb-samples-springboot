@@ -5,5 +5,4 @@ import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
 @RequestMapping("/signup")
-class SignupController {
-}
+class SignupController
