@@ -1,6 +1,7 @@
 package org.scriptonbasestar.domain.auth.ds
 
 import org.scriptonbasestar.core.exception.DataNotFoundException
+import org.scriptonbasestar.core.util.nnAct
 import org.scriptonbasestar.domain.auth.persistence.RealmEntity
 import org.scriptonbasestar.domain.auth.persistence.RealmEntityRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,11 +20,8 @@ class RealmDS @Autowired constructor(
     private fun ex(uuid: UUID) =
         DataNotFoundException("realm for uuid $uuid is not found")
 
-    fun <T> findAll(page: Pageable, cb: (Page<RealmEntity>) -> Page<T>): Page<T> {
-        realmRepository.findAll(page).let {
-            return cb(it)
-        }
-    }
+    fun <T> findAll(page: Pageable, cb: (Page<RealmEntity>) -> Page<T>): Page<T> =
+        realmRepository.findAll(page).let(cb)
 
     fun <T> findOneByUuid(uuid: UUID, cb: (RealmEntity) -> T): T =
         findOneByUuid(uuid, { ex(uuid) }, cb)
@@ -56,7 +54,8 @@ class RealmDS @Autowired constructor(
         summary: String? = null,
         description: String? = null,
         enabled: Boolean? = null,
-    ) = modifyOne(uuid, { ex(uuid) }, summary, description, enabled)
+    ): RealmEntity =
+        modifyOne(uuid, { ex(uuid) }, summary, description, enabled)
 
     @Transactional(propagation = Propagation.MANDATORY)
     fun modifyOne(
@@ -66,18 +65,17 @@ class RealmDS @Autowired constructor(
         description: String? = null,
         enabled: Boolean? = null,
     ): RealmEntity =
-        realmRepository.findOneByUuid(uuid).orElseThrow(ex).let { realmEntity ->
-            summary?.let {
-                realmEntity.summary = summary
+        realmRepository.findOneByUuid(uuid).orElseThrow(ex).apply {
+            nnAct(summary) {
+                this.summary = it
             }
-            description?.let {
-                realmEntity.description = description
+            nnAct(description) {
+                this.description = it
             }
-            enabled?.let {
-                realmEntity.enabled = enabled
+            nnAct(enabled) {
+                this.enabled = it
             }
-            realmEntity
-        }
+        }.let(realmRepository::save)
 
     @Transactional(propagation = Propagation.MANDATORY)
     fun removeOne(

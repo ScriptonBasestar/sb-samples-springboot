@@ -1,6 +1,7 @@
 package org.scriptonbasestar.domain.auth.ds
 
 import org.scriptonbasestar.core.exception.DataNotFoundException
+import org.scriptonbasestar.core.util.nnAct
 import org.scriptonbasestar.domain.auth.persistence.*
 import org.scriptonbasestar.domain.auth.type.AuthorizedGrantType
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,10 +18,10 @@ class ClientDS @Autowired constructor(
     private val clientRepository: ClientEntityRepository,
 ) {
     private fun exUuid(realmUuid: UUID, uuid: UUID) =
-        DataNotFoundException("client for realmUuid $realmUuid, uuid $uuid is not found")
+        DataNotFoundException("client for realmUuid: $realmUuid, uuid: $uuid is not found")
 
     private fun exClientId(realmUuid: UUID, clientId: String) =
-        DataNotFoundException("client for realmUuid $realmUuid, clientId $clientId is not found")
+        DataNotFoundException("client for realmUuid: $realmUuid, clientId: $clientId is not found")
 
     fun <T> findAll(realm: RealmEntity, page: Pageable, cb: (Page<ClientEntity>) -> Page<T>): Page<T> =
         clientRepository.findAllByRealm(realm, page).let(cb)
@@ -53,7 +54,7 @@ class ClientDS @Autowired constructor(
         redirectUris: Set<String>,
         authorizedGrantTypes: Set<AuthorizedGrantType>,
         clientScopes: Set<String>,
-    ) {
+    ): ClientEntity =
         ClientEntity(
             realm = realm,
             name = name,
@@ -65,7 +66,6 @@ class ClientDS @Autowired constructor(
             authorizedGrantTypes = authorizedGrantTypes,
             clientScopes = clientScopes.map(::ClientScopeEntity).toSet(),
         ).let(clientRepository::save)
-    }
 
     @Transactional(propagation = Propagation.MANDATORY)
     fun modifyOne(
@@ -78,20 +78,19 @@ class ClientDS @Autowired constructor(
         redirectUris: Set<String>? = null,
         authorizedGrantTypes: Set<AuthorizedGrantType>? = null,
         clientScopes: Set<String>? = null,
-    ) {
+    ): ClientEntity =
         clientRepository.findOneByRealmAndUuid(realm, uuid).orElseThrow { exUuid(realm.uuid, uuid) }
-            .let { clientEntity ->
-                if (description != null) {
-                    clientEntity.description = description
+            .apply {
+                nnAct(description) {
+                    this.description = it
                 }
-                if (enabled != null) {
-                    clientEntity.enabled = enabled
+                nnAct(enabled) {
+                    this.enabled = it
                 }
-                if (secret != null) {
-                    clientEntity.secret = secret
+                nnAct(secret) {
+                    this.secret = it
                 }
-            }
-    }
+            }.let(clientRepository::save)
 
     @Transactional(propagation = Propagation.MANDATORY)
     fun removeOne(

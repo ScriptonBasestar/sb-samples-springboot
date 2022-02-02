@@ -1,7 +1,7 @@
 package org.scriptonbasestar.domain.board.persistence
 
 import org.hibernate.annotations.DynamicUpdate
-import org.scriptonbasestar.domain.member.model.comment.CommentEntity
+import org.scriptonbasestar.base.BaseSeqUuidEntity
 import javax.persistence.*
 
 @Entity
@@ -12,14 +12,15 @@ class ArticleEntity(
         length = 100,
         nullable = false
     )
-    val title: String,
+    var title: String,
     @field:Column(
         length = 1000,
         nullable = false,
         columnDefinition = "mediumtext"
     )
-    private val content: String
-) : BaseSeqEntity() {
+    var content: String,
+    var enabled: Boolean = true,
+) : BaseSeqUuidEntity() {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "article", cascade = [CascadeType.ALL], orphanRemoval = true)
     private val comments: MutableList<CommentEntity> = mutableListOf()

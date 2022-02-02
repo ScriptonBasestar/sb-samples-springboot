@@ -1,4 +1,4 @@
-package org.scriptonbasestar.domain.auth
+package org.scriptonbasestar.domain.member
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -11,7 +11,7 @@ import javax.annotation.PostConstruct
 import javax.annotation.PreDestroy
 
 @TestConfiguration
-class TestConfig @Autowired constructor(
+class TestRedisConfig @Autowired constructor(
     @Value("\${spring.redis.port}")
     private val redisPort: Int,
     @Value("\${spring.redis.host}")

@@ -1,4 +1,4 @@
-package org.scriptonbasestar.domain.member.relation
+package org.scriptonbasestar.domain.member.graph
 
 import org.springframework.data.neo4j.core.schema.Node
 import java.util.UUID

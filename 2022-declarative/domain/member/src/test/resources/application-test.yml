@@ -35,6 +35,13 @@ spring:
   liquibase:
     enabled: false
 
+  redis:
+    client-type: lettuce
+    host: localhost
+    port: 6379
+#    password: passw0rd
+#    database: 0
+
 logging:
   level:
     root: DEBUG

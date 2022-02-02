@@ -1,7 +1,7 @@
 package org.scriptonbasestar.domain.board.persistence
 
 import org.hibernate.annotations.DynamicUpdate
-import org.scriptonbasestar.domain.member.model.article.ArticleEntity
+import org.scriptonbasestar.base.BaseSeqUuidEntity
 import javax.persistence.*
 import javax.validation.constraints.NotBlank
 
@@ -16,7 +16,7 @@ class CommentEntity(
     @field:NotBlank
     @Column(length = 100, nullable = false)
     var content: String
-) : BaseSeqEntity() {
+) : BaseSeqUuidEntity() {
 
     override fun toString(): String {
         return super.buildStringHelper()

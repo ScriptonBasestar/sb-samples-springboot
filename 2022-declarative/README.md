@@ -1,7 +1,9 @@
 # RabbitMQ
 
 개발중에 상호참조 및 역참조 방지
-하기위해 과도하게 모듈을 나눔
+하기위해 모듈을 잘게 나눔
+
+graphdb 테스트중. 데이터 저장까지 같이 해버릴지 관계만 관리할지
 
 ## Stacks
 
@@ -11,6 +13,7 @@
 - mysql
 - jpa
 - redis
+- neo4j
 - ssl 접속
 - junit5
 - webflux

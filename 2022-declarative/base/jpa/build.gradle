@@ -23,6 +23,12 @@ dependencies {
     api 'org.hibernate:hibernate-envers'
     api 'org.hibernate:hibernate-ehcache'
 
+    // querydsl
+    // kotlin
+    api 'com.querydsl:querydsl-jpa'
+    kapt 'com.querydsl:querydsl-apt::jpa'
+
+
     api 'org.mindrot:jbcrypt:0.4'
     api "com.google.guava:guava:$guava_version"
 }

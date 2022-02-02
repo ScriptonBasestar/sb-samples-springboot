@@ -29,7 +29,7 @@ class MemberEntity(
     @Column(length = 100, unique = true, nullable = false)
     val email: String?,
 
-    @field:Type(type = "sample.domain.jpa.usertype.BCryptUserType")
+    @field:Type(type = "org.scriptonbasestar.base.usertype.BCryptUserType")
     @field:JsonIgnore
     @Column(length = 60, nullable = false)
     val password: String

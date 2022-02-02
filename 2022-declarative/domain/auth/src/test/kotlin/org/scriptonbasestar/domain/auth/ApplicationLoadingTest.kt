@@ -8,7 +8,7 @@ import kotlin.test.Test
 
 @DataJpaTest
 @Import(AuthJpaConfig::class, AuthRedisConfig::class)
-class TestApplication {
+class ApplicationLoadingTest {
     @Test
     fun test() {
         println("test?")

@@ -6,4 +6,8 @@ apply plugin: 'base'
 
 subprojects {
     apply plugin: 'groovy'
+    apply plugin: 'com.github.johnrengelman.shadow'
+
+    apply plugin: 'com.google.protobuf'
+    apply plugin: 'kotlin-jpa'
 }
