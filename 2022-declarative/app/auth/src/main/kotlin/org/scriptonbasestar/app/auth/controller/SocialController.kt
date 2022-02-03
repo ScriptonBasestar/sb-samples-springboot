@@ -5,4 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
 @RequestMapping("/social")
-class SocialController
+class SocialController {
+    
+}

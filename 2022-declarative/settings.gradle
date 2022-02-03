@@ -43,6 +43,7 @@ pluginManagement {
 
 rootProject.name = 'declarative-apps'
 
+include ':base:auth'
 include ':base:jpa'
 include ':base:kafka'
 include ':base:neo4j'

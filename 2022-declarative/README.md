@@ -48,6 +48,10 @@ skaffold
 * https://www.lesstif.com/java/java-keytool-keystore-20775436.html
 * https://stufeel.tistory.com/12
 
+* https://github.com/authlete/java-oauth-server
+* https://github.com/mitreid-connect/OpenID-Connect-Java-Spring-Server
+* https://github.com/myndocs/kotlin-oauth2-server
+
 docker
 * https://stackoverflow.com/questions/59284095/how-to-use-encrypted-connection-with-mysql-on-docker
 
