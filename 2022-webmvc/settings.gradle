@@ -12,16 +12,17 @@ pluginManagement {
         id 'io.spring.dependency-management' version spring_dep_plugin_version
 
         id 'com.google.protobuf' version protobuf_plugin_version
-        id 'com.ewerk.gradle.plugins.querydsl' version querydsl_plugin_version
 
         id 'org.asciidoctor.jvm.convert' version asciidoctor_plugin_version
 
+        id 'com.palantir.baseline-checkstyle' version palantir_checkstyle_plugin_version
         id 'org.jlleitschuh.gradle.ktlint' version ktlint_plugin_version
         id 'org.jlleitschuh.gradle.ktlint-idea' version ktlint_plugin_version
 
-        id 'com.github.johnrengelman.shadow' version shadow_plugin_version
+        id 'com.github.johnrengelman.shadow' version johnrengelman_shadow_plugin_version
+        id 'com.google.cloud.tools.jib' version google_jib_plugin_version
+
         id 'io.freefair.lombok' version freefair_lombok_plugin_version
-        id 'com.google.cloud.tools.jib' version jib_plugin_version
 
         id 'org.flywaydb.flyway' version flyway_plugin_version
         id 'org.jetbrains.gradle.liquibase' version liquibase_jetbrains_plugin_version
@@ -41,7 +42,9 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'declarative-apps'
+rootProject.name = 'webmvc-apps'
+
+include 'bom'
 
 include ':base:auth'
 include ':base:jpa'

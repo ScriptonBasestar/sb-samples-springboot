@@ -5,7 +5,7 @@ jar.enabled = true
 dependencies {
     implementation project(':domain:auth')
 
-    implementation "io.ktor:ktor-client-cio:$ktor_version"
-    implementation "io.ktor:ktor-client-logging:$ktor_version"
-    implementation "io.ktor:ktor-client-jackson:$ktor_version"
+    implementation "io.ktor:ktor-client-cio:$ktor_client_version"
+    implementation "io.ktor:ktor-client-logging:$ktor_client_version"
+    implementation "io.ktor:ktor-client-jackson:$ktor_client_version"
 }
